@@ -162,20 +162,21 @@ img, video, svg, picture { max-width: 100%; height: auto; }
 /* Hide the Framer badge if it appears */
 #__framer-badge-container { display: none !important; }
 
-/* Download/Register section gradient: applied to a full-width ancestor
-   by JS to avoid side clipping artifacts on centered Framer containers. */
-#download {
-    position: relative;
-    background: transparent !important;
-}
-#download::before { display: none !important; }
-[data-dexa-download-gradient] {
+/* Full landing background: continuous width, soft top fade to gray */
+#main {
     background: linear-gradient(
         180deg,
-        rgb(245, 245, 245) 0%,
-        rgb(242, 242, 242) 60%,
-        rgb(239, 239, 239) 100%
+        rgb(255, 255, 255) 0%,
+        rgb(255, 255, 255) 62%,
+        rgb(246, 246, 246) 78%,
+        rgb(238, 238, 238) 100%
     ) !important;
+}
+
+/* Keep download block transparent so the global background is visible */
+#download,
+#download [data-framer-name="Container"] {
+    background: transparent !important;
 }
 
 /* Belt-and-suspenders: avoid a horizontal scrollbar caused by any
@@ -1234,6 +1235,30 @@ img, video, svg, picture { max-width: 100%; height: auto; }
         return container.firstElementChild;
     }
 
+    function applyTickerAnimation(track, uniqueCount) {
+        var first = track.children[0];
+        var repeatStart = track.children[uniqueCount];
+        var setWidth = 0;
+        if (first && repeatStart) {
+            setWidth = repeatStart.offsetLeft - first.offsetLeft;
+        }
+        if (!setWidth || setWidth <= 0) {
+            setWidth = track.scrollWidth / 3;
+        }
+        if (!setWidth || setWidth <= 0) {
+            // Safe fallback so animation starts immediately even before
+            // final layout metrics settle on first paint.
+            setWidth = Math.max(240, window.innerWidth * 0.6);
+        }
+
+        track.style.setProperty('--nce-ticker-shift', setWidth + 'px');
+        var dur = Math.max(10, setWidth / 55); // ~55px/s
+        track.style.setProperty('animation', 'none', 'important');
+        void track.offsetWidth;
+        track.style.setProperty('animation', 'nce-ticker-scroll ' + dur + 's linear infinite', 'important');
+        track.style.setProperty('animation-play-state', 'running', 'important');
+    }
+
     // ─── Initialization ────────────────────────────────────────
 
     function initTickers() {
@@ -1245,13 +1270,12 @@ img, video, svg, picture { max-width: 100%; height: auto; }
         ].join(',');
 
         document.querySelectorAll(sel).forEach(function(container) {
-            if (container.dataset.nceTickerInit) return;
-            container.dataset.nceTickerInit = 'true';
-
             container.style.overflow = 'hidden';
 
             var track = findTrack(container);
             if (!track) return;
+            if (track.dataset.nceTickerTrackInit === 'true') return;
+            track.dataset.nceTickerTrackInit = 'true';
 
             // Scroll-reveal fallback may enforce transform:none !important on
             // [data-nce-scroll], which blocks ticker keyframes entirely.
@@ -1323,29 +1347,33 @@ img, video, svg, picture { max-width: 100%; height: auto; }
             if (prefersReducedMotion) {
                 track.style.animation = 'none';
             } else {
-                // Animate with duration proportional to content width
-                requestAnimationFrame(function() {
-                    var first = track.children[0];
-                    var repeatStart = track.children[uniqueCount];
-                    var setWidth = 0;
-                    if (first && repeatStart) {
-                        setWidth = repeatStart.offsetLeft - first.offsetLeft;
-                    }
-                    if (!setWidth || setWidth <= 0) {
-                        setWidth = track.scrollWidth / 3;
-                    }
-                    track.style.setProperty('--nce-ticker-shift', setWidth + 'px');
-                    var dur = Math.max(10, setWidth / 55); // ~55px/s
-                    track.style.animation = 'none';
-                    void track.offsetWidth;
-                    track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
-                });
+                // Start immediately, then refine once layout settles.
+                applyTickerAnimation(track, uniqueCount);
+                requestAnimationFrame(function() { applyTickerAnimation(track, uniqueCount); });
+                setTimeout(function() { applyTickerAnimation(track, uniqueCount); }, 80);
             }
         });
     }
 
     initTickers();
     window.addEventListener('load', initTickers);
+    document.addEventListener('DOMContentLoaded', initTickers);
+    setTimeout(initTickers, 300);
+    setTimeout(initTickers, 1200);
+    setTimeout(initTickers, 3000);
+
+    if (typeof MutationObserver !== 'undefined') {
+        var pendingTickerInit = false;
+        var mo = new MutationObserver(function() {
+            if (pendingTickerInit) return;
+            pendingTickerInit = true;
+            requestAnimationFrame(function() {
+                pendingTickerInit = false;
+                initTickers();
+            });
+        });
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+    }
 })();
 </script><script>(function() {
   function getPathname(urlBase) {
@@ -2408,33 +2436,10 @@ img, video, svg, picture { max-width: 100%; height: auto; }
         });
     }
 
-    function applyUniformDownloadGradient() {
-        var dl = document.getElementById('download');
-        if (!dl) return;
-
-        // Remove stale markers in case hydration swaps nodes.
-        document.querySelectorAll('[data-dexa-download-gradient]').forEach(function(el) {
-            el.removeAttribute('data-dexa-download-gradient');
-        });
-
-        var node = dl;
-        var target = null;
-        while (node) {
-            var r = node.getBoundingClientRect ? node.getBoundingClientRect() : null;
-            if (r && r.width >= window.innerWidth - 2) {
-                target = node;
-                break;
-            }
-            node = node.parentElement;
-        }
-        (target || document.body).setAttribute('data-dexa-download-gradient', 'true');
-    }
-
     function run() {
         fixRegistroButtons();
         injectHeroCta();
         fixHeroSpacingCopy();
-        applyUniformDownloadGradient();
     }
 
     // Run now and after hydration settles.
