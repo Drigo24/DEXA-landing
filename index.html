@@ -162,32 +162,20 @@ img, video, svg, picture { max-width: 100%; height: auto; }
 /* Hide the Framer badge if it appears */
 #__framer-badge-container { display: none !important; }
 
-/* Download/Register section: uniform full-bleed gradient (no side cuts) */
+/* Download/Register section gradient: applied to a full-width ancestor
+   by JS to avoid side clipping artifacts on centered Framer containers. */
 #download {
     position: relative;
-    overflow: hidden;
-    isolation: isolate;
+    background: transparent !important;
 }
-#download::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
-    pointer-events: none;
-    z-index: 0;
+#download::before { display: none !important; }
+[data-dexa-download-gradient] {
     background: linear-gradient(
         180deg,
-        rgb(236, 236, 236) 0%,
-        rgb(244, 244, 244) 55%,
-        rgb(255, 255, 255) 100%
-    );
-}
-#download > * {
-    position: relative;
-    z-index: 1;
+        rgb(245, 245, 245) 0%,
+        rgb(242, 242, 242) 60%,
+        rgb(239, 239, 239) 100%
+    ) !important;
 }
 
 /* Belt-and-suspenders: avoid a horizontal scrollbar caused by any
@@ -1164,14 +1152,15 @@ img, video, svg, picture { max-width: 100%; height: auto; }
         s.id = styleId;
         s.textContent = [
             '@keyframes nce-ticker-scroll {',
-            '  from { transform: translateX(0); }',
-            '  to { transform: translateX(calc(-100% / 3)); }',
+            '  from { transform: translate3d(0,0,0); }',
+            '  to { transform: translate3d(calc(-1 * var(--nce-ticker-shift, 33.333%)),0,0); }',
             '}',
             '.nce-ticker-track {',
             '  display: flex !important;',
             '  flex-wrap: nowrap !important;',
             '  width: max-content !important;',
             '  will-change: transform;',
+            '  backface-visibility: hidden;',
             '  left: 0 !important;',
             '  position: relative !important;',
             '  animation-play-state: running !important;',
@@ -1336,8 +1325,19 @@ img, video, svg, picture { max-width: 100%; height: auto; }
             } else {
                 // Animate with duration proportional to content width
                 requestAnimationFrame(function() {
-                    var w = track.scrollWidth;
-                    var dur = Math.max(10, w / 3 / 50); // ~50px/s
+                    var first = track.children[0];
+                    var repeatStart = track.children[uniqueCount];
+                    var setWidth = 0;
+                    if (first && repeatStart) {
+                        setWidth = repeatStart.offsetLeft - first.offsetLeft;
+                    }
+                    if (!setWidth || setWidth <= 0) {
+                        setWidth = track.scrollWidth / 3;
+                    }
+                    track.style.setProperty('--nce-ticker-shift', setWidth + 'px');
+                    var dur = Math.max(10, setWidth / 55); // ~55px/s
+                    track.style.animation = 'none';
+                    void track.offsetWidth;
                     track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
                 });
             }
@@ -2391,9 +2391,50 @@ img, video, svg, picture { max-width: 100%; height: auto; }
         target.appendChild(btn);
     }
 
+    function fixHeroSpacingCopy() {
+        var selectors = [
+            '.framer-1b8lqhg p',
+            '.framer-19u7rsn p',
+            '.framer-xdooj9 p',
+            '.framer-1cie98q p'
+        ];
+        selectors.forEach(function(sel) {
+            document.querySelectorAll(sel).forEach(function(node) {
+                var t = node.textContent || '';
+                if (!t) return;
+                var fixed = t.replace(/bucalen/gi, 'bucal en');
+                if (fixed !== t) node.textContent = fixed;
+            });
+        });
+    }
+
+    function applyUniformDownloadGradient() {
+        var dl = document.getElementById('download');
+        if (!dl) return;
+
+        // Remove stale markers in case hydration swaps nodes.
+        document.querySelectorAll('[data-dexa-download-gradient]').forEach(function(el) {
+            el.removeAttribute('data-dexa-download-gradient');
+        });
+
+        var node = dl;
+        var target = null;
+        while (node) {
+            var r = node.getBoundingClientRect ? node.getBoundingClientRect() : null;
+            if (r && r.width >= window.innerWidth - 2) {
+                target = node;
+                break;
+            }
+            node = node.parentElement;
+        }
+        (target || document.body).setAttribute('data-dexa-download-gradient', 'true');
+    }
+
     function run() {
         fixRegistroButtons();
         injectHeroCta();
+        fixHeroSpacingCopy();
+        applyUniformDownloadGradient();
     }
 
     // Run now and after hydration settles.
