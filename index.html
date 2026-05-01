@@ -197,6 +197,13 @@ html, body {
     ) !important;
 }
 
+/* Raise footer legal text so it stays readable over gradient */
+#download .framer-kc6w4w,
+#download .framer-1263ono,
+#download .framer-15dxizs {
+    transform: translateX(-50%) translateY(-14px) !important;
+}
+
 /* Belt-and-suspenders: avoid a horizontal scrollbar caused by any
    transform/absolute element extending past the viewport. */
 #main { overflow-x: clip; }
@@ -1253,7 +1260,9 @@ html, body {
         return container.firstElementChild;
     }
 
-    function applyTickerAnimation(track, uniqueCount) {
+    var tickerLoops = new WeakMap();
+
+    function getTickerSetWidth(track, uniqueCount) {
         var first = track.children[0];
         var repeatStart = track.children[uniqueCount];
         var setWidth = 0;
@@ -1268,13 +1277,46 @@ html, body {
             // final layout metrics settle on first paint.
             setWidth = Math.max(240, window.innerWidth * 0.6);
         }
+        return setWidth;
+    }
+
+    function stopTickerLoop(track) {
+        var state = tickerLoops.get(track);
+        if (!state) return;
+        state.running = false;
+        tickerLoops.delete(track);
+    }
+
+    function startTickerLoop(track, uniqueCount) {
+        var setWidth = getTickerSetWidth(track, uniqueCount);
+        var speedPxPerSec = 55;
+
+        stopTickerLoop(track);
+        var state = {
+            running: true,
+            lastTs: 0,
+            offset: 0,
+            setWidth: setWidth
+        };
+        tickerLoops.set(track, state);
 
         track.style.setProperty('--nce-ticker-shift', setWidth + 'px');
-        var dur = Math.max(10, setWidth / 55); // ~55px/s
         track.style.setProperty('animation', 'none', 'important');
-        void track.offsetWidth;
-        track.style.setProperty('animation', 'nce-ticker-scroll ' + dur + 's linear infinite', 'important');
         track.style.setProperty('animation-play-state', 'running', 'important');
+
+        function step(ts) {
+            if (!state.running) return;
+            if (!state.lastTs) state.lastTs = ts;
+
+            var dt = (ts - state.lastTs) / 1000;
+            state.lastTs = ts;
+
+            state.offset = (state.offset + speedPxPerSec * dt) % state.setWidth;
+            track.style.transform = 'translate3d(' + (-state.offset) + 'px,0,0)';
+
+            requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
     }
 
     // ─── Initialization ────────────────────────────────────────
@@ -1373,12 +1415,14 @@ html, body {
             // Accessibility: skip animation if user prefers reduced motion
             var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (prefersReducedMotion) {
+                stopTickerLoop(track);
                 track.style.animation = 'none';
+                track.style.transform = 'translate3d(0,0,0)';
             } else {
-                // Start immediately, then refine once layout settles.
-                applyTickerAnimation(track, uniqueCount);
-                requestAnimationFrame(function() { applyTickerAnimation(track, uniqueCount); });
-                setTimeout(function() { applyTickerAnimation(track, uniqueCount); }, 80);
+                // Start immediately and keep moving independently of CSS keyframes.
+                startTickerLoop(track, uniqueCount);
+                requestAnimationFrame(function() { startTickerLoop(track, uniqueCount); });
+                setTimeout(function() { startTickerLoop(track, uniqueCount); }, 80);
             }
         });
     }
