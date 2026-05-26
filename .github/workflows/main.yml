@@ -1,2 +1,15 @@
-- name: Claude Code Action Official
-  uses: anthropics/claude-code-action@v1
+name: Claude Code
+
+on:
+  workflow_dispatch:
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Claude Code Action Official
+        uses: anthropics/claude-code-action@v1
+      
