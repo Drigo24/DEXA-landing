@@ -82,7 +82,7 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .stat-cards{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:56px}
 .stat-card{padding:28px 24px;border-right:1px solid var(--hairline)}
 .stat-card:last-child{border-right:none}
-.stat-card__num{font-size:clamp(30px,3.8vw,48px);font-weight:900;letter-spacing:-.03em;color:var(--ink);line-height:1;margin-bottom:10px}
+.stat-card__num{font-size:clamp(30px,3.8vw,48px);font-weight:900;letter-spacing:-.03em;color:var(--blue);line-height:1;margin-bottom:10px}
 .stat-card__num .unit{font-size:.48em;font-weight:600;color:var(--ink-2)}
 .stat-card__desc{font-size:13px;line-height:1.55;color:var(--ink-2);margin-bottom:12px}
 .stat-card__source{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
@@ -103,6 +103,56 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .step-card__title{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px}
 .step-card__desc{font-size:14px;line-height:1.7;color:var(--ink-2);flex:1;margin-bottom:20px}
 .step-pill{display:inline-flex;padding:5px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.12);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);align-self:flex-start}
+
+/* SOLUCION */
+.solucion{background:#fff;padding:100px var(--pad)}
+.solucion .grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.solucion__title{font-size:clamp(32px,4.5vw,58px);line-height:1.06;font-weight:900;letter-spacing:-.03em;color:var(--ink);margin-bottom:0}
+.solucion__title .accent{color:var(--blue)}
+.solucion__body{font-size:15.5px;line-height:1.78;color:var(--ink-2);margin-bottom:32px}
+.tech-pills{display:flex;flex-wrap:wrap;gap:10px}
+.tech-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;border:1.5px solid rgba(0,0,0,.12);font-size:13px;font-weight:600;color:var(--ink-2);white-space:nowrap}
+.tech-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+
+/* UNETE */
+.unete{background:linear-gradient(135deg,#018ede 0%,#0ab5f5 100%);padding:100px var(--pad);color:#fff}
+.unete .section-label{color:rgba(255,255,255,.55)}
+.unete .section-label::before{background:#fff}
+.unete .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.unete__title{font-size:clamp(32px,4.2vw,54px);line-height:1.06;font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.unete__title .accent{color:rgba(255,255,255,.55)}
+.unete__sub{font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.78);max-width:42ch}
+.accordion{display:flex;flex-direction:column;gap:0;border:1.5px solid rgba(255,255,255,.25);border-radius:16px;overflow:hidden}
+.accordion-item{border-bottom:1.5px solid rgba(255,255,255,.25)}
+.accordion-item:last-child{border-bottom:none}
+.accordion-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;background:rgba(255,255,255,.08);border:none;color:#fff;cursor:pointer;text-align:left;transition:background .15s;gap:16px}
+.accordion-btn:hover{background:rgba(255,255,255,.15)}
+.accordion-btn.is-open{background:rgba(255,255,255,.18)}
+.accordion-btn .label{font-size:18px;font-weight:800;letter-spacing:-.02em;line-height:1.3;text-shadow:0 1px 2px rgba(0,0,0,.15)}
+.accordion-btn .chevron{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.2);display:grid;place-items:center;flex-shrink:0;transition:transform .25s ease}
+.accordion-btn.is-open .chevron{transform:rotate(180deg)}
+.accordion-btn .chevron svg{width:12px;height:12px;color:#fff}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;background:rgba(255,255,255,.05)}
+.accordion-body.is-open{max-height:300px}
+.accordion-body__inner{padding:20px 26px 24px;font-size:14px;line-height:1.7;color:rgba(255,255,255,.78)}
+.accordion-body__inner input[type=email],.accordion-body__inner input[type=text]{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-size:14px;margin-bottom:10px;outline:none}
+.accordion-body__inner input::placeholder{color:rgba(255,255,255,.5)}
+.accordion-body__inner input:focus{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.18)}
+.btn-white{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;background:#fff;color:var(--blue);font:inherit;font-weight:700;font-size:14px;border:none;cursor:pointer;transition:transform .12s,box-shadow .2s;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.btn-white:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+
+/* FOOTER */
+.footer{background:#0a0a0c;padding:56px var(--pad) 36px;color:#fff}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;margin-bottom:48px}
+.footer__brand{display:flex;flex-direction:column;gap:10px}
+.footer__logo{font-size:17px;font-weight:800;letter-spacing:-.01em;color:#fff}
+.footer__tagline{font-size:13px;color:rgba(255,255,255,.4)}
+.footer__contact{display:flex;flex-direction:column;gap:12px}
+.footer__email{font-size:14px;color:rgba(255,255,255,.65)}
+.footer__socials{display:flex;gap:8px}
+.social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;color:rgba(255,255,255,.55);font-size:11px;font-weight:700;letter-spacing:.04em;transition:background .15s,color .15s}
+.social-btn:hover{background:rgba(255,255,255,.14);color:#fff}
+.footer__bottom{max-width:var(--max);margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.3)}
 
 /* DENTISTAS */
 .dentistas{background:#000;padding:100px var(--pad);color:#fff}
@@ -140,6 +190,11 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
   .feature-cell{border-right:none!important}
   .feature-cell:nth-child(n+4){border-bottom:1px solid rgba(255,255,255,.1)!important}
   .feature-cell:last-child{border-bottom:none!important}
+  .solucion{padding:72px 24px}
+  .solucion .grid{grid-template-columns:1fr;gap:40px}
+  .unete{padding:72px 24px}
+  .unete .grid{grid-template-columns:1fr;gap:48px}
+  .footer__inner{flex-direction:column;gap:32px}
 }
 </style>
 </head>
@@ -288,9 +343,115 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
   </div>
 </section>
 
+<!-- LA SOLUCION 04 -->
+<section class="solucion" id="solucion">
+  <div class="container">
+    <div class="section-label">La Solución <span style="color:var(--ink-3)">/ 04</span></div>
+    <div class="grid">
+      <div class="solucion__left">
+        <h2 class="solucion__title">Innovación y <span class="accent">vanguardia</span> en odontología</h2>
+      </div>
+      <div class="solucion__right">
+        <p class="solucion__body">Desarrollamos un modelo de visión computacional entrenado con miles de imágenes intraorales, capaz de detectar caries según estándar ICDAS, gingivitis, periodontitis y sarro con alta precisión diagnóstica. Integramos diagnóstico IA, conexión con dentistas y seguimiento clínico en una sola plataforma.</p>
+        <div class="tech-pills">
+          <span class="tech-pill">Powered by AWS</span>
+          <span class="tech-pill">+85% precisión Beta</span>
+          <span class="tech-pill">Google Maps integrado</span>
+          <span class="tech-pill">Protección de datos</span>
+          <span class="tech-pill">Hecho en Chile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNETE 05 -->
+<section class="unete" id="join">
+  <div class="container">
+    <div class="section-label">Únete <span style="color:rgba(255,255,255,.38)">/ 05</span></div>
+    <div class="grid">
+      <div>
+        <h2 class="unete__title">Sé parte del <span class="accent">lanzamiento</span> de DEXA Vision.</h2>
+        <p class="unete__sub">Regístrate para el acceso anticipado y sé de los primeros en usar la primera app de diagnóstico dental con IA en Chile.</p>
+      </div>
+      <div class="accordion" id="accordion">
+        <div class="accordion-item">
+          <button class="accordion-btn" data-target="acc-1" aria-expanded="false">
+            <span class="label">Soy paciente</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="accordion-body" id="acc-1">
+            <div class="accordion-body__inner">
+              <input type="text" placeholder="Nombre completo" />
+              <input type="email" placeholder="Correo electrónico" />
+              <button class="btn-white">Quiero ser de los primeros →</button>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn" data-target="acc-2" aria-expanded="false">
+            <span class="label">Soy dentista o clínica</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="accordion-body" id="acc-2">
+            <div class="accordion-body__inner">
+              <input type="text" placeholder="Nombre / Clínica" />
+              <input type="email" placeholder="Correo electrónico" />
+              <button class="btn-white">Unirme como profesional →</button>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn" data-target="acc-3" aria-expanded="false">
+            <span class="label">¿Quieres integrar nuestro modelo a tu clínica o empresa?</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <div class="accordion-body" id="acc-3">
+            <div class="accordion-body__inner">
+              <input type="text" placeholder="Empresa / Clínica" />
+              <input type="email" placeholder="Correo de contacto" />
+              <button class="btn-white">Explorar integración →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <div class="footer__logo">DEXA Vision</div>
+      <div class="footer__tagline">Captura · Analiza · Conecta</div>
+    </div>
+    <div class="footer__contact">
+      <a href="mailto:contacto@dexavision.cl" class="footer__email">contacto@dexavision.cl</a>
+      <div class="footer__socials">
+        <a href="#" class="social-btn" aria-label="Instagram">IG</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">IN</a>
+        <a href="#" class="social-btn" aria-label="X / Twitter">X</a>
+        <a href="#" class="social-btn" aria-label="TikTok">TT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">© 2026 DEXA Vision · Hecho en Chile <svg viewBox="0 0 30 20" aria-label="Chile" style="width:1.1em;height:.73em;vertical-align:-.1em;border-radius:2px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.2)"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d52b1e"/><rect width="10" height="10" fill="#0033a0"/><polygon fill="#fff" points="5,1.6 5.96,4.55 9.06,4.55 6.55,6.37 7.51,9.32 5,7.5 2.49,9.32 3.45,6.37 0.94,4.55 4.04,4.55"/></svg></div>
+</footer>
+
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', function(){nav.classList.toggle('is-stuck', window.scrollY > 60)}, {passive:true});
+  document.querySelectorAll('.accordion-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var targetId = btn.getAttribute('data-target');
+      var body = document.getElementById(targetId);
+      var isOpen = btn.classList.contains('is-open');
+      document.querySelectorAll('.accordion-btn').forEach(function(b){b.classList.remove('is-open');b.setAttribute('aria-expanded','false');});
+      document.querySelectorAll('.accordion-body').forEach(function(b){b.classList.remove('is-open');});
+      if(!isOpen){btn.classList.add('is-open');btn.setAttribute('aria-expanded','true');body.classList.add('is-open');}
+    });
+  });
 </script>
 </body>
 </html>
