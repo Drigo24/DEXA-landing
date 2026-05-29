@@ -2,235 +2,401 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<title>DEXA Vision — Isotipo Preview</title>
+<title>DEXA Vision — Isotipo 3D</title>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f0f2f5;min-height:100vh;padding:48px 24px}
-h1{text-align:center;font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#9ca3af;margin-bottom:48px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:1100px;margin:0 auto}
-.card{background:#fff;border-radius:20px;padding:40px 32px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
-.card h2{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:8px}
-.card p{font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:32px}
-.preview-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:24px}
-.preview-item{display:flex;flex-direction:column;align-items:center;gap:10px}
-.preview-item span{font-size:11px;color:#9ca3af;font-weight:500}
-.bg-white{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center}
-.bg-dark{background:#080c10;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center}
-.bg-blue{background:#018ede;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:center}
-.divider{border:none;border-top:1px solid #f3f4f6;margin:24px 0}
-.with-name{display:flex;align-items:center;gap:12px}
-.brand-name{font-size:22px;font-weight:900;letter-spacing:-.02em;color:#0a0a0c}
-.brand-name span{color:#018ede}
+body{font-family:'Inter',sans-serif;background:#060810;min-height:100vh;padding:56px 24px 80px}
+.page-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#1e2d40;margin-bottom:56px}
+.section-title{text-align:center;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1e2d40;margin:64px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+.card{background:#0c1118;border:1px solid #141e2b;border-radius:20px;padding:32px 24px}
+.var-num{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1e2d40;margin-bottom:4px}
+.var-name{font-size:15px;font-weight:800;color:#e2e8f0;margin-bottom:4px;letter-spacing:-.01em}
+.var-desc{font-size:11px;color:#334155;line-height:1.7;margin-bottom:24px}
+.stage{border-radius:14px;display:flex;align-items:center;justify-content:center;padding:32px 20px}
+.s-dark{background:#080c10}
+.s-light{background:#e8f4fb}
+.s-white{background:#ffffff;border:1px solid #e2e8f0}
+.s-brand{background:#018ede}
+.sizes-row{display:flex;align-items:flex-end;gap:10px;margin-top:12px}
+.sz{display:flex;flex-direction:column;align-items:center;gap:6px}
+.sz span{font-size:9px;color:#1e2d40;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.combo{display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:12px;margin-top:12px}
+.combo-dark{background:#080c10}
+.combo-white{background:#fff}
+.wm{line-height:1;flex:1}
+.wm-name{font-size:18px;font-weight:900;letter-spacing:-.025em;color:#f1f5f9}
+.wm-name em{color:#018ede;font-style:normal}
+.wm-sub{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#334155;margin-top:4px}
+.wm-dark .wm-name{color:#0a0a0c}
+.wm-dark .wm-name em{color:#018ede}
+.wm-dark .wm-sub{color:#9ca3af}
+.icons-row{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;justify-content:center;max-width:1000px;margin:0 auto}
+.icon-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.icon-wrap span{font-size:9px;color:#1e2d40;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.app-icon{display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ai-dark{background:#080c10}
+.ai-brand{background:#018ede}
+.ai-white{background:#fff;border:1px solid #e2e8f0}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.icons-row{gap:12px}}
 </style>
 </head>
 <body>
-<h1>DEXA Vision — Isotipo · 3 Variantes</h1>
+
+<p class="page-label">DEXA Vision · Isotipo 3D · 3 Variantes</p>
 
 <div class="grid">
 
-  <!-- VARIANTE 1 -->
+  <!-- ─── VAR 01 SÓLIDO ─── -->
   <div class="card">
-    <h2>Variante 01</h2>
-    <p>D + diente minimalista. Forma pura, sin elementos adicionales. El perfil de la D es el contorno del diente.</p>
+    <div class="var-num">Variante 01</div>
+    <div class="var-name">Sólido</div>
+    <div class="var-desc">Bloque isométrico puro. 3 planos, sin detalle. Máxima legibilidad a cualquier tamaño.</div>
 
-    <div class="preview-row">
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="64" height="80" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/>
-            <path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="white"/>
+    <div class="stage s-dark">
+      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+
+    <div class="sizes-row">
+      <div class="sz">
+        <div class="stage s-dark" style="padding:14px;border-radius:10px">
+          <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+          </svg>
+        </div>
+        <span>52px</span>
+      </div>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+          </svg>
+        </div>
+        <span>36px</span>
+      </div>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:10px;border-radius:8px">
+          <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+          </svg>
+        </div>
+        <span>22px</span>
+      </div>
+      <div class="sz">
+        <div class="stage s-light" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
           </svg>
         </div>
         <span>Claro</span>
       </div>
-      <div class="preview-item">
-        <div class="bg-dark">
-          <svg width="64" height="80" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/>
-            <path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="#080c10"/>
-          </svg>
-        </div>
-        <span>Oscuro</span>
-      </div>
-      <div class="preview-item">
-        <div class="bg-blue">
-          <svg width="64" height="80" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="white"/>
-            <path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="#018ede"/>
-          </svg>
-        </div>
-        <span>Azul</span>
-      </div>
     </div>
 
-    <hr class="divider"/>
-    <p style="margin-bottom:12px">Tamaños</p>
-    <div class="preview-row">
-      <div class="preview-item">
-        <svg width="16" height="20" viewBox="0 0 64 80"><path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/><path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="white"/></svg>
-        <span>16px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="32" height="40" viewBox="0 0 64 80"><path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/><path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="white"/></svg>
-        <span>32px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="48" height="60" viewBox="0 0 64 80"><path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/><path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="white"/></svg>
-        <span>48px</span>
-      </div>
+    <div class="combo combo-dark">
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
-
-    <hr class="divider"/>
-    <div class="with-name">
-      <svg width="32" height="40" viewBox="0 0 64 80"><path d="M10 72 L10 10 C10 5 16 2 24 2 C40 2 54 14 54 32 C54 52 40 74 24 76 C18 77 10 76 10 72Z" fill="#018ede"/><path d="M18 16 L18 60 C18 63 21 65 24 64 C34 62 46 50 46 32 C46 17 36 10 24 10 C20 10 18 13 18 16Z" fill="white"/></svg>
-      <div class="brand-name">DEXA <span>Vision</span></div>
+    <div class="combo combo-white">
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
   </div>
 
-  <!-- VARIANTE 2 -->
+  <!-- ─── VAR 02 DENTAL ─── -->
   <div class="card">
-    <h2>Variante 02</h2>
-    <p>D + diente en contenedor cuadrado redondeado. Listo para ícono de app, favicon y redes sociales.</p>
+    <div class="var-num">Variante 02</div>
+    <div class="var-name">Dental</div>
+    <div class="var-desc">Surcos oclusales sobre la cara superior. Patrón de molar en perspectiva isométrica.</div>
 
-    <div class="preview-row">
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="#018ede"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/>
+    <div class="stage s-dark">
+      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
+        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
+        <circle cx="50" cy="29" r="3.5" fill="rgba(255,255,255,0.14)"/>
+      </svg>
+    </div>
+
+    <div class="sizes-row">
+      <div class="sz">
+        <div class="stage s-dark" style="padding:14px;border-radius:10px">
+          <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
+            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
           </svg>
         </div>
-        <span>Azul</span>
+        <span>52px</span>
       </div>
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="#080c10"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="#018ede"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#080c10"/>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
           </svg>
         </div>
-        <span>Oscuro</span>
+        <span>36px</span>
       </div>
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="#018ede"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="white"/>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:10px;border-radius:8px">
+          <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+          </svg>
+        </div>
+        <span>22px</span>
+      </div>
+      <div class="sz">
+        <div class="stage s-light" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(0,0,0,0.12)" stroke-width="2"/>
+            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(0,0,0,0.12)" stroke-width="2"/>
           </svg>
         </div>
         <span>Claro</span>
       </div>
     </div>
 
-    <hr class="divider"/>
-    <p style="margin-bottom:12px">Tamaños</p>
-    <div class="preview-row">
-      <div class="preview-item">
-        <svg width="20" height="20" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/></svg>
-        <span>20px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="36" height="36" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/></svg>
-        <span>36px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="56" height="56" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/></svg>
-        <span>56px</span>
-      </div>
+    <div class="combo combo-dark">
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+      </svg>
+      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
-
-    <hr class="divider"/>
-    <div class="with-name">
-      <svg width="36" height="36" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/></svg>
-      <div class="brand-name">DEXA <span>Vision</span></div>
+    <div class="combo combo-white">
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
+        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
+      </svg>
+      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
   </div>
 
-  <!-- VARIANTE 3 -->
+  <!-- ─── VAR 03 TECH ─── -->
   <div class="card">
-    <h2>Variante 03</h2>
-    <p>D + diente con punto IA. Agrega un detalle de circuito/tecnología que refuerza el concepto de inteligencia artificial.</p>
+    <div class="var-num">Variante 03</div>
+    <div class="var-name">Tech · IA</div>
+    <div class="var-desc">Nodo de escáner flotante sobre el vértice superior. Referencia al diagnóstico por inteligencia artificial.</div>
 
-    <div class="preview-row">
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="#018ede"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/>
-            <!-- Circuit dots IA -->
-            <circle cx="48" cy="14" r="3.5" fill="white" opacity="0.9"/>
-            <line x1="44" y1="14" x2="38" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/>
-            <line x1="48" y1="18" x2="48" y2="24" stroke="white" stroke-width="1.5" opacity="0.6"/>
-            <circle cx="38" cy="14" r="2" fill="white" opacity="0.5"/>
-            <circle cx="48" cy="24" r="2" fill="white" opacity="0.5"/>
+    <div class="stage s-dark">
+      <svg width="90" height="90" viewBox="0 0 110 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <line x1="87" y1="15" x2="87" y2="29" stroke="#62d2ff" stroke-width="1.2" opacity="0.7" stroke-dasharray="2 2"/>
+        <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+        <circle cx="87" cy="10" r="9" fill="none" stroke="#62d2ff" stroke-width="1" opacity="0.3">
+          <animate attributeName="r" from="6" to="14" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.5" to="0" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <div class="sizes-row">
+      <div class="sz">
+        <div class="stage s-dark" style="padding:14px;border-radius:10px">
+          <svg width="52" height="52" viewBox="0 0 110 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <line x1="87" y1="15" x2="87" y2="29" stroke="#62d2ff" stroke-width="1.5" opacity="0.7" stroke-dasharray="2 2"/>
+            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="1.8" opacity="0.8"/>
+            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
           </svg>
         </div>
-        <span>Azul</span>
+        <span>52px</span>
       </div>
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="#080c10"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="#018ede"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#080c10"/>
-            <circle cx="48" cy="14" r="3.5" fill="#018ede" opacity="0.9"/>
-            <line x1="44" y1="14" x2="38" y2="14" stroke="#018ede" stroke-width="1.5" opacity="0.6"/>
-            <line x1="48" y1="18" x2="48" y2="24" stroke="#018ede" stroke-width="1.5" opacity="0.6"/>
-            <circle cx="38" cy="14" r="2" fill="#018ede" opacity="0.5"/>
-            <circle cx="48" cy="24" r="2" fill="#018ede" opacity="0.5"/>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 110 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2" opacity="0.8"/>
+            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
           </svg>
         </div>
-        <span>Oscuro</span>
+        <span>36px</span>
       </div>
-      <div class="preview-item">
-        <div class="bg-white">
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="72" height="72" rx="16" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-            <path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="#018ede"/>
-            <path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="white"/>
-            <circle cx="48" cy="14" r="3.5" fill="#018ede" opacity="0.9"/>
-            <line x1="44" y1="14" x2="38" y2="14" stroke="#018ede" stroke-width="1.5" opacity="0.6"/>
-            <line x1="48" y1="18" x2="48" y2="24" stroke="#018ede" stroke-width="1.5" opacity="0.6"/>
-            <circle cx="38" cy="14" r="2" fill="#018ede" opacity="0.5"/>
-            <circle cx="48" cy="24" r="2" fill="#018ede" opacity="0.5"/>
+      <div class="sz">
+        <div class="stage s-dark" style="padding:10px;border-radius:8px">
+          <svg width="22" height="22" viewBox="0 0 110 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2.5"/>
+            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+          </svg>
+        </div>
+        <span>22px</span>
+      </div>
+      <div class="sz">
+        <div class="stage s-light" style="padding:12px;border-radius:10px">
+          <svg width="36" height="36" viewBox="0 0 110 100" fill="none">
+            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+            <circle cx="87" cy="10" r="6" fill="none" stroke="#018ede" stroke-width="2" opacity="0.8"/>
+            <circle cx="87" cy="10" r="2.5" fill="#018ede"/>
           </svg>
         </div>
         <span>Claro</span>
       </div>
     </div>
 
-    <hr class="divider"/>
-    <p style="margin-bottom:12px">Tamaños</p>
-    <div class="preview-row">
-      <div class="preview-item">
-        <svg width="20" height="20" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/><circle cx="48" cy="14" r="3.5" fill="white"/></svg>
-        <span>20px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="36" height="36" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/><circle cx="48" cy="14" r="3.5" fill="white"/></svg>
-        <span>36px</span>
-      </div>
-      <div class="preview-item">
-        <svg width="56" height="56" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/><circle cx="48" cy="14" r="3.5" fill="white"/><line x1="44" y1="14" x2="38" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/><line x1="48" y1="18" x2="48" y2="24" stroke="white" stroke-width="1.5" opacity="0.6"/><circle cx="38" cy="14" r="2" fill="white" opacity="0.5"/><circle cx="48" cy="24" r="2" fill="white" opacity="0.5"/></svg>
-        <span>56px</span>
-      </div>
+    <div class="combo combo-dark">
+      <svg width="32" height="32" viewBox="0 0 110 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2"/>
+        <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+      </svg>
+      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
-
-    <hr class="divider"/>
-    <div class="with-name">
-      <svg width="36" height="36" viewBox="0 0 72 72"><rect width="72" height="72" rx="16" fill="#018ede"/><path d="M20 58 L20 14 C20 11 23 9 27 9 C38 9 52 19 52 36 C52 53 40 63 28 63 C23 63 20 61 20 58Z" fill="white"/><path d="M27 18 L27 54 C27 56 29 57 31 57 C38 55 44 47 44 36 C44 25 38 18 30 18 C28 18 27 18 27 18Z" fill="#018ede"/><circle cx="48" cy="14" r="3.5" fill="white"/></svg>
-      <div class="brand-name">DEXA <span>Vision</span></div>
+    <div class="combo combo-white">
+      <svg width="32" height="32" viewBox="0 0 110 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <circle cx="87" cy="10" r="6" fill="none" stroke="#018ede" stroke-width="2"/>
+        <circle cx="87" cy="10" r="2.5" fill="#018ede"/>
+      </svg>
+      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
     </div>
   </div>
 
 </div>
 
-<p style="text-align:center;margin-top:48px;font-size:12px;color:#9ca3af">DEXA Vision · Isotipo Preview · Todos los formatos son SVG vectorial puro</p>
+<!-- ─── APP ICONS ─── -->
+<p class="section-title">Ícono de App · Contenedor cuadrado</p>
+<div class="icons-row">
+  <div class="icon-wrap">
+    <div class="app-icon ai-dark" style="width:120px;height:120px;border-radius:26px">
+      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>120 · Oscuro</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-brand" style="width:120px;height:120px;border-radius:26px">
+      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="rgba(255,255,255,0.92)"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="rgba(255,255,255,0.72)"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="rgba(0,30,72,0.6)"/>
+      </svg>
+    </div>
+    <span>120 · Azul</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-white" style="width:120px;height:120px;border-radius:26px">
+      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>120 · Blanco</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-dark" style="width:80px;height:80px;border-radius:18px">
+      <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>80px</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-dark" style="width:60px;height:60px;border-radius:13px">
+      <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>60px</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-dark" style="width:40px;height:40px;border-radius:9px">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>40px</span>
+  </div>
+  <div class="icon-wrap">
+    <div class="app-icon ai-dark" style="width:28px;height:28px;border-radius:6px">
+      <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+      </svg>
+    </div>
+    <span>Favicon</span>
+  </div>
+</div>
+
+<!-- ─── BRAND HERO ─── -->
+<p class="section-title">Hero · Fondo oscuro</p>
+<div style="max-width:580px;margin:0 auto;background:#080c10;border-radius:24px;padding:52px 40px;display:flex;align-items:center;gap:28px;border:1px solid #141e2b">
+  <svg width="68" height="68" viewBox="0 0 100 100" fill="none" style="flex-shrink:0">
+    <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
+    <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
+    <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+  </svg>
+  <div>
+    <div style="font-size:34px;font-weight:900;letter-spacing:-.03em;color:#f1f5f9;line-height:1">DEXA <span style="color:#018ede">Vision</span></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#334155;margin-top:8px">Dental AI · Chile</div>
+  </div>
+</div>
+
 </body>
 </html>
