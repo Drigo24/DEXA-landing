@@ -5,6 +5,16 @@
 <title>DEXA Vision — Detecta caries y problemas de encías con IA</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="La primera app móvil latinoamericana que detecta caries, gingivitis y sarro con inteligencia artificial desde tu celular en menos de 2 minutos." />
+<link rel="icon" type="image/png" href="assets/logo-negro-dexasi.png" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dexavision.cl/" />
+<meta property="og:title" content="DEXA Vision — Detecta caries y problemas de encías con IA" />
+<meta property="og:description" content="La primera app móvil latinoamericana que detecta caries y problemas de encías con inteligencia artificial. Solo con una foto, en menos de 2 minutos." />
+<meta property="og:image" content="https://dexavision.cl/assets/logo-negro-dexasi.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="DEXA Vision — Detecta caries y problemas de encías con IA" />
+<meta name="twitter:description" content="La primera app móvil latinoamericana que detecta caries con IA. Solo con una foto." />
+<meta name="twitter:image" content="https://dexavision.cl/assets/logo-negro-dexasi.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -162,10 +172,11 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .footer__tagline{font-size:13px;color:rgba(255,255,255,.4)}
 .footer__contact{display:flex;flex-direction:column;gap:12px}
 .footer__email{font-size:14px;color:rgba(255,255,255,.65)}
-.footer__socials{display:flex;gap:8px}
-.social-btn{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;color:rgba(255,255,255,.55);transition:background .15s,color .15s}
-.social-btn:hover{background:rgba(255,255,255,.14);color:#fff}
-.footer__ig-handle{font-size:13px;color:rgba(255,255,255,.45);font-weight:500}
+.footer__socials{display:flex;align-items:center;gap:10px}
+.footer__ig-link{display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:opacity .2s}
+.footer__ig-link:hover{opacity:.8}
+.footer__ig-icon{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:block}
+.footer__ig-handle{font-size:14px;color:rgba(255,255,255,.65);font-weight:500}
 .footer__bottom{max-width:var(--max);margin:0 auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.3)}
 
 /* DENTISTAS */
@@ -472,10 +483,10 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
     <div class="footer__contact">
       <a href="mailto:contacto@dexavision.cl" class="footer__email">contacto@dexavision.cl</a>
       <div class="footer__socials">
-        <a href="https://instagram.com/dexa.vision" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        <a href="https://instagram.com/dexa.vision" target="_blank" rel="noopener" class="footer__ig-link" aria-label="Instagram">
+          <svg class="footer__ig-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig-grad" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect width="36" height="36" rx="9" fill="url(#ig-grad)"/><rect x="10" y="10" width="16" height="16" rx="4.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="18" cy="18" r="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="22.8" cy="13.2" r="1" fill="#fff"/></svg>
+          <span class="footer__ig-handle">@dexa.vision</span>
         </a>
-        <span class="footer__ig-handle">@dexa.vision</span>
       </div>
     </div>
   </div>
