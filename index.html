@@ -234,8 +234,8 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero__video hero__video--desktop" src="assets/notevideo-difuminado.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-  <video class="hero__video hero__video--mobile" src="assets/phone-video-correcto.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <video class="hero__video hero__video--desktop" src="assets/notevideo-difuminado.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" disablepictureinpicture x-webkit-airplay="deny"></video>
+  <video class="hero__video hero__video--mobile" src="assets/phone-video-correcto.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" disablepictureinpicture x-webkit-airplay="deny"></video>
   <div class="hero__overlay" aria-hidden="true"></div>
   <div class="hero__top-fade" aria-hidden="true"></div>
   <div class="hero__bottom-fade" aria-hidden="true"></div>
@@ -461,7 +461,45 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 </footer>
 
 <script>
-  document.querySelectorAll('.hero__video').forEach(function(v){v.play().catch(function(){});});
+  // Force play all hero videos — handles iOS Low Power Mode, tab switches, focus loss
+  var heroVideos = Array.from(document.querySelectorAll('.hero__video'));
+
+  function forcePlay(){
+    heroVideos.forEach(function(v){
+      if(v.paused){
+        v.muted = true;
+        v.play().catch(function(){});
+      }
+    });
+  }
+
+  // Initial play
+  forcePlay();
+
+  // Resume when tab becomes visible again
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) forcePlay();
+  });
+
+  // Resume on any user interaction (fixes iOS Low Power Mode)
+  document.addEventListener('touchstart', forcePlay, {passive:true, once:false});
+  document.addEventListener('click', forcePlay, {once:false});
+
+  // Resume on window focus
+  window.addEventListener('focus', forcePlay);
+
+  // Intersection Observer — resume when video enters viewport
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && e.target.paused) e.target.play().catch(function(){});
+      });
+    }, {threshold:0.1});
+    heroVideos.forEach(function(v){ io.observe(v); });
+  }
+
+  // Heartbeat — check every 3s and resume if paused
+  setInterval(forcePlay, 3000);
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', function(){nav.classList.toggle('is-stuck', window.scrollY > 60)}, {passive:true});
   document.querySelectorAll('.accordion-btn').forEach(function(btn){
