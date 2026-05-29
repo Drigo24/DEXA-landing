@@ -2,399 +2,382 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<title>DEXA Vision — Isotipo 3D</title>
+<title>DEXA Vision — Isotipo Diente 3D</title>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#060810;min-height:100vh;padding:56px 24px 80px}
-.page-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#1e2d40;margin-bottom:56px}
-.section-title{text-align:center;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1e2d40;margin:64px 0 24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+.pg{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#1e2d40;margin-bottom:60px}
+.sec{text-align:center;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1e2d40;margin:60px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:960px;margin:0 auto}
 .card{background:#0c1118;border:1px solid #141e2b;border-radius:20px;padding:32px 24px}
-.var-num{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1e2d40;margin-bottom:4px}
-.var-name{font-size:15px;font-weight:800;color:#e2e8f0;margin-bottom:4px;letter-spacing:-.01em}
-.var-desc{font-size:11px;color:#334155;line-height:1.7;margin-bottom:24px}
-.stage{border-radius:14px;display:flex;align-items:center;justify-content:center;padding:32px 20px}
-.s-dark{background:#080c10}
-.s-light{background:#e8f4fb}
-.s-white{background:#ffffff;border:1px solid #e2e8f0}
-.s-brand{background:#018ede}
-.sizes-row{display:flex;align-items:flex-end;gap:10px;margin-top:12px}
+.vn{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1e2d40;margin-bottom:4px}
+.vt{font-size:15px;font-weight:800;color:#e2e8f0;margin-bottom:4px}
+.vd{font-size:11px;color:#2d3f55;line-height:1.7;margin-bottom:24px}
+.st{border-radius:14px;display:flex;align-items:center;justify-content:center;padding:36px 20px}
+.sd{background:#080c10}.sl{background:#e8f4fb}.sw{background:#fff;border:1px solid #e5e7eb}
+.srow{display:flex;align-items:flex-end;gap:10px;margin-top:12px;flex-wrap:wrap}
 .sz{display:flex;flex-direction:column;align-items:center;gap:6px}
 .sz span{font-size:9px;color:#1e2d40;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .combo{display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:12px;margin-top:12px}
-.combo-dark{background:#080c10}
-.combo-white{background:#fff}
-.wm{line-height:1;flex:1}
-.wm-name{font-size:18px;font-weight:900;letter-spacing:-.025em;color:#f1f5f9}
-.wm-name em{color:#018ede;font-style:normal}
-.wm-sub{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#334155;margin-top:4px}
-.wm-dark .wm-name{color:#0a0a0c}
-.wm-dark .wm-name em{color:#018ede}
-.wm-dark .wm-sub{color:#9ca3af}
-.icons-row{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;justify-content:center;max-width:1000px;margin:0 auto}
-.icon-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
-.icon-wrap span{font-size:9px;color:#1e2d40;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.app-icon{display:flex;align-items:center;justify-content:center;overflow:hidden}
-.ai-dark{background:#080c10}
-.ai-brand{background:#018ede}
-.ai-white{background:#fff;border:1px solid #e2e8f0}
-@media(max-width:680px){.grid{grid-template-columns:1fr}.icons-row{gap:12px}}
+.cd{background:#080c10}.cw{background:#fff}
+.wm{flex:1;line-height:1}
+.wn{font-size:18px;font-weight:900;letter-spacing:-.025em;color:#f1f5f9}
+.wn em{color:#018ede;font-style:normal}
+.ws{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#2d3f55;margin-top:4px}
+.wnk{color:#0a0a0c}.wsk{color:#9ca3af}
+.irow{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;justify-content:center;max-width:960px;margin:0 auto}
+.iw{display:flex;flex-direction:column;align-items:center;gap:10px}
+.iw span{font-size:9px;color:#1e2d40;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.ai{display:flex;align-items:center;justify-content:center}
+.hband{max-width:560px;margin:0 auto;background:#080c10;border-radius:24px;padding:52px 40px;display:flex;align-items:center;gap:28px;border:1px solid #141e2b}
 </style>
 </head>
 <body>
 
-<p class="page-label">DEXA Vision · Isotipo 3D · 3 Variantes</p>
+<p class="pg">DEXA Vision · Isotipo · Diente 3D Isométrico</p>
+
+<!--
+  DIENTE ISOMÉTRICO — 3 caras:
+  Cara SUPERIOR (azul claro): superficie oclusal con cúspides salientes en bordes
+  Cara IZQUIERDA (azul marca): cara bucal/frontal del diente — se abulta en la corona, se estrecha en el cuello, y converge a la raíz
+  Cara DERECHA (azul oscuro): lateral del diente — también se estrecha hacia la raíz
+
+  viewBox="-5 0 110 122" para que la corona pueda sobresalir a la izquierda del vértice superior
+-->
 
 <div class="grid">
 
-  <!-- ─── VAR 01 SÓLIDO ─── -->
+  <!-- VAR 01 SÓLIDO -->
   <div class="card">
-    <div class="var-num">Variante 01</div>
-    <div class="var-name">Sólido</div>
-    <div class="var-desc">Bloque isométrico puro. 3 planos, sin detalle. Máxima legibilidad a cualquier tamaño.</div>
+    <div class="vn">Variante 01</div>
+    <div class="vt">Sólido</div>
+    <div class="vd">Diente isométrico puro — corona ancha, cuello visible, raíz apuntada. 3 planos planos.</div>
 
-    <div class="stage s-dark">
-      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+    <div class="st sd">
+      <svg width="88" height="96" viewBox="-5 0 110 122" fill="none">
+        <!-- Cara superior: rombo con cúspides orgánicas en los 4 bordes -->
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+        <!-- Cara izquierda (frontal/bucal): corona se abulta, cuello se estrecha, raíz converge -->
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+        <!-- Cara derecha (lateral): también se estrecha hacia la raíz -->
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
       </svg>
     </div>
 
-    <div class="sizes-row">
+    <div class="srow">
       <div class="sz">
-        <div class="stage s-dark" style="padding:14px;border-radius:10px">
-          <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <div class="st sd" style="padding:14px;border-radius:10px">
+          <svg width="50" height="55" viewBox="-5 0 110 122" fill="none">
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
           </svg>
         </div>
-        <span>52px</span>
+        <span>50px</span>
       </div>
       <div class="sz">
-        <div class="stage s-dark" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <div class="st sd" style="padding:12px;border-radius:10px">
+          <svg width="36" height="39" viewBox="-5 0 110 122" fill="none">
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
           </svg>
         </div>
         <span>36px</span>
       </div>
       <div class="sz">
-        <div class="stage s-dark" style="padding:10px;border-radius:8px">
-          <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-          </svg>
-        </div>
-        <span>22px</span>
-      </div>
-      <div class="sz">
-        <div class="stage s-light" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+        <div class="st sl" style="padding:12px;border-radius:10px">
+          <svg width="36" height="39" viewBox="-5 0 110 122" fill="none">
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
           </svg>
         </div>
         <span>Claro</span>
       </div>
     </div>
 
-    <div class="combo combo-dark">
-      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+    <div class="combo cd">
+      <svg width="28" height="30" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
       </svg>
-      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
+      <div class="wm"><div class="wn">DEXA <em>Vision</em></div><div class="ws">Dental AI</div></div>
     </div>
-    <div class="combo combo-white">
-      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+    <div class="combo cw">
+      <svg width="28" height="30" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
       </svg>
-      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
+      <div class="wm"><div class="wn wnk">DEXA <em>Vision</em></div><div class="ws wsk">Dental AI</div></div>
     </div>
   </div>
 
-  <!-- ─── VAR 02 DENTAL ─── -->
+  <!-- VAR 02 GRADIENTE -->
   <div class="card">
-    <div class="var-num">Variante 02</div>
-    <div class="var-name">Dental</div>
-    <div class="var-desc">Surcos oclusales sobre la cara superior. Patrón de molar en perspectiva isométrica.</div>
+    <div class="vn">Variante 02</div>
+    <div class="vt">Gradiente</div>
+    <div class="vd">Misma forma con gradiente lineal por cara — más profundidad, aspecto premium y material.</div>
 
-    <div class="stage s-dark">
-      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
-        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
-        <circle cx="50" cy="29" r="3.5" fill="rgba(255,255,255,0.14)"/>
+    <div class="st sd">
+      <svg width="88" height="96" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="gt" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#a0e8ff"/>
+            <stop offset="100%" stop-color="#46c2f5"/>
+          </linearGradient>
+          <linearGradient id="gl" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#22b4ea"/>
+            <stop offset="100%" stop-color="#0060aa"/>
+          </linearGradient>
+          <linearGradient id="gr" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#006bbf"/>
+            <stop offset="100%" stop-color="#002860"/>
+          </linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr)"/>
       </svg>
     </div>
 
-    <div class="sizes-row">
+    <div class="srow">
       <div class="sz">
-        <div class="stage s-dark" style="padding:14px;border-radius:10px">
-          <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
-            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="1.6"/>
+        <div class="st sd" style="padding:14px;border-radius:10px">
+          <svg width="50" height="55" viewBox="-5 0 110 122" fill="none">
+            <defs>
+              <linearGradient id="gt2" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+              <linearGradient id="gl2" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+              <linearGradient id="gr2" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+            </defs>
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt2)"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl2)"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr2)"/>
           </svg>
         </div>
-        <span>52px</span>
+        <span>50px</span>
       </div>
       <div class="sz">
-        <div class="stage s-dark" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
-            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+        <div class="st sd" style="padding:12px;border-radius:10px">
+          <svg width="36" height="39" viewBox="-5 0 110 122" fill="none">
+            <defs>
+              <linearGradient id="gt3" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+              <linearGradient id="gl3" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+              <linearGradient id="gr3" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+            </defs>
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt3)"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl3)"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr3)"/>
           </svg>
         </div>
         <span>36px</span>
       </div>
       <div class="sz">
-        <div class="stage s-dark" style="padding:10px;border-radius:8px">
-          <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-          </svg>
-        </div>
-        <span>22px</span>
-      </div>
-      <div class="sz">
-        <div class="stage s-light" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(0,0,0,0.12)" stroke-width="2"/>
-            <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(0,0,0,0.12)" stroke-width="2"/>
+        <div class="st sl" style="padding:12px;border-radius:10px">
+          <svg width="36" height="39" viewBox="-5 0 110 122" fill="none">
+            <defs>
+              <linearGradient id="gt4" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+              <linearGradient id="gl4" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+              <linearGradient id="gr4" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+            </defs>
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt4)"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl4)"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr4)"/>
           </svg>
         </div>
         <span>Claro</span>
       </div>
     </div>
 
-    <div class="combo combo-dark">
-      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
-        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+    <div class="combo cd">
+      <svg width="28" height="30" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="gt5" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+          <linearGradient id="gl5" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+          <linearGradient id="gr5" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt5)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl5)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr5)"/>
       </svg>
-      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
+      <div class="wm"><div class="wn">DEXA <em>Vision</em></div><div class="ws">Dental AI</div></div>
     </div>
-    <div class="combo combo-white">
-      <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <line x1="50" y1="8" x2="50" y2="50" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
-        <line x1="13" y1="29" x2="87" y2="29" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
+    <div class="combo cw">
+      <svg width="28" height="30" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="gt6" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+          <linearGradient id="gl6" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+          <linearGradient id="gr6" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#gt6)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#gl6)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#gr6)"/>
       </svg>
-      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
+      <div class="wm"><div class="wn wnk">DEXA <em>Vision</em></div><div class="ws wsk">Dental AI</div></div>
     </div>
   </div>
 
-  <!-- ─── VAR 03 TECH ─── -->
+  <!-- VAR 03 MIDNIGHT -->
   <div class="card">
-    <div class="var-num">Variante 03</div>
-    <div class="var-name">Tech · IA</div>
-    <div class="var-desc">Nodo de escáner flotante sobre el vértice superior. Referencia al diagnóstico por inteligencia artificial.</div>
+    <div class="vn">Variante 03</div>
+    <div class="vt">Midnight</div>
+    <div class="vd">Tonos oscuros con aristas en azul eléctrico. Versión premium oscura del sistema de marca.</div>
 
-    <div class="stage s-dark">
-      <svg width="90" height="90" viewBox="0 0 110 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <line x1="87" y1="15" x2="87" y2="29" stroke="#62d2ff" stroke-width="1.2" opacity="0.7" stroke-dasharray="2 2"/>
-        <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="1.5" opacity="0.8"/>
-        <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
-        <circle cx="87" cy="10" r="9" fill="none" stroke="#62d2ff" stroke-width="1" opacity="0.3">
-          <animate attributeName="r" from="6" to="14" dur="1.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" from="0.5" to="0" dur="1.8s" repeatCount="indefinite"/>
-        </circle>
+    <div class="st sd">
+      <svg width="88" height="96" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#1a3d60"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#0a1f38"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#060e1d"/>
+        <!-- Bright edge highlights -->
+        <path d="M50 10 C61 5 73 11 76 17" stroke="#018ede" stroke-width="1.2" fill="none" opacity="0.9"/>
+        <path d="M15 29 L50 48" stroke="#018ede" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M50 48 L85 29" stroke="#4dc8ff" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <path d="M15 29 C15 25 22 19 27 15 C33 9 42 8 50 10" stroke="#018ede" stroke-width="0.8" fill="none" opacity="0.5"/>
+        <!-- Glow pulse on top face -->
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="none" stroke="#018ede" stroke-width="0.6" opacity="0.35"/>
       </svg>
     </div>
 
-    <div class="sizes-row">
+    <div class="srow">
       <div class="sz">
-        <div class="stage s-dark" style="padding:14px;border-radius:10px">
-          <svg width="52" height="52" viewBox="0 0 110 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <line x1="87" y1="15" x2="87" y2="29" stroke="#62d2ff" stroke-width="1.5" opacity="0.7" stroke-dasharray="2 2"/>
-            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="1.8" opacity="0.8"/>
-            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+        <div class="st sd" style="padding:14px;border-radius:10px">
+          <svg width="50" height="55" viewBox="-5 0 110 122" fill="none">
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#1a3d60"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#0a1f38"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#060e1d"/>
+            <path d="M15 29 L50 48" stroke="#018ede" stroke-width="1.2" fill="none" opacity="0.8"/>
+            <path d="M50 48 L85 29" stroke="#4dc8ff" stroke-width="1" fill="none" opacity="0.5"/>
           </svg>
         </div>
-        <span>52px</span>
+        <span>50px</span>
       </div>
       <div class="sz">
-        <div class="stage s-dark" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 110 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2" opacity="0.8"/>
-            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+        <div class="st sd" style="padding:12px;border-radius:10px">
+          <svg width="36" height="39" viewBox="-5 0 110 122" fill="none">
+            <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#1a3d60"/>
+            <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#0a1f38"/>
+            <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#060e1d"/>
+            <path d="M15 29 L50 48" stroke="#018ede" stroke-width="1.5" fill="none" opacity="0.9"/>
           </svg>
         </div>
         <span>36px</span>
       </div>
-      <div class="sz">
-        <div class="stage s-dark" style="padding:10px;border-radius:8px">
-          <svg width="22" height="22" viewBox="0 0 110 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2.5"/>
-            <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
-          </svg>
-        </div>
-        <span>22px</span>
-      </div>
-      <div class="sz">
-        <div class="stage s-light" style="padding:12px;border-radius:10px">
-          <svg width="36" height="36" viewBox="0 0 110 100" fill="none">
-            <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-            <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-            <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-            <circle cx="87" cy="10" r="6" fill="none" stroke="#018ede" stroke-width="2" opacity="0.8"/>
-            <circle cx="87" cy="10" r="2.5" fill="#018ede"/>
-          </svg>
-        </div>
-        <span>Claro</span>
-      </div>
     </div>
 
-    <div class="combo combo-dark">
-      <svg width="32" height="32" viewBox="0 0 110 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <circle cx="87" cy="10" r="6" fill="none" stroke="#62d2ff" stroke-width="2"/>
-        <circle cx="87" cy="10" r="2.5" fill="#62d2ff"/>
+    <div class="combo cd">
+      <svg width="28" height="30" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#1a3d60"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#0a1f38"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#060e1d"/>
+        <path d="M15 29 L50 48" stroke="#018ede" stroke-width="1.5" fill="none" opacity="0.9"/>
+        <path d="M50 48 L85 29" stroke="#4dc8ff" stroke-width="1.2" fill="none" opacity="0.5"/>
       </svg>
-      <div class="wm"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
-    </div>
-    <div class="combo combo-white">
-      <svg width="32" height="32" viewBox="0 0 110 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-        <circle cx="87" cy="10" r="6" fill="none" stroke="#018ede" stroke-width="2"/>
-        <circle cx="87" cy="10" r="2.5" fill="#018ede"/>
-      </svg>
-      <div class="wm wm-dark"><div class="wm-name">DEXA <em>Vision</em></div><div class="wm-sub">Dental AI</div></div>
+      <div class="wm"><div class="wn">DEXA <em>Vision</em></div><div class="ws">Dental AI</div></div>
     </div>
   </div>
 
 </div>
 
-<!-- ─── APP ICONS ─── -->
-<p class="section-title">Ícono de App · Contenedor cuadrado</p>
-<div class="icons-row">
-  <div class="icon-wrap">
-    <div class="app-icon ai-dark" style="width:120px;height:120px;border-radius:26px">
-      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+<!-- APP ICONS -->
+<p class="sec">Ícono de App · Gradiente recomendado</p>
+<div class="irow">
+  <div class="iw">
+    <div class="ai" style="width:120px;height:120px;border-radius:26px;background:#080c10">
+      <svg width="74" height="80" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="igt" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+          <linearGradient id="igl" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+          <linearGradient id="igr" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#igt)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#igl)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#igr)"/>
       </svg>
     </div>
     <span>120 · Oscuro</span>
   </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-brand" style="width:120px;height:120px;border-radius:26px">
-      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="rgba(255,255,255,0.92)"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="rgba(255,255,255,0.72)"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="rgba(0,30,72,0.6)"/>
+  <div class="iw">
+    <div class="ai" style="width:120px;height:120px;border-radius:26px;background:#018ede">
+      <svg width="74" height="80" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="rgba(255,255,255,0.95)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="rgba(255,255,255,0.75)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="rgba(0,25,70,0.45)"/>
       </svg>
     </div>
     <span>120 · Azul</span>
   </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-white" style="width:120px;height:120px;border-radius:26px">
-      <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+  <div class="iw">
+    <div class="ai" style="width:120px;height:120px;border-radius:26px;background:#fff;border:1px solid #e2e8f0">
+      <svg width="74" height="80" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="igt2" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+          <linearGradient id="igl2" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+          <linearGradient id="igr2" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#igt2)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#igl2)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#igr2)"/>
       </svg>
     </div>
     <span>120 · Blanco</span>
   </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-dark" style="width:80px;height:80px;border-radius:18px">
-      <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+  <div class="iw">
+    <div class="ai" style="width:80px;height:80px;border-radius:18px;background:#080c10">
+      <svg width="50" height="54" viewBox="-5 0 110 122" fill="none">
+        <defs>
+          <linearGradient id="igt3" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+          <linearGradient id="igl3" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+          <linearGradient id="igr3" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+        </defs>
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#igt3)"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#igl3)"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#igr3)"/>
       </svg>
     </div>
     <span>80px</span>
   </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-dark" style="width:60px;height:60px;border-radius:13px">
-      <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+  <div class="iw">
+    <div class="ai" style="width:52px;height:52px;border-radius:12px;background:#080c10">
+      <svg width="32" height="35" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
       </svg>
     </div>
-    <span>60px</span>
+    <span>52px</span>
   </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-dark" style="width:40px;height:40px;border-radius:9px">
-      <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
-      </svg>
-    </div>
-    <span>40px</span>
-  </div>
-  <div class="icon-wrap">
-    <div class="app-icon ai-dark" style="width:28px;height:28px;border-radius:6px">
-      <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
-        <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-        <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-        <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+  <div class="iw">
+    <div class="ai" style="width:32px;height:32px;border-radius:7px;background:#080c10">
+      <svg width="20" height="22" viewBox="-5 0 110 122" fill="none">
+        <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="#62d2ff"/>
+        <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="#018ede"/>
+        <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="#0052a3"/>
       </svg>
     </div>
     <span>Favicon</span>
   </div>
 </div>
 
-<!-- ─── BRAND HERO ─── -->
-<p class="section-title">Hero · Fondo oscuro</p>
-<div style="max-width:580px;margin:0 auto;background:#080c10;border-radius:24px;padding:52px 40px;display:flex;align-items:center;gap:28px;border:1px solid #141e2b">
-  <svg width="68" height="68" viewBox="0 0 100 100" fill="none" style="flex-shrink:0">
-    <polygon points="50,8 87,29 50,50 13,29" fill="#62d2ff"/>
-    <polygon points="13,29 50,50 50,92 13,71" fill="#018ede"/>
-    <polygon points="50,50 87,29 87,71 50,92" fill="#0052a3"/>
+<!-- HERO BAND -->
+<p class="sec">Logo completo · Fondo oscuro</p>
+<div class="hband">
+  <svg width="56" height="61" viewBox="-5 0 110 122" fill="none" style="flex-shrink:0">
+    <defs>
+      <linearGradient id="hgt" x1="15" y1="8" x2="85" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#46c2f5"/></linearGradient>
+      <linearGradient id="hgl" x1="15" y1="29" x2="8" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22b4ea"/><stop offset="100%" stop-color="#0060aa"/></linearGradient>
+      <linearGradient id="hgr" x1="85" y1="29" x2="56" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#006bbf"/><stop offset="100%" stop-color="#002860"/></linearGradient>
+    </defs>
+    <path d="M50 10 C61 5 73 11 76 17 C80 23 85 26 85 29 C85 34 77 43 71 46 C64 49 56 50 50 48 C44 50 30 48 25 44 C18 40 15 34 15 29 C15 25 22 19 27 15 C33 9 42 8 50 10Z" fill="url(#hgt)"/>
+    <path d="M15 29 L50 48 C50 64 47 82 44 92 C41 98 40 103 40 106 C34 110 24 110 19 104 C14 96 8 84 8 72 C4 58 2 44 15 29Z" fill="url(#hgl)"/>
+    <path d="M50 48 L85 29 C87 44 84 62 80 74 C76 86 66 100 56 106 L40 106 C44 98 47 80 50 48Z" fill="url(#hgr)"/>
   </svg>
   <div>
-    <div style="font-size:34px;font-weight:900;letter-spacing:-.03em;color:#f1f5f9;line-height:1">DEXA <span style="color:#018ede">Vision</span></div>
-    <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#334155;margin-top:8px">Dental AI · Chile</div>
+    <div style="font-size:32px;font-weight:900;letter-spacing:-.03em;color:#f1f5f9;line-height:1">DEXA <span style="color:#018ede">Vision</span></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#2d3f55;margin-top:8px">Dental AI · Chile</div>
   </div>
 </div>
 
