@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXA Vision — Kit Semana 1 Instagram</title>
+<style>
+  :root {
+    --blue: #018ede;
+    --blue-dark: #0052a3;
+    --blue-light: #62d2ff;
+    --blue-mid: #0a3d6b;
+    --bg: #080f1a;
+    --bg2: #0d1a2e;
+    --bg3: #0f2040;
+    --text: #e8f4ff;
+    --text-muted: #7aa8cc;
+    --accent: #62d2ff;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --card: #0d1e35;
+    --border: #1a3a5c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #041224 0%, #0a2a4a 50%, #051830 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .header-left { display: flex; align-items: center; gap: 20px; }
+  .header-logo { height: 36px; filter: brightness(0) invert(1); }
+  .header-divider { width: 1px; height: 36px; background: var(--border); }
+  .header-title { font-size: 18px; font-weight: 600; color: var(--text); }
+  .header-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .header-badge {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { color: var(--blue-light); }
+  .nav-btn.active { color: var(--blue-light); border-bottom-color: var(--blue-light); }
+  .nav-btn .day-num { font-size: 10px; color: var(--text-muted); display: block; margin-bottom: 1px; }
+
+  /* MAIN */
+  .main { max-width: 1200px; margin: 0 auto; padding: 40px; }
+
+  /* DAY SECTION */
+  .day-section { display: none; }
+  .day-section.visible { display: block; }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .day-number {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: white;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .day-number span { font-size: 9px; font-weight: 400; opacity: 0.8; letter-spacing: 0.5px; }
+  .day-info h2 { font-size: 22px; font-weight: 700; color: var(--text); }
+  .day-info p { font-size: 14px; color: var(--text-muted); margin-top: 3px; }
+  .day-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-reel { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .badge-carousel { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .badge-post { background: rgba(1,142,222,0.15); color: #62d2ff; border: 1px solid rgba(1,142,222,0.3); }
+  .badge-story { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+
+  /* GRID */
+  .day-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* PHONE MOCKUP */
+  .phone-wrap { position: relative; }
+  .phone-mockup {
+    width: 280px;
+    background: #0a0a0a;
+    border-radius: 36px;
+    border: 8px solid #1a1a1a;
+    padding: 12px;
+    box-shadow: 0 0 0 1px #333, 0 24px 60px rgba(0,0,0,0.6), 0 0 80px rgba(1,142,222,0.1);
+    overflow: hidden;
+  }
+  .phone-notch {
+    width: 80px;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    margin: 0 auto 10px;
+  }
+  .phone-screen {
+    border-radius: 24px;
+    overflow: hidden;
+    background: #111;
+    position: relative;
+    aspect-ratio: 9/16;
+  }
+  .phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .phone-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 16px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  }
+  .phone-hook {
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.4;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .phone-account {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .phone-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .phone-username { font-size: 10px; color: rgba(255,255,255,0.9); font-weight: 600; }
+
+  /* CONTENT PANEL */
+  .content-panel { display: flex; flex-direction: column; gap: 20px; }
+
+  .content-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 24px;
+  }
+  .content-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .content-block-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* HOOK BLOCK */
+  .hook-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-light);
+    line-height: 1.4;
+  }
+
+  /* CAPTION BLOCK */
+  .caption-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    white-space: pre-line;
+  }
+  .caption-text .cta {
+    color: var(--blue-light);
+    font-weight: 600;
+  }
+  .caption-text .emoji-line { color: var(--text); }
+
+  /* HASHTAGS */
+  .hashtag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hashtag {
+    background: rgba(1,142,222,0.1);
+    border: 1px solid rgba(1,142,222,0.2);
+    color: var(--blue-light);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .hashtag:hover { background: rgba(1,142,222,0.2); }
+
+  /* TIMING */
+  .timing-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .timing-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timing-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .timing-label { font-size: 11px; color: var(--text-muted); }
+  .timing-value { font-size: 13px; font-weight: 600; color: var(--text); }
+
+  /* CANVA PROMPT */
+  .canva-block {
+    background: linear-gradient(135deg, rgba(1,142,222,0.08), rgba(0,82,163,0.08));
+    border: 1px solid rgba(98,210,255,0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+  }
+  .canva-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .canva-logo {
+    width: 28px;
+    height: 28px;
+    background: #7c3aed;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+  }
+  .canva-title { font-size: 13px; font-weight: 700; color: var(--blue-light); }
+  .canva-sub { font-size: 11px; color: var(--text-muted); }
+  .canva-prompt-text {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-family: inherit;
+  }
+
+  /* COPY BTN */
+  .copy-btn {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn.copied { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+  /* METRICS */
+  .metrics-row { display: flex; gap: 12px; }
+  .metric-card {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+  }
+  .metric-value { font-size: 22px; font-weight: 700; color: var(--blue-light); }
+  .metric-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  /* POST SEQUENCE (carousel) */
+  .slides-preview {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .slide-thumb {
+    flex-shrink: 0;
+    width: 90px;
+    aspect-ratio: 1;
+    background: var(--bg3);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .slide-thumb .slide-num {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 18px;
+    height: 18px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-text-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  /* STORY SECTION */
+  .story-note {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .story-note strong { color: #c084fc; }
+
+  /* OVERVIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .overview-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .overview-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(1,142,222,0.15);
+  }
+  .overview-day { font-size: 10px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .overview-num { font-size: 26px; font-weight: 800; color: var(--blue-light); line-height: 1.1; margin: 4px 0; }
+  .overview-title { font-size: 11px; color: var(--text); font-weight: 600; line-height: 1.3; }
+  .overview-type { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+  .overview-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin: 8px auto 6px;
+    display: block;
+    border: 1px solid var(--border);
+  }
+
+  /* BIO SECTION */
+  .bio-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .bio-box h3 { font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+  .bio-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    font-family: -apple-system, sans-serif;
+    white-space: pre-line;
+  }
+  .bio-text .blue { color: var(--blue-light); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .header { padding: 20px; flex-direction: column; align-items: flex-start; }
+    .nav { padding: 0 20px; }
+    .main { padding: 20px; }
+    .day-grid { grid-template-columns: 1fr; }
+    .phone-mockup { width: 220px; margin: 0 auto; }
+    .overview-grid { grid-template-columns: repeat(4, 1fr); }
+    .metrics-row { flex-wrap: wrap; }
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tag-asset {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    color: #4ade80;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/logo-blanco-dexa.png" alt="DEXA" class="header-logo">
+    <div class="header-divider"></div>
+    <div>
+      <div class="header-title">Kit Semana 1 — Instagram</div>
+      <div class="header-sub">@dexa.vision · 7 posts · Lanzamiento</div>
+    </div>
+  </div>
+  <div class="header-badge">SEMANA 1 · JUNIO 2025</div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="showDay(0, this)">
+    <span class="day-num">GENERAL</span>Resumen
+  </button>
+  <button class="nav-btn" onclick="showDay(1, this)">
+    <span class="day-num">LUN</span>Presentación
+  </button>
+  <button class="nav-btn" onclick="showDay(2, this)">
+    <span class="day-num">MAR</span>El Problema
+  </button>
+  <button class="nav-btn" onclick="showDay(3, this)">
+    <span class="day-num">MIÉ</span>La Solución
+  </button>
+  <button class="nav-btn" onclick="showDay(4, this)">
+    <span class="day-num">JUE</span>Credibilidad
+  </button>
+  <button class="nav-btn" onclick="showDay(5, this)">
+    <span class="day-num">VIE</span>Cómo Funciona
+  </button>
+  <button class="nav-btn" onclick="showDay(6, this)">
+    <span class="day-num">SÁB</span>Educativo
+  </button>
+  <button class="nav-btn" onclick="showDay(7, this)">
+    <span class="day-num">DOM</span>FOMO
+  </button>
+</div>
+
+<div class="main">
+
+  <!-- ========== OVERVIEW ========== -->
+  <div class="day-section visible" id="day-0">
+    <div class="section-title">Semana 1 · Vista General</div>
+
+    <div class="bio-box">
+      <h3>Bio de Instagram (configurar antes del día 1)</h3>
+      <div class="bio-text">🦷 Software dental con IA para clínicas chilenas
+📊 Gestión · Diagnóstico · Automatización
+🎁 3 meses gratis → pre-lanzamiento
+<span class="blue">👇 Únete antes del lanzamiento</span>
+🌐 dexavision.cl</div>
+      <div style="margin-top: 14px;">
+        <button class="copy-btn" onclick="copyText(this, '🦷 Software dental con IA para clínicas chilenas\n📊 Gestión · Diagnóstico · Automatización\n🎁 3 meses gratis → pre-lanzamiento\n👇 Únete antes del lanzamiento\n🌐 dexavision.cl')">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar bio
+        </button>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card" onclick="showDay(1, document.querySelectorAll('.nav-btn')[1])">
+        <div class="overview-day">Lun · D1</div>
+        <div class="overview-num">01</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/animacion%201.png" class="overview-img" alt="">
+        <div class="overview-title">Presentación</div>
+        <div class="overview-type">📱 Reel</div>
+      </div>
+      <div class="overview-card" onclick="showDay(2, document.querySelectorAll('.nav-btn')[2])">
+        <div class="overview-day">Mar · D2</div>
+        <div class="overview-num">02</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/8.png" class="overview-img" alt="">
+        <div class="overview-title">El Problema</div>
+        <div class="overview-type">🖼️ Carousel</div>
+      </div>
+      <div class="overview-card" onclick="showDay(3, document.querySelectorAll('.nav-btn')[3])">
+        <div class="overview-day">Mié · D3</div>
+        <div class="overview-num">03</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/7.png" class="overview-img" alt="">
+        <div class="overview-title">La Solución</div>
+        <div class="overview-type">🖼️ Post</div>
+      </div>
+      <div class="overview-card" onclick="showDay(4, document.querySelectorAll('.nav-btn')[4])">
+        <div class="overview-day">Jue · D4</div>
+        <div class="overview-num">04</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/2.png" class="overview-img" alt="">
+        <div class="overview-title">Credibilidad</div>
+        <div class="overview-type">🖼️ Post</div>
+      </div>
+      <div class="overview-card" onclick="showDay(5, document.querySelectorAll('.nav-btn')[5])">
+        <div class="overview-day">Vie · D5</div>
+        <div class="overview-num">05</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/1.png" class="overview-img" alt="">
+        <div class="overview-title">Cómo Funciona</div>
+        <div class="overview-type">🖼️ Carousel</div>
+      </div>
+      <div class="overview-card" onclick="showDay(6, document.querySelectorAll('.nav-btn')[6])">
+        <div class="overview-day">Sáb · D6</div>
+        <div class="overview-num">06</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/3.png" class="overview-img" alt="">
+        <div class="overview-title">Educativo</div>
+        <div class="overview-type">🖼️ Carousel</div>
+      </div>
+      <div class="overview-card" onclick="showDay(7, document.querySelectorAll('.nav-btn')[7])">
+        <div class="overview-day">Dom · D7</div>
+        <div class="overview-num">07</div>
+        <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/dentista.png" class="overview-img" alt="">
+        <div class="overview-title">FOMO · Cierre</div>
+        <div class="overview-type">🎬 Reel</div>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-value">7</div>
+        <div class="metric-label">Posts semana 1</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">2</div>
+        <div class="metric-label">Reels</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3</div>
+        <div class="metric-label">Carousels</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">2</div>
+        <div class="metric-label">Posts imagen</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">3 meses</div>
+        <div class="metric-label">Oferta gratis</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;" class="content-block">
+      <div class="content-block-title" style="margin-bottom: 14px;">Horario Recomendado de Publicación</div>
+      <div style="display:grid; grid-template-columns: repeat(7, 1fr); gap: 8px; font-size:12px;">
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">LUN</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">19:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Reel</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">MAR</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">12:30</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Carousel</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">MIÉ</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">18:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Post</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">JUE</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">13:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Post</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">VIE</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">12:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Carousel</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(1,142,222,0.1); border-radius:8px; border:1px solid var(--border);">
+          <div style="color:var(--text-muted); font-size:10px;">SÁB</div>
+          <div style="color:var(--blue-light); font-weight:700; margin-top:4px;">11:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Carousel</div>
+        </div>
+        <div style="text-align:center; padding:10px 6px; background:rgba(239,68,68,0.1); border-radius:8px; border:1px solid rgba(239,68,68,0.3);">
+          <div style="color:var(--text-muted); font-size:10px;">DOM</div>
+          <div style="color:#f87171; font-weight:700; margin-top:4px;">20:00</div>
+          <div style="color:var(--text-muted); font-size:10px; margin-top:2px;">Reel FOMO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 1 ========== -->
+  <div class="day-section" id="day-1">
+    <div class="day-header">
+      <div class="day-number">01<span>LUN</span></div>
+      <div class="day-info">
+        <h2>Presentación — "Esto cambia todo"</h2>
+        <p>Primer post de @dexa.vision · Objetivo: seguidores y registro</p>
+        <div class="day-badges">
+          <span class="badge badge-reel">📱 REEL</span>
+          <span class="badge badge-story">📖 + STORY</span>
+          <span class="tag-asset">animacion 1.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/animacion%201.png" alt="Post 1">
+            <div class="phone-overlay">
+              <div class="phone-hook">Si eres dentista en Chile,<br>esto va a cambiar tu clínica 🦷</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook (primeras 3 palabras lo son todo)</div>
+          </div>
+          <div class="hook-text">Si eres dentista en Chile,<br>esto va a cambiar tu clínica para siempre 🦷</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption completo</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap1').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap1">Somos DEXA Vision 👋
+
+El primer software dental con inteligencia artificial diseñado para clínicas en Chile.
+
+¿Qué hacemos?
+🔹 Gestión de pacientes en segundos
+🔹 Diagnóstico asistido por IA
+🔹 Automatización de citas y cobros
+🔹 Todo desde un solo lugar
+
+Estamos por lanzar. Y los dentistas que se registren ANTES del lanzamiento acceden a 3 meses completamente gratis.
+
+Sin tarjeta. Sin compromisos.
+
+👇 <span class="cta">Comenta "QUIERO" y te enviamos toda la info.</span>
+
+#odontología #dentista #chile #tecnologíadental #softwareadental #IAmedica #clínicadental #odontólogochile #dexavision #innovaciónsalud</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">#️⃣ Hashtags</div>
+            <button class="copy-btn" onclick="copyText(this, '#odontología #dentista #chile #tecnologíadental #softwareadental #IAmedica #clínicadental #odontólogochile #dexavision #innovaciónsalud #saluddental #gestionclinica #startup #IA #automatizacion')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar todos
+            </button>
+          </div>
+          <div class="hashtag-cloud">
+            <span class="hashtag">#odontología</span><span class="hashtag">#dentista</span><span class="hashtag">#chile</span><span class="hashtag">#tecnologíadental</span><span class="hashtag">#softwareadental</span><span class="hashtag">#IAmedica</span><span class="hashtag">#clínicadental</span><span class="hashtag">#odontólogochile</span><span class="hashtag">#dexavision</span><span class="hashtag">#innovaciónsalud</span>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">⏰ Publicación</div>
+          </div>
+          <div class="timing-row">
+            <div class="timing-item">
+              <div class="timing-icon" style="background:rgba(1,142,222,0.1);">📅</div>
+              <div><div class="timing-label">Día</div><div class="timing-value">Lunes</div></div>
+            </div>
+            <div class="timing-item">
+              <div class="timing-icon" style="background:rgba(1,142,222,0.1);">🕖</div>
+              <div><div class="timing-label">Hora</div><div class="timing-value">19:00 hrs</div></div>
+            </div>
+            <div class="timing-item">
+              <div class="timing-icon" style="background:rgba(34,197,94,0.1);">🎯</div>
+              <div><div class="timing-label">Meta</div><div class="timing-value">50+ comentarios</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div>
+              <div class="canva-title">Prompt para Canva (pegar en claude.ai)</div>
+              <div class="canva-sub">Con Canva conectado en el chat web</div>
+            </div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp1').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp1">Crea un post de Instagram (1080x1920px, formato Reel cover) para @dexa.vision con este estilo:
+
+DISEÑO:
+- Fondo: degradado oscuro azul marino (#080f1a → #0a2a4a)
+- Imagen principal: personaje 3D de doctor con bata blanca sosteniendo un diente tecnológico con circuitos azules, centrado en pantalla de iPhone (ya tengo la imagen: "animacion 1.png" — el doctor dentro de un marco de iPhone)
+- Efecto de luz azul sutil detrás del iPhone (#018ede con 20% opacidad)
+
+TEXTO SUPERIOR:
+- "@dexa.vision" pequeño, blanco, esquina superior izquierda
+- Línea fina azul como separador
+
+TEXTO PRINCIPAL (parte inferior):
+- Texto grande y bold: "Si eres dentista en Chile,"
+- Segunda línea: "esto va a cambiar tu clínica 🦷"
+- Fuente: sans-serif moderna, blanco puro
+- Tamaño: ~48-52px
+
+CTA INFERIOR:
+- Fondo pastilla: "Comenta QUIERO 👇" en azul (#018ede)
+- Texto pequeño: "3 meses GRATIS en pre-lanzamiento"
+
+LOGO:
+- Logo DEXA Vision blanco, pequeño, esquina inferior derecha
+
+Colores de marca: #018ede (azul principal), #0052a3 (azul oscuro), #62d2ff (azul claro), blanco</div>
+        </div>
+
+        <div class="story-note">
+          <strong>Story del mismo día:</strong> Sube "animacion 1.png" como fondo, agrega sticker de pregunta: <em>"¿Usas software dental en tu clínica?"</em> + link al landing. Archiva en Highlight "Sobre DEXA".
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 2 ========== -->
+  <div class="day-section" id="day-2">
+    <div class="day-header">
+      <div class="day-number">02<span>MAR</span></div>
+      <div class="day-info">
+        <h2>El Problema — "¿Cuántas horas pierdes?"</h2>
+        <p>Pain point del dentista · Genera identificación y comentarios</p>
+        <div class="day-badges">
+          <span class="badge badge-carousel">🖼️ CAROUSEL 4 SLIDES</span>
+          <span class="tag-asset">8.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/8.png" alt="Post 2" style="background:#fff3cd;">
+            <div class="phone-overlay">
+              <div class="phone-hook">¿Cuántas horas pierdes<br>cada semana en admin? ⚠️</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 12px;">
+          <div class="slides-preview">
+            <div class="slide-thumb">
+              <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/8.png" alt="S1">
+              <div class="slide-num">1</div>
+            </div>
+            <div class="slide-thumb">
+              <div class="slide-text-thumb" style="background:linear-gradient(135deg,#0a1a2e,#0f2a4a); color:white; font-size:9px;">📋 Fichas en papel<br>doble digitación</div>
+              <div class="slide-num">2</div>
+            </div>
+            <div class="slide-thumb">
+              <div class="slide-text-thumb" style="background:linear-gradient(135deg,#0a1a2e,#0f2a4a); color:white; font-size:9px;">📞 Citas sin<br>recordatorio</div>
+              <div class="slide-num">3</div>
+            </div>
+            <div class="slide-thumb">
+              <div class="slide-text-thumb" style="background:linear-gradient(135deg,#018ede,#0052a3); color:white; font-size:9px;">✅ La solución<br>llega pronto</div>
+              <div class="slide-num">4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook — Slide 1</div>
+          </div>
+          <div class="hook-text">¿Cuántas horas pierdes cada semana en tareas admin que no son atención al paciente? ⚠️</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📋 Estructura del Carousel</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 1 — Hook (imagen 8.png)</div>
+              <div style="color:var(--text);">"¿Cuántas horas pierdes cada semana en admin?"<br><span style="color:var(--text-muted);">Texto grande sobre fondo oscuro + señal de alerta</span></div>
+            </div>
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 2 — Problema 1</div>
+              <div style="color:var(--text);">📋 Fichas en papel → doble digitación<br>💸 Cobros manuales → errores de facturación<br><span style="color:var(--text-muted);">Fondo oscuro, texto blanco, ícono grande</span></div>
+            </div>
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 3 — Problema 2</div>
+              <div style="color:var(--text);">📞 Citas sin recordatorio → no-shows<br>🔍 Sin métricas → sin control del negocio<br><span style="color:var(--text-muted);">Misma línea visual</span></div>
+            </div>
+            <div style="padding:12px; background:linear-gradient(135deg,rgba(1,142,222,0.1),rgba(0,82,163,0.1)); border-radius:10px; border:1px solid rgba(98,210,255,0.3);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 4 — CTA (azul de marca)</div>
+              <div style="color:var(--text);">✅ "Esto tiene solución"<br>DEXA Vision llega a Chile 🦷<br><span style="font-weight:700; color:#62d2ff;">→ Regístrate → 3 meses gratis</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap2').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap2">La realidad de muchas clínicas dentales en Chile hoy 👇
+
+Horas perdidas en admin = horas que no estás atendiendo pacientes = plata que se va.
+
+Y lo peor: hay soluciones que existen, pero no se hicieron para el mercado chileno.
+
+Nosotros sí. 🇨🇱
+
+DEXA Vision es software dental con IA, pensado para cómo trabajas tú.
+
+👉 ¿Cuántas horas a la semana pierdes en tareas administrativas? <span class="cta">Comenta tu número abajo.</span>
+
+#odontología #gestionclinica #dentistachile #softwareadental #clínicadental #productividad #administracion #IA #dexavision</div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div>
+              <div class="canva-title">Prompt para Canva</div>
+            </div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp2').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp2">Crea un carousel de Instagram de 4 slides (1080x1080px cada uno) para @dexa.vision.
+
+ESTILO GENERAL:
+- Fondo oscuro azul marino (#080f1a) en slides 1-3
+- Fondo azul degradado (#018ede → #0052a3) en slide 4
+- Tipografía: sans-serif bold, blanco
+- Esquema minimalista, estética startup tech
+
+SLIDE 1 (Hook):
+- Imagen: señal de advertencia amarilla 3D (tengo imagen "8.png" — triángulo amarillo con !)
+- Texto principal grande: "¿Cuántas horas pierdes cada semana en tareas admin?"
+- Subtexto pequeño: "Desliza →"
+- Logo DEXA pequeño arriba
+
+SLIDE 2 (Problema 1):
+- Sin imagen, solo texto e íconos
+- Título: "El problema real 🔴"
+- Bullet 1: "📋 Fichas en papel → doble digitación"
+- Bullet 2: "💸 Cobros manuales → errores"
+- Estilo limpio, espacioso
+
+SLIDE 3 (Problema 2):
+- Título: "¿Te suena familiar? 🔴"
+- Bullet 1: "📞 Sin recordatorio de citas → no-shows"
+- Bullet 2: "🔍 Sin datos → sin control del negocio"
+
+SLIDE 4 (Solución / CTA):
+- Fondo: gradiente azul de marca
+- Texto grande: "Esto tiene solución ✅"
+- Subtexto: "DEXA Vision · Software dental con IA para Chile"
+- CTA: botón/badge "Regístrate → 3 meses GRATIS"
+- Logo DEXA Vision blanco
+
+Colores: #018ede, #0052a3, #62d2ff, blanco</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 3 ========== -->
+  <div class="day-section" id="day-3">
+    <div class="day-header">
+      <div class="day-number">03<span>MIÉ</span></div>
+      <div class="day-info">
+        <h2>La Solución — "Tecnología en cada molar"</h2>
+        <p>Hero visual del producto · Genera deseo y registro</p>
+        <div class="day-badges">
+          <span class="badge badge-post">🖼️ POST IMAGEN</span>
+          <span class="tag-asset">7.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/7.png" alt="Post 3">
+            <div class="phone-overlay">
+              <div class="phone-hook">Inteligencia artificial<br>aplicada a tu clínica 🦷✨</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook</div>
+          </div>
+          <div class="hook-text">Inteligencia artificial aplicada a odontología. Esto es DEXA Vision. 🦷✨</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap3').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap3">¿Y si tu clínica dental pensara por ti? 🤔
+
+DEXA Vision conecta inteligencia artificial con la realidad de la odontología en Chile.
+
+Lo que obtienes:
+⚡ Gestión de pacientes ultrarrápida
+🧠 IA que analiza radiografías y ficha clínica
+📅 Agenda inteligente con recordatorios automáticos
+📊 Dashboard de ingresos y productividad en tiempo real
+📱 Acceso desde cualquier dispositivo
+
+Todo integrado. Todo en una sola plataforma.
+
+Estamos en pre-lanzamiento. <span class="cta">Los primeros en registrarse reciben 3 meses completamente gratis.</span>
+
+Link en bio 👆
+
+#tecnologíadental #IA #inteligenciaartificial #odontología #softwareadental #clínicadental #chile #dexavision #saluddental #digitalhealth</div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div><div class="canva-title">Prompt para Canva</div></div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp3').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp3">Crea un post de Instagram (1080x1080px) premium para @dexa.vision.
+
+CONCEPTO: Hero visual del producto — tecnología dental con IA.
+
+COMPOSICIÓN:
+- Fondo: negro profundo (#050d1a) con efecto de partículas/circuitos azules muy sutiles en las esquinas
+- Centro: diente 3D fotorrealista con circuitos de tecnología incrustados en azul brillante (tengo imagen "7.png" — diente blanco con circuitos led azules)
+- Efecto glow: luz azul (#62d2ff) irradiando desde el diente hacia afuera
+- Sensación: futurista, premium, tecnológico
+
+TEXTO:
+- Superior pequeño: "@dexa.vision" en blanco
+- Inferior título grande (2 líneas): "Inteligencia artificial" / "aplicada a odontología"
+- Fuente: sans-serif bold/black
+- Tamaño: ~56px, blanco puro
+
+BADGE:
+- Pastilla azul con texto: "🦷 Software Dental IA · Chile"
+
+CTA:
+- Línea inferior: "Pre-lanzamiento → 3 meses GRATIS · Link en bio"
+- Pequeño, elegante
+
+LOGO: DEXA Vision blanco, esquina superior derecha, pequeño
+
+Vibe: Apple meets healthtech. Oscuro, limpio, premium.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 4 ========== -->
+  <div class="day-section" id="day-4">
+    <div class="day-header">
+      <div class="day-number">04<span>JUE</span></div>
+      <div class="day-info">
+        <h2>Credibilidad — "No estamos solos"</h2>
+        <p>Social proof institucional · Genera confianza</p>
+        <div class="day-badges">
+          <span class="badge badge-post">🖼️ POST IMAGEN</span>
+          <span class="tag-asset">2.png · logos partners</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/2.png" alt="Post 4">
+            <div class="phone-overlay">
+              <div class="phone-hook">La IA y la odontología<br>se dan la mano 🤝</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook</div>
+          </div>
+          <div class="hook-text">La inteligencia artificial y la odontología chilena se dan la mano. Y nosotros somos el puente. 🤝</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap4').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap4">No somos un proyecto cualquiera. 🏆
+
+DEXA Vision nació con el respaldo de:
+
+🤝 Chrysalis — aceleradora de startups tecnológicos
+🏛️ CORFO — Corporación de Fomento de la Producción de Chile
+
+Eso significa: tecnología validada, equipo serio, y un producto que llegó para quedarse.
+
+Llevamos meses desarrollando la plataforma específicamente para clínicas dentales chilenas. Cada detalle pensado para tu flujo de trabajo real.
+
+¿El resultado?<span class="cta"> Un software que tu clínica va a amar.</span>
+
+Pre-lanzamiento activo. Regístrate hoy → link en bio 🔗
+
+#corfo #startupchile #chrysalis #tecnologíadental #innovación #emprendimiento #saluddental #IA #odontología #dexavision</div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div><div class="canva-title">Prompt para Canva</div></div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp4').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp4">Crea un post de Instagram (1080x1080px) de credibilidad corporativa para @dexa.vision.
+
+CONCEPTO: Social proof — respaldo institucional de CORFO y Chrysalis.
+
+COMPOSICIÓN:
+- Fondo: gradiente oscuro premium (#040d1a → #0a1e36)
+- Centro superior: imagen de apretón de manos humano-robot 3D (tengo "2.png" — mano humana + mano robótica con detalles azules metálicos), tamaño mediano, sin fondo
+- Efecto: resplandor azul suave debajo de la imagen
+
+TEXTO SUPERIOR:
+- "@dexa.vision" pequeño blanco arriba
+
+TEXTO CENTRAL:
+- Título: "Respaldados por" (tamaño mediano, blanco suave)
+
+LOGOS (área inferior central):
+- Logo CORFO (disponible en GitHub: logo-corfo.png.png)
+- Logo Chrysalis (disponible: logo-chrysalis2.png)
+- Separados con línea vertical fina, fondo oscuro suave
+
+TEXTO INFERIOR:
+- "Tecnología validada para la odontología chilena 🇨🇱"
+- Fuente pequeña, color azul claro (#62d2ff)
+
+CTA:
+- Badge azul: "Pre-lanzamiento · Únete hoy"
+
+LOGO DEXA: esquina superior derecha, blanco, pequeño</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 5 ========== -->
+  <div class="day-section" id="day-5">
+    <div class="day-header">
+      <div class="day-number">05<span>VIE</span></div>
+      <div class="day-info">
+        <h2>Cómo Funciona — "Así se ve DEXA en acción"</h2>
+        <p>Educativo · Genera saves y shares</p>
+        <div class="day-badges">
+          <span class="badge badge-carousel">🖼️ CAROUSEL 4 SLIDES</span>
+          <span class="tag-asset">1.png · 6.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/1.png" alt="Post 5">
+            <div class="phone-overlay">
+              <div class="phone-hook">Así funciona DEXA<br>en tu clínica 🔍</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 12px;">
+          <div class="slides-preview">
+            <div class="slide-thumb"><img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/1.png" alt=""><div class="slide-num">1</div></div>
+            <div class="slide-thumb"><div class="slide-text-thumb" style="background:linear-gradient(135deg,#0a1a2e,#0f2a4a); color:#62d2ff;">📋 Registra paciente en 30 seg</div><div class="slide-num">2</div></div>
+            <div class="slide-thumb"><img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/6.png" alt=""><div class="slide-num">3</div></div>
+            <div class="slide-thumb"><div class="slide-text-thumb" style="background:linear-gradient(135deg,#018ede,#0052a3); color:white;">📊 Panel completo en tiempo real</div><div class="slide-num">4</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook</div>
+          </div>
+          <div class="hook-text">¿Cómo se ve una consulta con DEXA Vision? Así 👇 (guarda este post)</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📋 Estructura del Carousel</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 1 — Hook (imagen 1.png)</div>
+              <div>Dentista 3D con lupa examinando diente tech · "Así se ve DEXA en acción 🔍"</div>
+            </div>
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 2 — Paso 1</div>
+              <div>📋 "Llega el paciente → lo registras en 30 segundos"<br>Ficha digital, historial completo, sin papel</div>
+            </div>
+            <div style="padding:12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 3 — Paso 2 (imagen 6.png)</div>
+              <div>🔍 Clipboard + análisis dental visual · "La IA analiza y sugiere tratamiento"</div>
+            </div>
+            <div style="padding:12px; background:linear-gradient(135deg,rgba(1,142,222,0.1),rgba(0,82,163,0.1)); border-radius:10px; border:1px solid rgba(98,210,255,0.3);">
+              <div style="color:var(--blue-light); font-weight:700; margin-bottom:4px;">SLIDE 4 — Resultado (CTA)</div>
+              <div>📊 Panel de control · ingresos, citas, pacientes · "Todo en tiempo real. Todo sin Excel." → Regístrate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap5').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap5">Paso a paso: cómo funciona DEXA Vision en tu clínica dental 🦷
+
+1️⃣ Llega el paciente → lo registras en 30 segundos
+2️⃣ La IA analiza el historial y sugiere el próximo paso
+3️⃣ Confirma cita, emite boleta y envía recordatorio → automático
+4️⃣ Al final del día, tu dashboard te muestra exactamente cómo fue tu jornada
+
+Sin Excel. Sin papel. Sin estrés.
+
+<span class="cta">Guarda este post</span> si quieres recordar cómo funciona cuando lancemos 📌
+
+Regístrate antes del lanzamiento → 3 meses GRATIS · Link en bio
+
+#softwareadental #odontología #gestionclinica #dentistachile #IA #tecnología #automatizacion #clínicadental #dexavision</div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div><div class="canva-title">Prompt para Canva</div></div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp5').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp5">Crea un carousel de Instagram de 4 slides (1080x1080px) tipo "how it works" para @dexa.vision.
+
+ESTILO: Dark tech premium. Fondo oscuro (#080f1a), acentos azul (#018ede, #62d2ff). Numeración de pasos visible.
+
+SLIDE 1 (Hook):
+- Imagen: doctor 3D con lupa examinando diente tech (tengo "1.png")
+- Overlay texto: "¿Cómo funciona DEXA en tu clínica?"
+- Subtexto: "Desliza y descúbrelo →"
+
+SLIDE 2 (Paso 1):
+- Número grande "01" en azul claro (#62d2ff), estilo minimalista
+- Ícono de clipboard o persona
+- Título: "Registro en 30 segundos"
+- Descripción: "Ficha digital completa. Sin papel. Sin doble digitación."
+
+SLIDE 3 (Paso 2):
+- Imagen: clipboard 3D con lupa sobre diente (tengo "6.png") — usar como elemento visual lateral
+- Número "02"
+- Título: "IA analiza y sugiere"
+- Descripción: "Historial completo + sugerencias de tratamiento automáticas"
+
+SLIDE 4 (Resultado CTA):
+- Fondo: gradiente azul (#018ede → #0052a3)
+- Número "03"
+- Título grande: "Tu clínica en piloto automático"
+- Dashboard mockup simple (rectángulos con métricas ficticias: Pacientes hoy, Ingresos, Citas)
+- CTA: "Únete gratis → 3 meses sin costo"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 6 ========== -->
+  <div class="day-section" id="day-6">
+    <div class="day-header">
+      <div class="day-number">06<span>SÁB</span></div>
+      <div class="day-info">
+        <h2>Educativo — "5 errores que cometen las clínicas"</h2>
+        <p>Viral + saves · Etiqueta a colegas</p>
+        <div class="day-badges">
+          <span class="badge badge-carousel">🖼️ CAROUSEL 6 SLIDES</span>
+          <span class="tag-asset">3.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/3.png" alt="Post 6">
+            <div class="phone-overlay">
+              <div class="phone-hook">5 errores que frenan<br>tu clínica en 2025 ❌</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook — máximo viral</div>
+          </div>
+          <div class="hook-text">5 errores que están frenando tu clínica dental en 2025 (y cómo evitarlos) ❌</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📋 Estructura del Carousel (6 slides)</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
+            <div style="padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <span style="color:#f87171; font-weight:700;">SLIDE 1:</span> Imagen dentista 3.png · "5 errores que frenan tu clínica" · Desliza →
+            </div>
+            <div style="padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <span style="color:#fbbf24; font-weight:700;">SLIDE 2:</span> ❌ Error 1 — "Agenda en WhatsApp o papel" → pacientes que no llegan, sin datos
+            </div>
+            <div style="padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <span style="color:#fbbf24; font-weight:700;">SLIDE 3:</span> ❌ Error 2 — "Sin recordatorios automáticos" → 20-30% de no-shows evitables
+            </div>
+            <div style="padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <span style="color:#fbbf24; font-weight:700;">SLIDE 4:</span> ❌ Error 3 — "No medir tus KPIs clínicos" → no sabes qué tratamientos son más rentables
+            </div>
+            <div style="padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:10px; border:1px solid var(--border);">
+              <span style="color:#fbbf24; font-weight:700;">SLIDE 5:</span> ❌ Error 4 — "Fichas en papel" → no puedes revisar historial rápido, riesgo de pérdida
+            </div>
+            <div style="padding:10px 12px; background:linear-gradient(135deg,rgba(1,142,222,0.1),rgba(0,82,163,0.1)); border-radius:10px; border:1px solid rgba(98,210,255,0.3);">
+              <span style="color:#62d2ff; font-weight:700;">SLIDE 6:</span> ✅ La solución: DEXA Vision · "Todos estos errores desaparecen" · CTA registro
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap6').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap6">La mayoría de las clínicas en Chile cometen estos errores sin saberlo 👇
+
+No es culpa de los dentistas. Es que nadie les enseñó gestión de clínicas junto con odontología.
+
+Pero en 2025, ignorar la tecnología tiene un costo real: pacientes perdidos, ingresos que no se materializan, horas que podrían estar en sillón.
+
+Si reconociste alguno de estos errores, es hora de cambiar.
+
+DEXA Vision resuelve todos estos puntos. Y puedes probarlo <span class="cta">3 meses gratis</span> antes de comprometerte con nada.
+
+👇 <span class="cta">Etiqueta a un dentista que necesita ver esto.</span>
+
+#odontología #dentista #gestionclinica #errores #clínicadental #chile #productividad #tecnologíadental #softwareadental #dexavision</div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div><div class="canva-title">Prompt para Canva</div></div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp6').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp6">Crea un carousel de Instagram de 6 slides (1080x1080px) tipo "lista educativa viral" para @dexa.vision.
+
+CONCEPTO: "5 errores que frenan tu clínica" — contenido de valor que genera saves y shares.
+
+ESTILO: Diseño bold y legible. Fondo oscuro (#080f1a). Numeración grande. Máximo contraste.
+
+SLIDE 1 (Hook):
+- Imagen: dentista mujer 3D con paciente en sillón dental (tengo "3.png")
+- Título grande: "5 errores que frenan tu clínica en 2025 ❌"
+- Subtexto: "¿Cuántos cometes tú? Desliza →"
+- Fondo con degradado oscuro sobre la imagen
+
+SLIDES 2-5 (Errores 1-4):
+- Número GRANDE de error (01, 02, 03, 04) en rojo/naranja (#ef4444)
+- "❌ ERROR" pequeño arriba
+- Título del error: bold, blanco, ~36px
+- 1-2 líneas de consecuencia: color gris claro (#9bb8cc)
+- Diseño limpio, mucho espacio en blanco
+
+SLIDE 6 (Solución/CTA):
+- Fondo gradiente azul (#018ede → #0052a3)
+- "✅ LA SOLUCIÓN" arriba
+- Logo DEXA Vision centrado y grande
+- "Todos estos errores desaparecen con DEXA Vision"
+- CTA: badge blanco "3 meses GRATIS · Regístrate"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DÍA 7 ========== -->
+  <div class="day-section" id="day-7">
+    <div class="day-header">
+      <div class="day-number">07<span>DOM</span></div>
+      <div class="day-info">
+        <h2>FOMO — "Cierre del acceso anticipado"</h2>
+        <p>Urgencia real · Máxima conversión a registros</p>
+        <div class="day-badges">
+          <span class="badge badge-reel">📱 REEL</span>
+          <span class="badge badge-story">📖 STORIES x3</span>
+          <span class="tag-asset">dentista.png</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-grid">
+      <div class="phone-wrap">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/dentista.png" alt="Post 7">
+            <div class="phone-overlay" style="background:linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);">
+              <div class="phone-hook" style="color:#62d2ff;">⚠️ Acceso anticipado<br>cierra esta semana</div>
+              <div class="phone-account">
+                <div class="phone-avatar">D</div>
+                <div class="phone-username">@dexa.vision</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-panel">
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">🎣 Hook — urgencia máxima</div>
+          </div>
+          <div class="hook-text" style="color:#f87171;">⚠️ El acceso anticipado a DEXA Vision con 3 meses gratis está por cerrar.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📝 Caption</div>
+            <button class="copy-btn" onclick="copyText(this, document.getElementById('cap7').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar
+            </button>
+          </div>
+          <div class="caption-text" id="cap7">Esta semana cerramos el acceso anticipado. ⚠️
+
+Si eres dentista o administras una clínica dental en Chile y todavía no te has registrado, esto es para ti.
+
+¿Qué significa acceso anticipado?
+✅ 3 meses de DEXA Vision completamente gratis
+✅ Acceso prioritario cuando lancemos
+✅ Soporte personalizado de nuestro equipo
+✅ Tu feedback moldea el producto final
+
+No te pedimos tarjeta. No hay trampa.
+
+Solo queremos que los mejores dentistas de Chile sean los primeros en probarlo.
+
+Después del lanzamiento, el precio normal aplica para todos.
+
+<span class="cta">🔗 Link en bio → regístrate hoy.</span>
+
+Si conoces a un dentista que debería ver esto, etiquétalo abajo 👇
+
+#odontología #dentistachile #softwareadental #tecnologíadental #3mesesgratis #accesoanticipado #clínicadental #dexavision #lanzamiento #IA</div>
+        </div>
+
+        <div class="content-block">
+          <div class="content-block-header">
+            <div class="content-block-title">📖 Stories del domingo (x3 en secuencia)</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+            <div style="padding:12px; background:rgba(168,85,247,0.08); border-radius:10px; border:1px solid rgba(168,85,247,0.2);">
+              <div style="color:#c084fc; font-weight:700; margin-bottom:4px;">Story 1 — Cuenta regresiva</div>
+              <div>Sticker de countdown · "Quedan X días para cerrar el acceso anticipado" · Fondo degradado azul</div>
+            </div>
+            <div style="padding:12px; background:rgba(168,85,247,0.08); border-radius:10px; border:1px solid rgba(168,85,247,0.2);">
+              <div style="color:#c084fc; font-weight:700; margin-bottom:4px;">Story 2 — Encuesta</div>
+              <div>Sticker poll: "¿Ya te registraste?" → SÍ / AÚN NO · Si AÚN NO: "Hazlo ahora → link" (swipe up)</div>
+            </div>
+            <div style="padding:12px; background:rgba(168,85,247,0.08); border-radius:10px; border:1px solid rgba(168,85,247,0.2);">
+              <div style="color:#c084fc; font-weight:700; margin-bottom:4px;">Story 3 — DM directo</div>
+              <div>Sticker "Pregúntame algo" · Imagen del equipo/logo · "Estamos aquí para resolver tus dudas"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="canva-block">
+          <div class="canva-header">
+            <div class="canva-logo">C</div>
+            <div><div class="canva-title">Prompt para Canva</div></div>
+            <button class="copy-btn" style="margin-left:auto;" onclick="copyText(this, document.getElementById('cp7').innerText)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar prompt
+            </button>
+          </div>
+          <div class="canva-prompt-text" id="cp7">Crea un Reel cover/post de Instagram (1080x1920px) de urgencia y FOMO para @dexa.vision.
+
+CONCEPTO: Cierre del acceso anticipado — sentido de urgencia real sin ser agresivo.
+
+COMPOSICIÓN:
+- Fondo: negro profundo con efecto de partículas/estrellas azules muy sutiles
+- Personaje: doctor 3D de bata blanca sosteniendo diente tech en su mano (tengo "dentista.png"), posicionado lado derecho, escala ~70% del alto del frame
+- Efecto de luz azul/blanca desde abajo iluminando al personaje
+
+TEXTO (lado izquierdo, apilado verticalmente):
+- Badge rojo: "⚠️ ÚLTIMA SEMANA"
+- Título grande (2 líneas): "Acceso" / "Anticipado"
+- Fuente: ultra-bold, blanco, ~72px
+- Subtítulo: "3 meses gratis · Cierra pronto"
+- Color: #62d2ff
+
+BENEFICIOS (lista pequeña):
+- ✅ Sin tarjeta de crédito
+- ✅ Acceso prioritario
+- ✅ Soporte personalizado
+
+CTA INFERIOR (full width):
+- Fondo azul (#018ede)
+- Texto blanco bold: "Regístrate HOY → dexavision.cl"
+
+LOGO: DEXA Vision blanco, arriba izquierda
+
+Energía visual: Apple launch event meets healthtech urgency.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  DEXA Vision · Kit Semana 1 · @dexa.vision · dexavision.cl
+</div>
+
+<script>
+function showDay(n, btn) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('day-' + n).classList.add('visible');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyText(btn, text) {
+  const el = document.createElement('textarea');
+  el.value = typeof text === 'string' ? text : text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  btn.classList.add('copied');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado';
+  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+}
+</script>
+
+</body>
+</html>
