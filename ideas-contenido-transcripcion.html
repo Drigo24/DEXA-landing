@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXA Vision — Ideas de Contenido · Webinar AAAID</title>
+<style>
+  :root {
+    --blue: #018ede; --blue-dark: #0052a3; --blue-light: #62d2ff;
+    --bg: #f4f8ff; --text: #0f1f33; --muted: #6a8faa;
+    --border: #ddeaf8; --card: #ffffff;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); }
+
+  .header { background:white; border-bottom:1px solid var(--border); padding:28px 48px; display:flex; align-items:center; justify-content:space-between; }
+  .header img { height:30px; }
+  .header-right { text-align:right; }
+  .header-title { font-size:17px; font-weight:700; }
+  .header-sub { font-size:12px; color:var(--muted); margin-top:3px; }
+
+  .main { max-width:1060px; margin:0 auto; padding:48px 32px; }
+
+  .source-box {
+    background: linear-gradient(135deg, rgba(1,142,222,0.06), rgba(0,82,163,0.04));
+    border: 1px solid rgba(1,142,222,0.18);
+    border-radius:16px; padding:20px 24px; margin-bottom:40px;
+    display:flex; align-items:flex-start; gap:16px;
+  }
+  .source-icon { font-size:28px; flex-shrink:0; }
+  .source-title { font-size:14px; font-weight:700; color:var(--blue); margin-bottom:4px; }
+  .source-desc { font-size:13px; color:var(--muted); line-height:1.5; }
+
+  .section-title {
+    font-size:11px; font-weight:700; color:var(--muted);
+    letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom:16px; padding-bottom:10px;
+    border-bottom:2px solid var(--border);
+    display:flex; align-items:center; gap:8px;
+  }
+
+  .cards-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-bottom:40px; }
+
+  .idea-card {
+    background:white; border:1px solid var(--border);
+    border-radius:16px; padding:20px 22px;
+    position:relative; transition:all 0.2s;
+  }
+  .idea-card:hover { box-shadow:0 6px 20px rgba(1,142,222,0.1); border-color:rgba(1,142,222,0.25); }
+
+  .idea-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px; }
+
+  .idea-type {
+    font-size:10px; font-weight:700; letter-spacing:0.8px;
+    text-transform:uppercase; padding:4px 10px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .type-stat    { background:rgba(1,142,222,0.1);  color:var(--blue);   border:1px solid rgba(1,142,222,0.2);  }
+  .type-hook    { background:rgba(220,38,38,0.08); color:var(--red);    border:1px solid rgba(220,38,38,0.15); }
+  .type-edu     { background:rgba(22,163,74,0.08); color:var(--green);  border:1px solid rgba(22,163,74,0.15); }
+  .type-cred    { background:rgba(124,58,237,0.08);color:var(--purple); border:1px solid rgba(124,58,237,0.15);}
+  .type-mito    { background:rgba(217,119,6,0.08); color:var(--yellow); border:1px solid rgba(217,119,6,0.15); }
+
+  .idea-format {
+    font-size:10px; color:var(--muted); font-weight:500;
+  }
+
+  .idea-hook {
+    font-size:16px; font-weight:800; color:var(--text);
+    line-height:1.3; margin-bottom:10px;
+  }
+  .idea-hook .blue { color:var(--blue); }
+
+  .idea-source {
+    font-size:11px; color:var(--muted);
+    font-style:italic; margin-bottom:10px;
+    padding:8px 12px; background:var(--bg);
+    border-radius:8px; border-left:3px solid var(--blue-light);
+    line-height:1.5;
+  }
+
+  .idea-copy {
+    font-size:13px; color:var(--muted); line-height:1.6;
+    margin-bottom:12px;
+  }
+
+  .idea-stat-big {
+    font-size:42px; font-weight:900; color:var(--blue);
+    letter-spacing:-2px; line-height:1; margin-bottom:4px;
+  }
+
+  .idea-footer {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:12px; padding-top:12px;
+    border-top:1px solid var(--border);
+  }
+  .idea-target {
+    display:flex; gap:6px; flex-wrap:wrap;
+  }
+  .target-pill {
+    font-size:10px; font-weight:600; padding:2px 8px;
+    border-radius:100px; background:var(--bg); border:1px solid var(--border);
+    color:var(--muted);
+  }
+  .copy-btn {
+    background:linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color:white; border:none; padding:6px 14px;
+    border-radius:8px; font-size:11px; font-weight:600;
+    cursor:pointer; transition:all 0.15s;
+  }
+  .copy-btn:hover { opacity:0.85; }
+  .copy-btn.copied { background:linear-gradient(135deg,#22c55e,#16a34a); }
+
+  .speakers-row {
+    display:grid; grid-template-columns:repeat(5,1fr); gap:12px;
+    margin-bottom:40px;
+  }
+  .speaker-card {
+    background:white; border:1px solid var(--border);
+    border-radius:12px; padding:14px; text-align:center;
+  }
+  .speaker-emoji { font-size:26px; margin-bottom:6px; }
+  .speaker-name { font-size:12px; font-weight:700; color:var(--text); line-height:1.3; margin-bottom:3px; }
+  .speaker-role { font-size:10px; color:var(--muted); line-height:1.3; }
+
+  .full-width { grid-column:1/-1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/logo-negro-dexa.png" alt="DEXA Vision">
+  <div class="header-right">
+    <div class="header-title">Ideas de Contenido · Webinar AAAID</div>
+    <div class="header-sub">American Academy of Artificial Intelligence and Dentistry · 14 ideas extraídas</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="source-box">
+    <div class="source-icon">🎙️</div>
+    <div>
+      <div class="source-title">Fuente: Webinar inaugural "Stewardship in Motion" — AAAID</div>
+      <div class="source-desc">Panelistas: Dr. Farouki (Presidente AAAID · VA Los Angeles) · Norman Kwong (SVP American Dental Association) · Philippe Salah (CEO Dental Monitoring) · Prof. Michael Bornstein (U. Basel, editor DMFR) · Dr. Seth Gibree (Heartland Dental, Clinical AI Director) · Dr. Dania Tamimi (Harvard, radióloga maxilofacial)</div>
+    </div>
+  </div>
+
+  <!-- SPEAKERS -->
+  <div class="section-title">👥 Los expertos que respaldan estas ideas</div>
+  <div class="speakers-row">
+    <div class="speaker-card">
+      <div class="speaker-emoji">🏛️</div>
+      <div class="speaker-name">Norman Kwong</div>
+      <div class="speaker-role">SVP American Dental Association</div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-emoji">📡</div>
+      <div class="speaker-name">Philippe Salah</div>
+      <div class="speaker-role">CEO Dental Monitoring · Físico y emprendedor tech</div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-emoji">🔬</div>
+      <div class="speaker-name">Prof. Bornstein</div>
+      <div class="speaker-role">Editor-in-Chief DMFR · Universidad de Basel</div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-emoji">🏥</div>
+      <div class="speaker-name">Dr. Seth Gibree</div>
+      <div class="speaker-role">Director Clinical AI · Heartland Dental</div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-emoji">🎓</div>
+      <div class="speaker-name">Dra. Dania Tamimi</div>
+      <div class="speaker-role">Harvard · Radióloga Maxilofacial · Autora de libros</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="section-title">📊 Ideas tipo "Big Stat" — Número protagonista</div>
+  <div class="cards-grid">
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-stat">📊 Big Stat</span>
+        <span class="idea-format">Post imagen</span>
+      </div>
+      <div class="idea-stat-big">80%</div>
+      <div class="idea-hook">de toda la investigación dental nueva<br>ya es sobre <span class="blue">inteligencia artificial</span></div>
+      <div class="idea-source">"From 2020 to 2025, 80% of all articles are now directly linked to AI." — Prof. Bornstein, Editor-in-Chief DMFR</div>
+      <div class="idea-copy">En solo 5 años, la odontología cambió para siempre. Y esto recién empieza.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Credibilidad</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '80% de toda la investigación dental nueva ya es sobre inteligencia artificial.\n\nEn solo 5 años, la odontología cambió para siempre.\n\nY esto recién empieza.\n\nFuente: Prof. Michael Bornstein, Editor-in-Chief Dento Maxillofacial Radiology, U. Basel.\n\n#odontología #IA #dentista #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-stat">📊 Big Stat</span>
+        <span class="idea-format">Post imagen</span>
+      </div>
+      <div class="idea-stat-big">130+</div>
+      <div class="idea-hook">condiciones bucales que la IA<br>detecta <span class="blue">automáticamente</span> hoy</div>
+      <div class="idea-source">"More than 130 oral conditions that are automatically detected through artificial intelligence." — Philippe Salah, CEO Dental Monitoring (FDA-approved)</div>
+      <div class="idea-copy">Caries, problemas de encías, alineación, higiene deficiente, cumplimiento del tratamiento. Todo detectado sin que el dentista tenga que estar presente.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Pacientes</span>
+          <span class="target-pill">Dentistas</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '130+ condiciones bucales que la IA detecta automáticamente hoy.\n\nCaries, problemas de encías, alineación, higiene. Todo sin que el dentista tenga que estar presente.\n\nLa odontología inteligente ya existe. ¿Tu clínica la tiene?\n\n#tecnologíadental #IA #odontología #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-stat">📊 Big Stat</span>
+        <span class="idea-format">Post imagen</span>
+      </div>
+      <div class="idea-stat-big">1/3</div>
+      <div class="idea-hook">de los casos positivos se pierden<br>si solo usas <span class="blue">IA sin dentista</span></div>
+      <div class="idea-source">"1 out of every 3 positive cases are missed. You still have to look." — Dra. Dania Tamimi, Harvard · Radióloga Maxilofacial</div>
+      <div class="idea-copy">La IA es una herramienta poderosa. Pero el ojo clínico del dentista sigue siendo irreemplazable. Por eso DEXA combina los dos.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Confianza</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '1 de cada 3 casos positivos se pierde si solo usas IA sin un dentista.\n\nLa IA es poderosa. Pero el ojo clínico del especialista es irreemplazable.\n\nPor eso la tecnología dental inteligente no reemplaza al dentista. Lo potencia.\n\n#odontología #IA #dentista #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-stat">📊 Big Stat</span>
+        <span class="idea-format">Post imagen</span>
+      </div>
+      <div class="idea-stat-big">71%</div>
+      <div class="idea-hook">de los hospitales de EEUU<br>ya usan <span class="blue">IA predictiva</span> hoy</div>
+      <div class="idea-source">"71% of US hospitals report using predictive AI tools." — Dr. Farouki, Presidente AAAID</div>
+      <div class="idea-copy">La medicina ya dio el salto. La odontología está siguiendo el mismo camino. La pregunta no es si va a llegar a Chile — ya está llegando.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Urgencia</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '71% de los hospitales de EEUU ya usan IA predictiva hoy.\n\nLa medicina ya dio el salto. La odontología está siguiendo el mismo camino.\n\n¿Tu clínica va a liderar el cambio o quedarse atrás?\n\n#IA #odontología #tecnologíadental #innovación #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HOOKS -->
+  <div class="section-title">🎣 Ideas tipo "Hook fuerte" — Para detener el scroll</div>
+  <div class="cards-grid">
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-hook">🎣 Hook</span>
+        <span class="idea-format">Reel / Carousel</span>
+      </div>
+      <div class="idea-hook">"El dentista que usa IA<br>va a reemplazar al que no la usa.<br>No la IA al dentista."</div>
+      <div class="idea-source">"Colleagues that use AI will replace colleagues who don't use AI." — Prof. Bornstein, Universidad de Basel</div>
+      <div class="idea-copy">No es ciencia ficción. Es lo que ya está pasando. Los primeros en adoptar tecnología dental inteligente tienen ventaja real hoy.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">FOMO</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'El dentista que usa IA va a reemplazar al que no la usa.\n\nNo la IA al dentista.\n\nEso lo dijo el Prof. Michael Bornstein, editor de la revista de radiología dental más importante del mundo.\n\nNo es ciencia ficción. Es lo que ya está pasando.\n\n¿Estás entre los primeros?\n\n#dentista #IA #tecnologíadental #innovación #odontología #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-hook">🎣 Hook</span>
+        <span class="idea-format">Reel / Post</span>
+      </div>
+      <div class="idea-hook">"La transparencia en salud<br>ya no es una petición.<br><span class="blue">Es una exigencia.</span>"</div>
+      <div class="idea-source">"Transparency of information is not anymore a request, it's a requirement of good care." — Philippe Salah, CEO Dental Monitoring</div>
+      <div class="idea-copy">Los pacientes de hoy quieren saber qué pasa en su boca, cuándo y por qué. La clínica que les da esa transparencia gana lealtad para siempre.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Pacientes</span>
+          <span class="target-pill">Dentistas</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'La transparencia en salud dental ya no es una petición. Es una exigencia.\n\nLos pacientes quieren saber qué pasa en su boca, cuándo y por qué.\n\nLa clínica que les da esa información gana un paciente para siempre.\n\n#odontología #dentista #paciente #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-hook">🎣 Hook</span>
+        <span class="idea-format">Reel / Carousel</span>
+      </div>
+      <div class="idea-hook">"¿Para qué llevar a Timmy<br>al dentista si<br><span class="blue">todo está bien?</span>"</div>
+      <div class="idea-source">"Is it really a right use of clinical time of the doctor, the time of Timmy, if everything is fine?" — Philippe Salah</div>
+      <div class="idea-copy">La tecnología permite que el paciente vaya al dentista solo cuando realmente lo necesita. Menos citas innecesarias, más atención donde importa.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Pacientes</span>
+          <span class="target-pill">Educativo</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '¿Para qué ir al dentista si todo está bien?\n\nCon IA, tu clínica sabe cuándo REALMENTE necesitas una cita.\n\nMenos tiempo perdido. Más atención donde importa.\n\nAsí funciona la odontología inteligente. 🦷\n\n#odontología #dentista #IA #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-hook">🎣 Hook</span>
+        <span class="idea-format">Carousel "Antes/Después"</span>
+      </div>
+      <div class="idea-hook">Antes: revisar planos<br>radiológicos a mano.<br><span class="blue">Hoy: instantáneo.</span></div>
+      <div class="idea-source">"God are the days of tooth charting, it's all done for you... AI can do it almost instantaneously." — Dra. Dania Tamimi, Harvard</div>
+      <div class="idea-copy">Lo que antes tomaba horas — charting completo, análisis de imágenes, reporte clínico — hoy lo hace la IA en segundos. El tiempo del dentista vale demasiado para gastarlo en papel.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Productividad</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'Lo que antes tomaba horas, hoy lo hace la IA en segundos.\n\nCharting completo. Análisis de radiografías. Reporte clínico.\n\n"Se acabaron los días del charting manual" — Dra. Dania Tamimi, Harvard.\n\nEl tiempo del dentista vale demasiado para gastarlo en papel.\n\n#dentista #IA #gestionclinica #tecnologíadental #productividad #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EDUCATIVOS -->
+  <div class="section-title">📚 Ideas Educativas — Generan saves y shares</div>
+  <div class="cards-grid">
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-edu">📚 Educativo</span>
+        <span class="idea-format">Carousel 5 slides</span>
+      </div>
+      <div class="idea-hook">Los 3 pilares de la<br>odontología del futuro<br>(según la ADA)</div>
+      <div class="idea-source">Norman Kwong, SVP American Dental Association — ADA Oral Health 2050 Initiative</div>
+      <div class="idea-copy">
+        Slide 1: 🧠 IA y tecnología — diagnóstico asistido<br>
+        Slide 2: ❤️ Bienestar — del paciente y del dentista<br>
+        Slide 3: 💰 Modelos de pago — que apoyen la prevención<br>
+        Slide 4: 🏥 Acceso — llegar a quien más lo necesita<br>
+        Slide 5: DEXA Vision trabaja en los 4 pilares
+      </div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Empresas</span>
+          <span class="target-pill">Saves</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'La ADA (American Dental Association) definió los 4 pilares de la odontología del futuro 👇\n\n1️⃣ IA y tecnología — diagnóstico inteligente\n2️⃣ Bienestar — del paciente Y del dentista\n3️⃣ Modelos de pago — que apoyen la prevención\n4️⃣ Acceso — llegar a quien más lo necesita\n\nGuarda este post. La odontología está cambiando más rápido de lo que creemos.\n\n#odontología #IA #ADA #tecnologíadental #futuro #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-edu">📚 Educativo</span>
+        <span class="idea-format">Carousel 4 slides</span>
+      </div>
+      <div class="idea-hook">¿Qué puede detectar<br>la IA en una<br><span class="blue">radiografía dental?</span></div>
+      <div class="idea-source">Dra. Dania Tamimi, Harvard · Prof. Bornstein, Basel — detalle técnico de capacidades actuales FDA-approved</div>
+      <div class="idea-copy">
+        ✅ Caries (en cualquier diente, cualquier posición)<br>
+        ✅ Pérdida ósea periodontal<br>
+        ✅ Lesiones periapicales<br>
+        ✅ Alineación y oclusión<br>
+        ✅ Canales radiculares<br>
+        ✅ Patología benigna<br>
+        ❌ Aún no: malignidades raras, osteoporosis avanzada
+      </div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Pacientes</span>
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Saves</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '¿Qué puede detectar la IA en tu boca hoy? 🦷\n\n✅ Caries (cualquier diente, cualquier posición)\n✅ Pérdida ósea periodontal\n✅ Lesiones periapicales\n✅ Problemas de alineación y oclusión\n✅ Estado de los canales radiculares\n\n❌ Aún no reemplaza al dentista para casos complejos\n\nEs una herramienta poderosa. No un reemplazo.\n\nGuarda este post para saber qué pedirle a tu próximo dentista.\n\n#odontología #IA #radiografía #tecnologíadental #dentista #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-edu">📚 Educativo</span>
+        <span class="idea-format">Carousel / Reel</span>
+      </div>
+      <div class="idea-hook">Por qué el burnout<br>del dentista es<br><span class="blue">un problema de tecnología</span></div>
+      <div class="idea-source">"I've seen so many of my friends having great clinics, but finishing the day completely burned out." — Philippe Salah, CEO Dental Monitoring</div>
+      <div class="idea-copy">No es falta de vocación. Es exceso de admin. Agendar, cobrar, fichar, recordar, reportar — todo eso que no es atender pacientes. La IA puede eliminar ese peso.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Viral</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'El burnout del dentista no es falta de vocación.\n\nEs exceso de tareas que no son atender pacientes.\n\nAgendar. Cobrar. Fichar. Recordar. Reportar.\n\nTodo eso consume horas que deberían estar en el sillón.\n\nLa IA puede eliminar ese peso. Y los mejores dentistas del mundo ya lo saben.\n\n¿Y tú?\n\n#dentista #burnout #odontología #tecnologíadental #IA #gestionclinica #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-edu">📚 Educativo</span>
+        <span class="idea-format">Carousel 3 slides</span>
+      </div>
+      <div class="idea-hook">Médico + IA vs<br>solo médico:<br><span class="blue">¿quién gana?</span></div>
+      <div class="idea-source">"It's not the doctor versus the AI, it's the doctor with the AI. That's the competitive mechanism." — Dr. Seth Gibree, Director Clinical AI, Heartland Dental</div>
+      <div class="idea-copy">Slide 1: Solo IA → falta criterio clínico humano<br>Slide 2: Solo dentista → sin velocidad de análisis<br>Slide 3: Dentista + IA → diagnóstico más rápido, más preciso, menos errores</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Pacientes</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'IA sola: falta el criterio clínico.\nDentista solo: sin la velocidad de análisis.\nDentista + IA: más rápido, más preciso, menos errores.\n\n"No es el dentista versus la IA. Es el dentista CON la IA. Ese es el mecanismo competitivo." — Dr. Seth Gibree, Director Clinical AI, Heartland Dental.\n\n#IA #odontología #dentista #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MITOS -->
+  <div class="section-title">💥 Romper mitos — Contenido de alto engagement</div>
+  <div class="cards-grid">
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-mito">💥 Romper mito</span>
+        <span class="idea-format">Reel / Carousel</span>
+      </div>
+      <div class="idea-hook">"¿La IA va a<br>reemplazar al<br><span class="blue">radiólogo?"</span></div>
+      <div class="idea-source">"Are you worried about your job? No. In reality, there is now an increase of work. AI helps general radiologists triage — increased productivity." — Dra. Tamimi, Harvard</div>
+      <div class="idea-copy">La respuesta de una experta de Harvard que lleva años trabajando con IA: No. Al contrario — hay MÁS trabajo y más productividad. La IA triagea, el especialista decide.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Viral</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '"¿La IA va a reemplazar al dentista?"\n\nLe preguntaron esto a una radióloga de Harvard que trabaja con IA hace años.\n\nSu respuesta: No. Al contrario — hay MÁS trabajo y más productividad.\n\n"La IA triagea. El especialista decide." — Dra. Dania Tamimi, Harvard.\n\n#IA #dentista #mito #tecnologíadental #odontología #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="idea-card">
+      <div class="idea-card-top">
+        <span class="idea-type type-mito">💥 Romper mito</span>
+        <span class="idea-format">Post imagen</span>
+      </div>
+      <div class="idea-hook">"La IA en odontología<br>es tecnología del futuro"<br><span class="blue">FALSO.</span></div>
+      <div class="idea-source">"AI is no longer a distant or theoretical concept. It is here in our dental practices, education, and research today." — Norman Kwong, SVP American Dental Association</div>
+      <div class="idea-copy">Lo dijo el vicepresidente senior de la American Dental Association. La IA en odontología no viene. Ya llegó. La pregunta es si tu clínica la está usando.</div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Dentistas</span>
+          <span class="target-pill">Urgencia</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, '"La IA en odontología es tecnología del futuro"\n\nFALSO.\n\n"La IA ya no es un concepto distante o teórico. Está aquí, en las clínicas dentales, en la educación y en la investigación HOY." — Norman Kwong, SVP American Dental Association.\n\n¿Tu clínica ya la está usando?\n\n#IA #odontología #dentista #ADA #tecnologíadental #dexavision')">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CREDIBILIDAD -->
+  <div class="section-title">🏆 Ideas de Credibilidad — Para DEXA Vision</div>
+  <div class="cards-grid">
+
+    <div class="idea-card full-width">
+      <div class="idea-card-top">
+        <span class="idea-type type-cred">🏆 Credibilidad</span>
+        <span class="idea-format">Post + Story</span>
+      </div>
+      <div class="idea-hook">Lo que los expertos mundiales de IA dental<br>coinciden en decir — y DEXA Vision ya lo hace</div>
+      <div class="idea-source">Síntesis de todos los panelistas: ADA, Harvard, Basel, Heartland Dental, Dental Monitoring</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0;font-size:13px;">
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Diagnóstico IA</div>
+          <div style="color:var(--muted);">"130+ condiciones detectables automáticamente"</div>
+        </div>
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Eliminación del admin</div>
+          <div style="color:var(--muted);">"God are the days of tooth charting"</div>
+        </div>
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Dentista + IA</div>
+          <div style="color:var(--muted);">"Not doctor vs AI. Doctor WITH AI"</div>
+        </div>
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Acceso remoto</div>
+          <div style="color:var(--muted);">"Care synchronized with need, not schedule"</div>
+        </div>
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Transparencia</div>
+          <div style="color:var(--muted);">"Transparency is now a requirement"</div>
+        </div>
+        <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:4px;">✅ Reducción burnout</div>
+          <div style="color:var(--muted);">"Less stress = more loyal staff"</div>
+        </div>
+      </div>
+      <div class="idea-footer">
+        <div class="idea-target">
+          <span class="target-pill">Todos</span>
+          <span class="target-pill">Credibilidad</span>
+          <span class="target-pill">Saves</span>
+        </div>
+        <button class="copy-btn" onclick="copyIdea(this, 'Los expertos mundiales de IA en odontología — Harvard, ADA, Basel — coinciden en 6 puntos.\n\nY DEXA Vision ya los trabaja todos:\n\n✅ Diagnóstico asistido por IA\n✅ Eliminación del trabajo administrativo\n✅ Dentista + IA (no uno vs el otro)\n✅ Acceso remoto al paciente\n✅ Transparencia como estándar\n✅ Reducción del burnout del equipo\n\nLa odontología del futuro es ahora. Y es chilena. 🇨🇱\n\n#dexavision #IA #odontología #tecnologíadental #chile #innovación')">Copiar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function copyIdea(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text; document.body.appendChild(el); el.select();
+    document.execCommand('copy'); document.body.removeChild(el);
+  });
+  btn.classList.add('copied');
+  const o = btn.innerHTML; btn.innerHTML = '✓ Copiado';
+  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = o; }, 2000);
+}
+</script>
+</body>
+</html>
