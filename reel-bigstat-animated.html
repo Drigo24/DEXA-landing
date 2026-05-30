@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXA Vision · Reel</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* 9:16 frame for Reel */
+  .reel {
+    width: 405px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+    background: #06111f;
+  }
+
+  /* ── BACKGROUND GRADIENT ANIMATION ── */
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 20%, #0a2a4a 0%, transparent 70%),
+      radial-gradient(ellipse 70% 50% at 80% 80%, #012a50 0%, transparent 60%),
+      linear-gradient(180deg, #071422 0%, #040d1a 60%, #061828 100%);
+    animation: bgPulse 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgPulse {
+    0%   { filter: brightness(1) hue-rotate(0deg); }
+    100% { filter: brightness(1.15) hue-rotate(8deg); }
+  }
+
+  /* ── GRID LINES ── */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(1,142,222,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(1,142,222,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+  }
+
+  /* ── PARTICLES ── */
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(98, 210, 255, 0.6);
+    animation: rise linear infinite;
+  }
+
+  @keyframes rise {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-750px) scale(0.3); opacity: 0; }
+  }
+
+  /* ── SCAN LINE ── */
+  .scanline {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(98,210,255,0.6), transparent);
+    animation: scan 4s ease-in-out infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes scan {
+    0%   { top: -2px; opacity: 0; }
+    5%   { opacity: 0.5; }
+    95%  { opacity: 0.5; }
+    100% { top: 102%; opacity: 0; }
+  }
+
+  /* ── GLOW CENTER ── */
+  .glow-center {
+    position: absolute;
+    width: 320px;
+    height: 200px;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(1,142,222,0.25) 0%, transparent 70%);
+    animation: glowPulse 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.2); }
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 32px;
+    z-index: 10;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(98,210,255,0.35);
+    background: rgba(1,142,222,0.1);
+    color: #62d2ff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .tag-dot {
+    width: 5px; height: 5px;
+    background: #62d2ff;
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+  }
+
+  /* BIG NUMBER */
+  .stat-wrap {
+    position: relative;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: zoomIn 0.9s cubic-bezier(0.175,0.885,0.32,1.275) forwards 0.8s;
+  }
+
+  .stat-number {
+    font-size: 110px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -6px;
+    background: linear-gradient(160deg, #ffffff 0%, #a8deff 40%, #62d2ff 70%, #018ede 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 30px rgba(98,210,255,0.4));
+    animation: numberGlow 3s ease-in-out infinite 1.7s;
+  }
+
+  @keyframes numberGlow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(98,210,255,0.3)); }
+    50%       { filter: drop-shadow(0 0 50px rgba(98,210,255,0.7)); }
+  }
+
+  /* DIVIDER LINE */
+  .divider {
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #018ede, #62d2ff, transparent);
+    margin: 20px auto 28px;
+    animation: expandLine 0.8s ease forwards 1.5s;
+    border-radius: 1px;
+  }
+
+  @keyframes expandLine {
+    to { width: 80px; }
+  }
+
+  /* MAIN TEXT */
+  .main-text {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(200,230,255,0.75);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.6s;
+  }
+
+  .main-text-bold {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.9s;
+  }
+
+  /* BOTTOM CTA */
+  .bottom {
+    position: absolute;
+    bottom: 40px;
+    left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 2.4s;
+  }
+
+  .cta-pill {
+    background: linear-gradient(135deg, #018ede, #0052a3);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 28px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 20px rgba(1,142,222,0.4);
+    animation: pillPulse 2.5s ease-in-out infinite 3s;
+  }
+
+  @keyframes pillPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(1,142,222,0.4); }
+    50%       { box-shadow: 0 4px 40px rgba(1,142,222,0.7); }
+  }
+
+  .logo-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* TOP LOGO */
+  .top-logo {
+    position: absolute;
+    top: 32px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+    opacity: 0;
+    animation: fadeDown 0.8s ease forwards 0.1s;
+  }
+
+  .top-logo img {
+    height: 22px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+  }
+
+  /* CORNER ACCENTS */
+  .corner {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    opacity: 0.4;
+  }
+  .corner-tl { top: 20px; left: 20px; border-top: 2px solid #62d2ff; border-left: 2px solid #62d2ff; }
+  .corner-tr { top: 20px; right: 20px; border-top: 2px solid #62d2ff; border-right: 2px solid #62d2ff; }
+  .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #62d2ff; border-left: 2px solid #62d2ff; }
+  .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #62d2ff; border-right: 2px solid #62d2ff; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 0.85; transform: translateY(0); }
+  }
+
+  @keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* CONTROLS */
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+
+  .ctrl-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<div class="reel" id="reel">
+  <!-- BG layers -->
+  <div class="bg-gradient"></div>
+  <div class="grid"></div>
+  <div class="particles" id="particles"></div>
+  <div class="scanline"></div>
+  <div class="glow-center"></div>
+
+  <!-- Corner accents -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Top logo -->
+  <div class="top-logo">
+    <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/logo-blanco-dexa.png" alt="DEXA Vision">
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="tag">
+      <div class="tag-dot"></div>
+      Análisis Dental · IA
+    </div>
+
+    <div class="stat-wrap">
+      <div class="stat-number" id="statNumber">1 foto</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="main-text">para detectar caries y</div>
+    <div class="main-text-bold">problemas de encías<br>antes de que duelan.</div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom">
+    <div class="cta-pill">Regístrate · 3 meses gratis</div>
+    <div class="logo-text">@dexa.vision · dexavision.cl</div>
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="ctrl-btn" onclick="restart()">↺ Reiniciar</button>
+  <button class="ctrl-btn" onclick="changeContent(0)">1 foto</button>
+  <button class="ctrl-btn" onclick="changeContent(1)">30 seg</button>
+  <button class="ctrl-btn" onclick="changeContent(2)">6/10</button>
+  <button class="ctrl-btn" onclick="changeContent(3)">3 meses</button>
+</div>
+
+<script>
+  // Generate particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    p.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      bottom: ${Math.random() * 20}%;
+      animation-duration: ${Math.random() * 8 + 6}s;
+      animation-delay: ${Math.random() * 6}s;
+      opacity: ${Math.random() * 0.5 + 0.2};
+    `;
+    container.appendChild(p);
+  }
+
+  const contents = [
+    {
+      stat: '1 foto',
+      line1: 'para detectar caries y',
+      line2: 'problemas de encías<br>antes de que duelan.',
+      tag: 'Análisis Dental · IA'
+    },
+    {
+      stat: '30 seg',
+      line1: 'para registrar un paciente',
+      line2: 'nuevo en tu clínica<br>con IA.',
+      tag: 'Gestión Clínica · IA'
+    },
+    {
+      stat: '6/10',
+      line1: 'caries no duelen',
+      line2: 'hasta que ya<br>es tarde.',
+      tag: 'Análisis Dental · IA'
+    },
+    {
+      stat: '3 meses',
+      line1: 'completamente gratis',
+      line2: 'para clínicas que se unan<br>antes del lanzamiento.',
+      tag: 'Pre-lanzamiento · Oferta'
+    }
+  ];
+
+  function changeContent(idx) {
+    const c = contents[idx];
+    document.getElementById('statNumber').textContent = c.stat;
+    document.querySelector('.main-text').textContent = c.line1;
+    document.querySelector('.main-text-bold').innerHTML = c.line2;
+    document.querySelector('.tag').innerHTML = `<div class="tag-dot"></div>${c.tag}`;
+    restart();
+  }
+
+  function restart() {
+    const reel = document.getElementById('reel');
+    reel.style.animation = 'none';
+    // reset animated elements
+    document.querySelectorAll('.tag, .stat-wrap, .divider, .main-text, .main-text-bold, .bottom, .top-logo').forEach(el => {
+      el.style.animation = 'none';
+      el.style.opacity = '0';
+      void el.offsetWidth;
+    });
+    // re-trigger
+    const styles = [
+      ['.tag',            'fadeUp 0.8s ease forwards 0.3s'],
+      ['.stat-wrap',      'zoomIn 0.9s cubic-bezier(0.175,0.885,0.32,1.275) forwards 0.8s'],
+      ['.divider',        'expandLine 0.8s ease forwards 1.5s'],
+      ['.main-text',      'fadeUp 0.8s ease forwards 1.6s'],
+      ['.main-text-bold', 'fadeUp 0.8s ease forwards 1.9s'],
+      ['.bottom',         'fadeUp 0.8s ease forwards 2.4s'],
+      ['.top-logo',       'fadeDown 0.8s ease forwards 0.1s'],
+    ];
+    styles.forEach(([sel, anim]) => {
+      const el = document.querySelector(sel);
+      if (el) el.style.animation = anim;
+    });
+    // glow re-trigger
+    const num = document.querySelector('.stat-number');
+    num.style.animation = 'none';
+    void num.offsetWidth;
+    num.style.animation = 'numberGlow 3s ease-in-out infinite 1.7s';
+  }
+</script>
+
+</body>
+</html>
