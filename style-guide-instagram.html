@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXA Vision — Style Guide Instagram</title>
+<style>
+  :root {
+    --blue: #018ede;
+    --blue-dark: #0052a3;
+    --blue-light: #62d2ff;
+    --bg: #f4f8ff;
+    --text: #0f1f33;
+    --muted: #6a8faa;
+    --border: #ddeaf8;
+    --card: #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+
+  /* HEADER */
+  .header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header img { height: 32px; }
+  .header-title { font-size: 18px; font-weight: 700; }
+  .header-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  .main { max-width: 1100px; margin: 0 auto; padding: 56px 40px; }
+
+  /* PALETTE */
+  .palette-row { display: flex; gap: 12px; margin-bottom: 56px; flex-wrap: wrap; }
+  .swatch { border-radius: 12px; padding: 16px 20px; font-size: 12px; font-weight: 700; min-width: 100px; }
+
+  /* SECTION HEADER */
+  .style-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--border);
+  }
+  .style-num {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: white;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .style-name { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .style-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  /* MOCKUP GRID */
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .mockup-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .mockup-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* ======= STYLE 1: BIG STAT ======= */
+  .mock-stat {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+
+  /* Variant A — Light blue gradient */
+  .stat-a {
+    background: linear-gradient(160deg, #e8f5ff 0%, #cce9ff 40%, #a0d8f8 100%);
+  }
+  /* Variant B — White to blue */
+  .stat-b {
+    background: linear-gradient(170deg, #ffffff 0%, #e0f0ff 50%, #b8ddf8 100%);
+  }
+  /* Variant C — Blue glow center */
+  .stat-c {
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #d0ecff 0%, #e8f5ff 50%, #f0f8ff 100%);
+  }
+
+  .stat-logo {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+
+  .stat-number {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin: 8px 0;
+    background: linear-gradient(160deg, #002a5c 0%, #015fa3 40%, #018ede 70%, #62d2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  .stat-number.glow-effect::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; right: 0;
+    background: linear-gradient(160deg, #002a5c, #018ede, #62d2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(18px);
+    opacity: 0.4;
+    transform: translateY(4px);
+    z-index: -1;
+  }
+
+  .stat-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a3a5c;
+    line-height: 1.4;
+    max-width: 180px;
+  }
+
+  .stat-sub {
+    font-size: 10px;
+    color: var(--blue);
+    font-weight: 700;
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Glow behind number */
+  .stat-glow {
+    position: absolute;
+    width: 160px; height: 100px;
+    background: radial-gradient(ellipse, rgba(1,142,222,0.25) 0%, transparent 70%);
+    top: 30%; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* ======= STYLE 2: GLASS CARD ======= */
+  .mock-glass {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Variant A — Blue spheres bg */
+  .glass-a {
+    background: linear-gradient(135deg, #c8e8ff 0%, #9dd0f5 30%, #6ab8ee 60%, #4aa0e0 100%);
+  }
+  /* Variant B — Soft gradient */
+  .glass-b {
+    background: linear-gradient(160deg, #ddf0ff 0%, #b0d8f5 40%, #7dbde8 100%);
+  }
+  /* Variant C — Light to medium */
+  .glass-c {
+    background: linear-gradient(145deg, #f0f8ff 0%, #c5e4f8 50%, #88c4ee 100%);
+  }
+
+  .glass-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .glass-card {
+    position: absolute;
+    bottom: 20px; left: 16px; right: 16px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 32px rgba(0,82,163,0.1);
+  }
+
+  .glass-tag {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .glass-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0a1e33;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .glass-divider {
+    height: 1px;
+    background: rgba(1,142,222,0.15);
+    margin: 8px 0;
+    border: none;
+  }
+
+  .glass-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #1a3a5c;
+    margin-top: 5px;
+    line-height: 1.3;
+  }
+
+  .glass-check {
+    width: 14px; height: 14px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 8px;
+    color: white;
+  }
+
+  /* 3D visual elements in glass bg */
+  .glass-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(0.5px);
+  }
+
+  .glass-tooth {
+    position: absolute;
+    top: 8px; right: 16px;
+    width: 100px; height: 110px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(0,82,163,0.2));
+    opacity: 0.85;
+  }
+
+  /* CANVA PROMPT BOX */
+  .prompt-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 0;
+  }
+
+  .prompt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .prompt-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .canva-icon {
+    width: 28px; height: 28px;
+    background: #7c3aed;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; color: white;
+  }
+
+  .copy-btn {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn.copied { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+  .prompt-text {
+    background: #f8faff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    white-space: pre-wrap;
+    font-family: inherit;
+  }
+
+  /* CONTENT IDEAS */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .idea-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .idea-stat { font-size: 24px; font-weight: 900; color: var(--blue); letter-spacing: -0.5px; }
+  .idea-text { font-size: 12px; color: var(--text); margin-top: 4px; line-height: 1.4; }
+  .idea-type { font-size: 10px; color: var(--muted); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .style-section { margin-bottom: 72px; }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 72px 0;
+  }
+
+  /* PALETTE TITLE */
+  .palette-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .rule-box {
+    background: linear-gradient(135deg, rgba(1,142,222,0.06), rgba(0,82,163,0.04));
+    border: 1px solid rgba(1,142,222,0.15);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .rule-item { font-size: 13px; }
+  .rule-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .rule-val { font-size: 13px; font-weight: 600; color: var(--text); }
+  .rule-val .blue { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/logo-negro-dexa.png" alt="DEXA Vision">
+  <div>
+    <div class="header-title">Style Guide — Instagram</div>
+    <div class="header-sub">2 estilos · Referencias Canva · Paleta DEXA Vision</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- PALETTE -->
+  <div class="palette-title">Paleta de colores DEXA Vision</div>
+  <div class="palette-row">
+    <div class="swatch" style="background:#018ede; color:white;">#018ede<br>Azul principal</div>
+    <div class="swatch" style="background:#0052a3; color:white;">#0052a3<br>Azul oscuro</div>
+    <div class="swatch" style="background:#62d2ff; color:#003a6b;">#62d2ff<br>Celeste claro</div>
+    <div class="swatch" style="background:#c8e8ff; color:#003a6b;">#c8e8ff<br>Azul muy claro</div>
+    <div class="swatch" style="background:#f0f8ff; color:#003a6b; border:1px solid #dde;">#f0f8ff<br>Fondo claro</div>
+    <div class="swatch" style="background:#ffffff; color:#003a6b; border:1px solid #dde;">#ffffff<br>Blanco</div>
+    <div class="swatch" style="background:#1a2a3a; color:white;">#1a2a3a<br>Gris azulado</div>
+    <div class="swatch" style="background:#0f1f33; color:white;">#0f1f33<br>Casi negro</div>
+  </div>
+
+  <!-- REGLAS -->
+  <div class="rule-box">
+    <div class="rule-item">
+      <div class="rule-label">Fondos</div>
+      <div class="rule-val">Blancos, grises claros, <span class="blue">azules suaves</span>. Sin negro puro.</div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-label">Texto principal</div>
+      <div class="rule-val">Negro (#0f1f33) o gris oscuro azulado (#1a2a3a)</div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-label">Acento</div>
+      <div class="rule-val"><span class="blue">Azul #018ede</span> y celeste #62d2ff para highlights</div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-label">Nunca</div>
+      <div class="rule-val">Fondo negro puro, texto blanco sobre blanco, más de 2 colores de acento</div>
+    </div>
+  </div>
+
+  <!-- ========== ESTILO 1 ========== -->
+  <div class="style-section">
+    <div class="style-header">
+      <div class="style-num">1</div>
+      <div>
+        <div class="style-name">Big Stat · Número protagonista</div>
+        <div class="style-desc">Inspirado en respond.io. Número enorme con glow sutil, fondo degradado claro, texto conciso. Ideal para datos impactantes, estadísticas y hooks de scroll-stop.</div>
+      </div>
+    </div>
+
+    <!-- MOCKUPS -->
+    <div class="mockup-grid">
+
+      <!-- Mockup A -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante A — Fondo azul claro</div>
+        <div class="mock-stat stat-a">
+          <div class="stat-glow"></div>
+          <div class="stat-logo">@dexa.vision</div>
+          <div class="stat-number glow-effect" data-text="1 foto">1 foto</div>
+          <div class="stat-text">para detectar caries y problemas de encías</div>
+          <div class="stat-sub">Sin cita · Sin dentista · En segundos</div>
+        </div>
+      </div>
+
+      <!-- Mockup B -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante B — Blanco a azul</div>
+        <div class="mock-stat stat-b">
+          <div class="stat-glow"></div>
+          <div class="stat-logo">@dexa.vision</div>
+          <div class="stat-number glow-effect" data-text="30 seg">30 seg</div>
+          <div class="stat-text">para registrar un paciente nuevo en tu clínica</div>
+          <div class="stat-sub">Gestión dental con IA · dexavision.cl</div>
+        </div>
+      </div>
+
+      <!-- Mockup C -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante C — Glow central</div>
+        <div class="mock-stat stat-c">
+          <div class="stat-glow"></div>
+          <div class="stat-logo">@dexa.vision</div>
+          <div class="stat-number glow-effect" data-text="3 meses">3 meses</div>
+          <div class="stat-text">gratis para clínicas que se registren antes del lanzamiento</div>
+          <div class="stat-sub">Regístrate · Link en bio</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- IDEAS STAT -->
+    <div class="prompt-box" style="margin-bottom:20px;">
+      <div class="prompt-header">
+        <div class="prompt-title">💡 Ideas de contenido para este estilo</div>
+      </div>
+      <div class="ideas-grid">
+        <div class="idea-card">
+          <div class="idea-stat">1 foto</div>
+          <div class="idea-text">para detectar caries y problemas de encías</div>
+          <div class="idea-type">Hook paciente</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat">30 seg</div>
+          <div class="idea-text">para registrar un paciente nuevo en tu clínica</div>
+          <div class="idea-type">Hook dentista</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat">3 meses</div>
+          <div class="idea-text">gratis antes del lanzamiento. Registros abiertos.</div>
+          <div class="idea-type">CTA / urgencia</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat">-40%</div>
+          <div class="idea-text">de tiempo en tareas admin con software dental IA</div>
+          <div class="idea-type">Educativo dentista</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat">950</div>
+          <div class="idea-text">trabajadores cubiertos con nuestro plan corporativo</div>
+          <div class="idea-type">Social proof empresa</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat">#1</div>
+          <div class="idea-text">app dental con IA de Latinoamérica. Hecha en Chile 🇨🇱</div>
+          <div class="idea-type">Credibilidad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMPT STAT -->
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <div class="prompt-title">
+          <div class="canva-icon">C</div>
+          Prompt para Canva — Estilo Big Stat
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p1')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar prompt
+        </button>
+      </div>
+      <div class="prompt-text" id="p1">Crea un post de Instagram (1080x1080px) estilo "dato impactante" para @dexa.vision.
+
+FONDO:
+- Degradado suave: blanco puro (#ffffff) arriba → azul muy claro (#c8e8ff) centro → azul claro (#a0d8f8) abajo
+- Sin negro. Sin oscuro. Sensación limpia y tech.
+- Efecto de resplandor suave centrado (radial gradient azul #018ede al 15% de opacidad) detrás del número
+
+NÚMERO PRINCIPAL (protagonista absoluto):
+- Número/stat grande: "[STAT]" (ej: "1 foto", "30 seg", "3 meses")
+- Fuente: ultra bold/black, sans-serif moderna (ej: Inter Black, SF Pro Display Heavy)
+- Tamaño: ~200-220px, ocupa 60% del ancho
+- Color: degradado vertical de azul oscuro (#002a5c) a azul #018ede a celeste #62d2ff
+- Sombra/glow sutil debajo del número: color azul #018ede, blur 30px, 25% opacidad
+
+TEXTO SECUNDARIO (debajo del número):
+- Frase corta descriptiva: "[descripción del stat]"
+- Fuente: bold, ~22-26px
+- Color: gris azulado oscuro (#1a2a3a)
+- Máximo 2 líneas, centrado
+
+TEXTO PEQUEÑO (parte inferior):
+- CTA o contexto pequeño: tamaño ~14px, color #018ede, font weight 600
+- Ejemplo: "Sin cita · Sin dentista · En segundos"
+
+LOGO:
+- "@dexa.vision" muy pequeño arriba centro, color #018ede, font 11px
+
+ESTILO GENERAL: minimalista, mucho espacio en blanco, el número es el ÚNICO protagonista. Apple-level de limpieza. Sin bordes, sin sombras de card, sin elementos decorativos complejos.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ========== ESTILO 2 ========== -->
+  <div class="style-section">
+    <div class="style-header">
+      <div class="style-num">2</div>
+      <div>
+        <div class="style-name">Glass Card · Tarjeta flotante con glassmorphism</div>
+        <div class="style-desc">Inspirado en el efecto "Transparent Glass Effect". Fondo azul con elementos 3D, tarjeta flotante con blur y transparencia. Ideal para features, beneficios y comparativas.</div>
+      </div>
+    </div>
+
+    <!-- MOCKUPS GLASS -->
+    <div class="mockup-grid">
+
+      <!-- Mockup A Glass -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante A — Diente 3D + card</div>
+        <div class="mock-glass glass-a">
+          <!-- BG elements -->
+          <div class="glass-orb" style="width:140px;height:140px;top:-30px;left:-30px;background:rgba(255,255,255,0.25);"></div>
+          <div class="glass-orb" style="width:80px;height:80px;top:60px;right:20px;background:rgba(255,255,255,0.15);"></div>
+          <div class="glass-orb" style="width:60px;height:60px;bottom:120px;left:30px;background:rgba(255,255,255,0.1);"></div>
+          <!-- Tooth image -->
+          <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/7.png" class="glass-tooth" alt="">
+          <!-- Glass card -->
+          <div class="glass-card">
+            <div class="glass-tag">DEXA Vision · Feature</div>
+            <div class="glass-title">Diagnóstico IA en segundos</div>
+            <hr class="glass-divider">
+            <div class="glass-item"><div class="glass-check">✓</div>Sube una foto de tu boca</div>
+            <div class="glass-item"><div class="glass-check">✓</div>IA detecta caries y problemas</div>
+            <div class="glass-item"><div class="glass-check">✓</div>Resultado inmediato · Sin espera</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup B Glass -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante B — Doctor 3D + card</div>
+        <div class="mock-glass glass-b">
+          <div class="glass-orb" style="width:120px;height:120px;top:-20px;right:-20px;background:rgba(255,255,255,0.2);"></div>
+          <div class="glass-orb" style="width:70px;height:70px;bottom:130px;right:40px;background:rgba(255,255,255,0.12);"></div>
+          <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/dentista.png" class="glass-tooth" style="width:90px;height:105px;top:12px;right:12px;" alt="">
+          <div class="glass-card">
+            <div class="glass-tag">Para Dentistas · Plan</div>
+            <div class="glass-title">Tu clínica en piloto automático</div>
+            <hr class="glass-divider">
+            <div class="glass-item"><div class="glass-check">✓</div>Ficha digital sin papel</div>
+            <div class="glass-item"><div class="glass-check">✓</div>Agenda con recordatorios IA</div>
+            <div class="glass-item"><div class="glass-check">✓</div>3 meses gratis · Pre-lanzamiento</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup C Glass -->
+      <div class="mockup-wrap">
+        <div class="mockup-label">Variante C — Solo card minimal</div>
+        <div class="mock-glass glass-c">
+          <div class="glass-orb" style="width:180px;height:180px;top:-60px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.3);"></div>
+          <div class="glass-orb" style="width:100px;height:100px;bottom:100px;left:-20px;background:rgba(255,255,255,0.15);"></div>
+          <div class="glass-orb" style="width:60px;height:60px;top:80px;right:20px;background:rgba(255,255,255,0.18);"></div>
+          <img src="https://raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/6.png" class="glass-tooth" style="width:85px;height:95px;top:15px;right:10px;" alt="">
+          <div class="glass-card">
+            <div class="glass-tag">Para Empresas · Beneficio</div>
+            <div class="glass-title">Salud dental para tus 950 trabajadores</div>
+            <hr class="glass-divider">
+            <div class="glass-item"><div class="glass-check">✓</div>Cobertura familiar incluida</div>
+            <div class="glass-item"><div class="glass-check">✓</div>Dashboard corporativo</div>
+            <div class="glass-item"><div class="glass-check">✓</div>Desde $4.021/trabajador/mes</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- IDEAS GLASS -->
+    <div class="prompt-box" style="margin-bottom:20px;">
+      <div class="prompt-header">
+        <div class="prompt-title">💡 Ideas de contenido para este estilo</div>
+      </div>
+      <div class="ideas-grid">
+        <div class="idea-card">
+          <div class="idea-stat" style="font-size:16px;">Diagnóstico IA</div>
+          <div class="idea-text">Sube foto · IA analiza · Resultado en segundos</div>
+          <div class="idea-type">Feature paciente</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat" style="font-size:16px;">Plan Clínica</div>
+          <div class="idea-text">Ficha digital · Agenda IA · Dashboard ingresos</div>
+          <div class="idea-type">Feature dentista</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat" style="font-size:16px;">Plan Empresa</div>
+          <div class="idea-text">Cobertura familiar · 3 planes disponibles</div>
+          <div class="idea-type">B2B corporativo</div>
+        </div>
+        <div class="idea-card">
+          <div class="idea-stat" style="font-size:16px;">Antes vs Ahora</div>
+          <div class="idea-text">Sin DEXA vs Con DEXA. Dos columnas en la card.</div>
+          <div class="idea-type">Comparativa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMPT GLASS -->
+    <div class="prompt-box">
+      <div class="prompt-header">
+        <div class="prompt-title">
+          <div class="canva-icon">C</div>
+          Prompt para Canva — Estilo Glass Card
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p2')">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copiar prompt
+        </button>
+      </div>
+      <div class="prompt-text" id="p2">Crea un post de Instagram (1080x1080px) estilo glassmorphism moderno para @dexa.vision.
+
+FONDO:
+- Degradado azul medio a azul más saturado: #b0d8f5 → #7ab8e8 → #4a9fd8
+- NO negro. Azules luminosos, como cielo de mañana.
+- 2-3 esferas/círculos decorativos translúcidos (rgba(255,255,255,0.2)) en las esquinas, tamaños variados (80-160px), sin bordes, solo blur suave
+
+ELEMENTO 3D (visual principal):
+- Imagen 3D relacionada a odontología: diente tech, doctor animado, o ícono dental 3D
+- Posicionar en esquina superior derecha o centro-superior
+- Efecto de sombra suave azul debajo
+
+TARJETA GLASS (protagonista):
+- Posición: parte inferior del frame, ocupando 40-45% del alto
+- Fondo: rgba(255,255,255,0.55) — blanco semitransparente con efecto frosted
+- Blur de fondo (backdrop-filter: blur 16px)
+- Borde: 1px solid rgba(255,255,255,0.75)
+- Border radius: 20px
+- Sombra: 0 8px 32px rgba(0,82,163,0.12)
+
+CONTENIDO DE LA TARJETA:
+- Tag pequeño arriba: "DEXA Vision · [categoría]" — azul #018ede, 11px, uppercase
+- Título bold: "[título del feature]" — color negro/gris oscuro #0f1f33, 18-20px
+- Línea divisora delgada: color rgba(1,142,222,0.2)
+- 2-3 items con checkmark redondo azul (#018ede) y texto gris oscuro, 13px
+
+LOGO:
+- Logo DEXA Vision (versión oscura/negra) pequeño, esquina superior izquierda o centrado arriba
+- Tamaño pequeño, no intrusivo
+
+TIPOGRAFÍA GENERAL: Inter, SF Pro o similar. Sans-serif moderna. Nunca serif.
+PALETA: #018ede (azul), #62d2ff (celeste), #0f1f33 (texto), #ffffff (glass), fondos azules claros.
+VIBE: Apple Health meets dental tech. Limpio, premium, moderno.</div>
+    </div>
+  </div>
+
+  <!-- REGLAS FINALES -->
+  <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:28px;margin-top:0;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:16px;">📐 Reglas para mantener consistencia visual</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;color:var(--muted);line-height:1.6;">
+      <div>✅ Fondo siempre claro o azul medio (nunca negro puro)<br>✅ Texto negro/gris oscuro para alto contraste<br>✅ Un solo acento de color por post (#018ede o #62d2ff)<br>✅ Espacio en blanco generoso</div>
+      <div>❌ Sin más de 2 fuentes por post<br>❌ Sin fondos oscuros tipo black/navy<br>❌ Sin gradientes multicolor (solo azules y blancos)<br>❌ Sin texto blanco sobre fondo blanco</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function copyPrompt(btn, id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  });
+  btn.classList.add('copied');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copiado';
+  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+}
+</script>
+
+</body>
+</html>
