@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXA · 6/10 Template — Canva Guide</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #1a1a2e;
+  font-family: 'Segoe UI', -apple-system, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 40px;
+}
+
+h1 {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.5;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────
+   THE DESIGN (exact replica)
+───────────────────────────────────────────── */
+
+.design-frame {
+  position: relative;
+  width: 432px;
+  height: 540px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.design-bg {
+  position: absolute;
+  inset: 0;
+  /* Main gradient: dark blue-gray top → light silver bottom */
+  background:
+    radial-gradient(ellipse 80% 55% at 42% 38%, rgba(200,220,235,0.55) 0%, transparent 60%),
+    linear-gradient(160deg, #3a4f62 0%, #2d3e50 25%, #6a8090 55%, #b8c4cc 80%, #cad2d8 100%);
+}
+
+.design-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 36px;
+}
+
+/* TOP LOGO */
+.d-logo {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* BIG STAT */
+.d-stat {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.d-six {
+  font-size: 210px;
+  font-weight: 900;
+  letter-spacing: -8px;
+  font-family: 'Arial Black', 'Impact', sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #d8e5ef 40%, #a8bfcc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(255,255,255,0.4));
+}
+
+.d-slash {
+  font-size: 160px;
+  font-weight: 900;
+  letter-spacing: -4px;
+  font-family: 'Arial Black', 'Impact', sans-serif;
+  color: #018ede;
+  margin: 0 2px;
+  -webkit-text-fill-color: #018ede;
+  filter: drop-shadow(0 0 20px rgba(1,142,222,0.5));
+}
+
+.d-ten {
+  font-size: 160px;
+  font-weight: 900;
+  letter-spacing: -6px;
+  font-family: 'Arial Black', 'Impact', sans-serif;
+  background: linear-gradient(180deg, #6a7f8d 0%, #4a5f6d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* BODY TEXT */
+.d-text {
+  text-align: center;
+  line-height: 1.25;
+}
+
+.d-text-main {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a2a35;
+  letter-spacing: -0.3px;
+  display: block;
+}
+
+.d-text-blue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #018ede;
+  letter-spacing: -0.3px;
+}
+
+/* BOTTOM */
+.d-bottom {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  color: rgba(30,45,55,0.6);
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.d-bottom span {
+  color: #018ede;
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   CANVA GUIDE
+───────────────────────────────────────────── */
+
+.guide {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.guide-header {
+  background: #018ede;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-header h2 {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.guide-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.step-num {
+  min-width: 28px;
+  height: 28px;
+  background: #018ede;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-content h3 {
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.step-content p {
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.step-content code {
+  background: rgba(1,142,222,0.2);
+  border: 1px solid rgba(1,142,222,0.35);
+  color: #62d2ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.spec-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.spec-label {
+  color: rgba(255,255,255,0.4);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.spec-value {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 4px 0 0;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 4px 10px 4px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: white;
+  font-family: monospace;
+}
+
+.chip-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.variant-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.variant-card h4 {
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.variant-card p {
+  color: rgba(255,255,255,0.45);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.divider-line {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+.copy-btn {
+  margin-top: 8px;
+  background: rgba(1,142,222,0.15);
+  border: 1px solid rgba(1,142,222,0.35);
+  color: #62d2ff;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover { background: rgba(1,142,222,0.3); }
+
+.prompt-box {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-family: monospace;
+}
+</style>
+</head>
+<body>
+
+<h1>DEXA Vision · Canva Template Guide</h1>
+
+<!-- THE DESIGN -->
+<div class="design-frame">
+  <div class="design-bg"></div>
+  <div class="design-inner">
+    <div class="d-logo">DEXA</div>
+
+    <div class="d-stat">
+      <span class="d-six">6</span>
+      <span class="d-slash">/</span>
+      <span class="d-ten">10</span>
+    </div>
+
+    <div class="d-text">
+      <span class="d-text-main">problemas dentales</span>
+      <span class="d-text-blue">no duelen.</span>
+    </div>
+
+    <div class="d-bottom">Analiza tu boca con IA · <span>dexavision.cl</span></div>
+  </div>
+</div>
+
+<!-- CANVA GUIDE -->
+<div class="guide">
+  <div class="guide-header">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.5l7.5 3.75L12 12 4.5 8.25 12 4.5z"/></svg>
+    <h2>Guía paso a paso para recrear en Canva</h2>
+  </div>
+
+  <div class="guide-body">
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Crear documento</h3>
+        <p>Formato Instagram Post: <code>1080 × 1350 px</code> (4:5 vertical) o cuadrado <code>1080 × 1080 px</code></p>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <div class="spec-label">Formato recomendado</div>
+            <div class="spec-value">1080 × 1350 px</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Orientación</div>
+            <div class="spec-value">Vertical (4:5)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Fondo — Gradiente principal</h3>
+        <p>Agrega un rectángulo que cubra todo el canvas. Aplica gradiente lineal diagonal (↙ abajo-derecha):</p>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <div class="spec-label">Color superior izquierdo</div>
+            <div class="spec-value" style="color:#62d2ff">#3A4F62</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Color inferior derecho</div>
+            <div class="spec-value" style="color:#ccc">#CAD2D8</div>
+          </div>
+        </div>
+        <p style="margin-top:8px">Ángulo: <code>160°</code> · Dirección: esquina superior-izquierda oscura → inferior-derecha clara</p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Brillo central (glow detrás del número)</h3>
+        <p>Agrega un círculo grande (~700px), color <code>#FFFFFF</code>, opacidad <code>25%</code>, sin borde. Ponlo detrás de los números, centrado ligeramente a la izquierda. En Canva: usa "Sombra de fondo" o círculo con transparencia.</p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Número "6" — texto enorme</h3>
+        <p>Fuente: <code>Bebas Neue</code> · Tamaño: ~<code>580–620 px</code> · Color: <code>#FFFFFF</code> (blanco puro)</p>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <div class="spec-label">Fuente</div>
+            <div class="spec-value">Bebas Neue</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Tamaño aprox.</div>
+            <div class="spec-value">580–620 px</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Color</div>
+            <div class="spec-value" style="color:#fff">#FFFFFF</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Espaciado letras</div>
+            <div class="spec-value">−10 a −15</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h3>Número "/" — barra diagonal azul</h3>
+        <p>Mismo tamaño y fuente que el "6". Color: <code>#018EDE</code> (azul DEXA). Alinéalo inmediatamente a la derecha del "6".</p>
+        <div class="color-chip">
+          <div class="chip-dot" style="background:#018ede"></div>
+          #018EDE
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 6 -->
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <h3>Número "10" — texto gris oscuro</h3>
+        <p>Mismo tamaño (ligeramente más pequeño ~<code>480 px</code>), misma fuente. Color: <code>#6A7F8D</code> (gris azulado oscuro). Alinéalo al baseline del "/".</p>
+        <div class="color-chip">
+          <div class="chip-dot" style="background:#6a7f8d"></div>
+          #6A7F8D
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 7 -->
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <h3>Texto principal — "problemas dentales"</h3>
+        <p>Fuente: <code>Montserrat Bold</code> o <code>Inter Bold</code> · Tamaño: ~<code>72–80 px</code> · Color: <code>#1A2A35</code> · Centrado · Interlineado 1.2</p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 8 -->
+    <div class="step">
+      <div class="step-num">8</div>
+      <div class="step-content">
+        <h3>Texto azul — "no duelen."</h3>
+        <p>Mismo tamaño y fuente que el texto anterior. Color: <code>#018EDE</code>. Puedes usar el mismo textbox o uno nuevo centrado debajo.</p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 9 -->
+    <div class="step">
+      <div class="step-num">9</div>
+      <div class="step-content">
+        <h3>Logo DEXA (arriba centrado)</h3>
+        <p>Sube el logo blanco desde GitHub. Color blanco, tamaño pequeño (~<code>80–90 px</code> de altura), centrado horizontalmente, a ~<code>40 px</code> del borde superior.</p>
+        <p style="margin-top:6px">URL logo: <code>raw.githubusercontent.com/Drigo24/DEXA-landing/main/assets/logo-blanco-dexa.png</code></p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- STEP 10 -->
+    <div class="step">
+      <div class="step-num">10</div>
+      <div class="step-content">
+        <h3>Texto inferior — "Analiza tu boca con IA · dexavision.cl"</h3>
+        <p>Fuente: <code>Montserrat Regular</code> · Tamaño: <code>28–32 px</code> · "Analiza tu boca con IA · " en color <code>#4A5F6D</code> · "dexavision.cl" en <code>#018EDE Bold</code> · Centrado, ~40 px del borde inferior.</p>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- VARIANTES -->
+    <div class="step">
+      <div class="step-num">★</div>
+      <div class="step-content">
+        <h3>Variantes del mismo template</h3>
+        <p>Cambia solo los textos para generar toda la serie:</p>
+        <div class="variants">
+          <div class="variant-card">
+            <h4>Variante 1</h4>
+            <p><strong style="color:#018ede">1 foto</strong><br>para detectar caries antes de que duelan.</p>
+          </div>
+          <div class="variant-card">
+            <h4>Variante 2</h4>
+            <p><strong style="color:#018ede">30 seg</strong><br>para registrar un paciente nuevo con IA.</p>
+          </div>
+          <div class="variant-card">
+            <h4>Variante 3</h4>
+            <p><strong style="color:#018ede">3 meses</strong><br>completamente gratis para pre-lanzamiento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-line"></div>
+
+    <!-- PROMPT CANVA AI -->
+    <div class="step">
+      <div class="step-num">AI</div>
+      <div class="step-content">
+        <h3>Prompt para Magic Design de Canva</h3>
+        <p>Si usas la función AI de Canva, copia este prompt:</p>
+        <div class="prompt-box">
+          Instagram post 1080x1350px. Background: diagonal gradient from dark blue-gray (#3A4F62) top-left to light silver (#CAD2D8) bottom-right, with a soft white radial glow behind the numbers. Giant bold number "6" in white (Bebas Neue, huge), "/" in vivid blue (#018EDE), "10" in muted dark gray, all on the same baseline. Below: bold sans-serif text "problemas dentales" in dark (#1A2A35) and "no duelen." in blue (#018EDE). Small white logo "DEXA" centered at top. Bottom: small text "Analiza tu boca con IA · dexavision.cl". Clean, modern, minimal, tech-medical aesthetic.
+        </div>
+        <button class="copy-btn" onclick="copyPrompt()">Copiar prompt</button>
+      </div>
+    </div>
+
+    <!-- COLORES -->
+    <div class="step">
+      <div class="step-num">🎨</div>
+      <div class="step-content">
+        <h3>Paleta completa del diseño</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+          <div class="color-chip"><div class="chip-dot" style="background:#018ede"></div>#018EDE — Azul DEXA</div>
+          <div class="color-chip"><div class="chip-dot" style="background:#ffffff; border:1px solid #555"></div>#FFFFFF — Número 6</div>
+          <div class="color-chip"><div class="chip-dot" style="background:#6a7f8d"></div>#6A7F8D — Número 10</div>
+          <div class="color-chip"><div class="chip-dot" style="background:#1a2a35"></div>#1A2A35 — Texto body</div>
+          <div class="color-chip"><div class="chip-dot" style="background:#3a4f62"></div>#3A4F62 — Fondo oscuro</div>
+          <div class="color-chip"><div class="chip-dot" style="background:#cad2d8; border:1px solid #888"></div>#CAD2D8 — Fondo claro</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function copyPrompt() {
+  const text = `Instagram post 1080x1350px. Background: diagonal gradient from dark blue-gray (#3A4F62) top-left to light silver (#CAD2D8) bottom-right, with a soft white radial glow behind the numbers. Giant bold number "6" in white (Bebas Neue, huge), "/" in vivid blue (#018EDE), "10" in muted dark gray, all on the same baseline. Below: bold sans-serif text "problemas dentales" in dark (#1A2A35) and "no duelen." in blue (#018EDE). Small white logo "DEXA" centered at top. Bottom: small text "Analiza tu boca con IA · dexavision.cl". Clean, modern, minimal, tech-medical aesthetic.`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = '✓ Copiado';
+    setTimeout(() => btn.textContent = 'Copiar prompt', 2000);
+  });
+}
+</script>
+
+</body>
+</html>
