@@ -1,4 +1,7 @@
-ID_Paciente,Centro,Fecha,Edad,Grupo_Edad,Sexo,Examinador,Sector,Inflamacion_Clinica,Eritema_Clinico,Recesion_Clinica,Calculo_Visible,Sangrado_Visible,Severidad_Clinico_Exam1,Severidad_Clinico_Exam2,Severidad_DEXA,Score_DEXA,Imagen_ID,Calidad_Imagen,Observaciones
-001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,Anterior Superior,Sí,Sí,No,No,Sí,Leve,Leve,Leve,0.42,IMG_001_ant_sup,Buena,
-001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,Posterior Derecho,Sí,Sí,Sí,Sí,Sí,Severa,Severa,Moderada,0.71,IMG_001_post_der,Buena,
-002,Centro A,2026-01-02,8,Pediátrico,F,Examinador 2,Anterior Superior,No,No,No,No,No,Sano,Sano,Sano,0.08,IMG_002_ant_sup,Buena,
+ID_Imagen,Tipo_Foto,Cuadrante,Calidad_Imagen,Inflamacion_Visible,Eritema_Visible,Recesion_Visible,Calculo_Visible,Sangrado_Visible,Severidad_Exam1,Severidad_Exam2,Severidad_Referencia,Severidad_DEXA,Score_DEXA,Concordancia_Examinadores,Observaciones
+IMG_001,Cuadrante,Superior Derecho,Buena,No,No,No,No,No,Sano,Sano,Sano,Sano,0.06,Sí,
+IMG_002,Cuadrante,Superior Izquierdo,Buena,Sí,Sí,No,No,Sí,Leve,Leve,Leve,Leve,0.44,Sí,
+IMG_003,Cuadrante,Inferior Derecho,Buena,Sí,Sí,Sí,Sí,Sí,Severa,Moderada,Severa,Moderada,0.79,No - consenso Exam1,
+IMG_004,Arco completo,Ambos,Buena,Sí,Sí,No,Sí,No,Moderada,Moderada,Moderada,Moderada,0.71,Sí,
+IMG_005,Cuadrante,Inferior Izquierdo,Regular,No,Sí,No,No,No,Leve,Leve,Leve,Sano,0.28,Sí,Score bajo - falso negativo
+IMG_006,Cuadrante,Superior Derecho,No evaluable,,,,,,,,,,,,,Desenfocada - excluida

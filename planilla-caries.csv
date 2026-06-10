@@ -1,5 +1,7 @@
-ID_Paciente,Centro,Fecha,Edad,Grupo_Edad,Sexo,Examinador,Diente_FDI,Superficie,ICDAS_Clinico_Exam1,ICDAS_Clinico_Exam2,ICDAS_DEXA,Score_DEXA,Imagen_ID,Calidad_Imagen,Observaciones
-001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,16,Oclusal,0,0,0,0.05,IMG_001_16,Buena,
-001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,16,Vestibular,0,0,0,0.03,IMG_001_16,Buena,
-001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,26,Oclusal,3,3,3,0.78,IMG_001_26,Buena,
-002,Centro A,2026-01-02,8,Pediátrico,F,Examinador 2,55,Oclusal,5,5,5,0.93,IMG_002_55,Buena,
+ID_Imagen,Tipo_Foto,Cuadrante,Calidad_Imagen,ICDAS_Exam1,ICDAS_Exam2,ICDAS_Referencia,ICDAS_DEXA,Score_DEXA,Concordancia_Examinadores,Observaciones
+IMG_001,Cuadrante,Superior Derecho,Buena,0,0,0,0,0.04,Sí,
+IMG_002,Cuadrante,Superior Izquierdo,Buena,4,4,4,4,0.88,Sí,
+IMG_003,Cuadrante,Inferior Derecho,Buena,2,3,2,2,0.61,No - consenso Exam1,
+IMG_004,Arco completo,Ambos,Buena,5,5,5,4,0.91,Sí,Score DEXA alto pero clasificó -1
+IMG_005,Cuadrante,Inferior Izquierdo,Regular,1,1,1,1,0.33,Sí,Imagen con sombra lateral
+IMG_006,Cuadrante,Superior Derecho,No evaluable,,,,,,,Desenfocada - excluida
