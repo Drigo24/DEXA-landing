@@ -1,0 +1,5 @@
+ID_Paciente,Centro,Fecha,Edad,Grupo_Edad,Sexo,Examinador,Diente_FDI,Superficie,ICDAS_Clinico_Exam1,ICDAS_Clinico_Exam2,ICDAS_DEXA,Score_DEXA,Imagen_ID,Calidad_Imagen,Observaciones
+001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,16,Oclusal,0,0,0,0.05,IMG_001_16,Buena,
+001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,16,Vestibular,0,0,0,0.03,IMG_001_16,Buena,
+001,Centro A,2026-01-01,32,Adulto,M,Examinador 1,26,Oclusal,3,3,3,0.78,IMG_001_26,Buena,
+002,Centro A,2026-01-02,8,Pediátrico,F,Examinador 2,55,Oclusal,5,5,5,0.93,IMG_002_55,Buena,
