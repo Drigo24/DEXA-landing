@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumen Conferencia IA en Odontología – DEXA Visión</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --azul: #018EDE;
+      --azul-oscuro: #1A2A35;
+      --azul-medio: #3A4F62;
+      --gris: #CAD2D8;
+      --gris-claro: #F4F7FA;
+      --blanco: #FFFFFF;
+      --acento: #00C9FF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--gris-claro);
+      color: var(--azul-oscuro);
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ───── PORTADA ───── */
+    .cover {
+      background: var(--azul-oscuro);
+      padding: 70px 60px 60px;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(1,142,222,0.25) 0%, transparent 70%);
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,201,255,0.12) 0%, transparent 70%);
+    }
+
+    .cover-tag {
+      display: inline-block;
+      background: rgba(1,142,222,0.3);
+      border: 1px solid rgba(1,142,222,0.6);
+      color: var(--acento);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    .cover-title {
+      font-size: 42px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-title span {
+      color: var(--azul);
+    }
+
+    .cover-subtitle {
+      font-size: 15px;
+      color: var(--gris);
+      font-weight: 400;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      max-width: 500px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cover-meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(202,210,216,0.6);
+    }
+
+    .cover-meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gris);
+    }
+
+    .cover-logo {
+      margin-bottom: 24px;
+    }
+
+    .cover-logo img {
+      height: 32px;
+    }
+
+    /* ───── INTRO ───── */
+    .intro {
+      background: var(--azul);
+      padding: 32px 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .intro-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .intro-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+    }
+
+    .intro-text strong {
+      color: white;
+    }
+
+    /* ───── SECCIONES ───── */
+    .content {
+      padding: 50px 60px;
+    }
+
+    .section {
+      margin-bottom: 52px;
+      position: relative;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--azul-oscuro);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .speaker-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gris-claro);
+      border-left: 3px solid var(--azul);
+      padding: 8px 14px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 20px;
+    }
+
+    .speaker-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--azul-medio);
+    }
+
+    .speaker-role {
+      font-size: 11px;
+      color: #888;
+      font-weight: 400;
+    }
+
+    .section-body {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.75;
+    }
+
+    /* Quote */
+    .quote {
+      background: linear-gradient(135deg, #EBF6FF 0%, #F0F9FF 100%);
+      border-left: 4px solid var(--azul);
+      padding: 20px 24px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+    }
+
+    .quote-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--azul-oscuro);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .quote-author {
+      font-size: 11px;
+      color: var(--azul);
+      font-weight: 700;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pills / highlights */
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .pill {
+      background: var(--gris-claro);
+      border: 1px solid var(--gris);
+      color: var(--azul-medio);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .pill.blue {
+      background: #EBF6FF;
+      border-color: #bde0f7;
+      color: var(--azul);
+    }
+
+    /* Stat cards */
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: var(--azul-oscuro);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--azul);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--gris);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Bullet points */
+    .bullet-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .bullet-list li {
+      padding: 8px 0 8px 22px;
+      position: relative;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .bullet-list li:last-child {
+      border-bottom: none;
+    }
+
+    .bullet-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--azul);
+      font-weight: 700;
+    }
+
+    .bullet-list li strong {
+      color: var(--azul-oscuro);
+      font-weight: 700;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--azul), transparent);
+      margin: 40px 0;
+      opacity: 0.3;
+    }
+
+    /* Pillar cards */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .pillar-card {
+      background: var(--gris-claro);
+      border-radius: 10px;
+      padding: 16px;
+      border-top: 3px solid var(--azul);
+    }
+
+    .pillar-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .pillar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul-oscuro);
+      margin-bottom: 4px;
+    }
+
+    .pillar-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: #FFF8E6;
+      border: 1px solid #FFD97D;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #7A5500;
+      line-height: 1.6;
+    }
+
+    .warning-box strong {
+      color: #5C3D00;
+    }
+
+    /* CTA Final */
+    .cta-section {
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 100%);
+      padding: 50px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(1,142,222,0.2) 0%, transparent 70%);
+    }
+
+    .cta-tag {
+      display: inline-block;
+      background: rgba(1,142,222,0.25);
+      border: 1px solid rgba(1,142,222,0.5);
+      color: var(--acento);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .cta-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 14px;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title span {
+      color: var(--azul);
+    }
+
+    .cta-subtitle {
+      font-size: 14px;
+      color: var(--gris);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-pillars {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--azul);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 30px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-url {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(202,210,216,0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--azul-oscuro);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div>
+      <div class="cover-logo">
+        <img src="assets/logo-blanco-dexa.png" alt="DEXA Visión" onerror="this.style.display='none'">
+      </div>
+      <div class="cover-tag">Resumen Exclusivo · 2026</div>
+      <h1 class="cover-title">La IA que está<br><span>cambiando la</span><br>odontología</h1>
+      <p class="cover-subtitle">
+        Resumen de los puntos más importantes de la conferencia inaugural de la
+        American Academy of Artificial Intelligence in Dentistry — los referentes
+        mundiales hablan sobre el presente y futuro de la IA clínica.
+      </p>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Evento</span>
+        <span class="cover-meta-value">Stewardship in Motion · AAAID</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Ponentes</span>
+        <span class="cover-meta-value">5 referentes mundiales</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Compilado por</span>
+        <span class="cover-meta-value">DEXA Visión · 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-icon">🎓</div>
+    <p class="intro-text">
+      <strong>¿Qué es este documento?</strong> Un resumen de la primera conferencia oficial de la academia de IA más importante del mundo en odontología. Participaron el SVP de la ADA, el editor en jefe de la revista científica dental más citada, el CEO de la plataforma de monitoreo dental líder global, y el director de IA de la mayor cadena dental de EE.UU.
+    </p>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="content">
+
+    <!-- SECCIÓN 1 -->
+    <div class="section">
+      <div class="section-number">01 · American Dental Association</div>
+      <h2 class="section-title">La IA ya está en la clínica.<br>No es el futuro — es hoy.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Norman Kwong</div>
+          <div class="speaker-role">Senior VP · American Dental Association</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p class="quote-text">"La IA ya no es un concepto lejano o teórico. Está hoy en nuestras clínicas, en la educación y en la investigación. La pregunta ya no es qué tan rápido avanzará — sino qué tan ética y responsablemente se integrará."</p>
+        <p class="quote-author">— Norman Kwong, SVP ADA · Stewardship in Motion, AAAID 2026</p>
+      </div>
+
+      <p class="section-body">La ADA lanzó <strong>Oral Health 2050</strong>, la hoja de ruta oficial para los próximos 25 años de la odontología en EE.UU. Está organizada en 4 pilares que definen hacia dónde va la profesión:</p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🤖</div>
+          <div class="pillar-title">IA y Tecnología</div>
+          <div class="pillar-desc">Diagnóstico asistido, flujos de trabajo y soporte clínico con IA</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">❤️</div>
+          <div class="pillar-title">Bienestar</div>
+          <div class="pillar-desc">Del paciente y del dentista. La innovación no debe erosionar el bienestar humano</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">💳</div>
+          <div class="pillar-title">Modelos de Pago</div>
+          <div class="pillar-desc">Que soporten la prevención y los nuevos modelos de atención remota</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🌍</div>
+          <div class="pillar-title">Acceso</div>
+          <div class="pillar-desc">Llevar la atención dental a quien más la necesita, superando barreras geográficas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 2 -->
+    <div class="section">
+      <div class="section-number">02 · Investigación Científica Global</div>
+      <h2 class="section-title">En 5 años, el 80% de la ciencia<br>dental apunta a la IA.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Prof. Michael Bornstein</div>
+          <div class="speaker-role">Editor en Jefe, Dento Maxillofacial Radiology · Universidad de Basilea</div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number">80%</div>
+          <div class="stat-label">de todos los artículos científicos odontológicos están vinculados a IA (2020–2025)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">73%</div>
+          <div class="stat-label">de personas ya no distinguen una conversación con IA de una con un humano (2025)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10</div>
+          <div class="stat-label">años: de detectar dientes en una panorámica a robots que colocan implantes</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p class="quote-text">"Los colegas que usen IA con propósito inteligente y centrado en el paciente reemplazarán progresivamente a quienes no la usen. Ustedes, como usuarios tempranos, tienen ventaja."</p>
+        <p class="quote-author">— Prof. Michael Bornstein · Editor en Jefe DMFR</p>
+      </div>
+
+      <p class="section-body">La IA en odontología comenzó en radiología hace 10 años con herramientas básicas. Hoy ya existen <strong>robots con aprobación FDA que colocan implantes</strong>. Las aplicaciones clínicas validadas incluyen evaluación cefalométrica automatizada, segmentación mandibular, planificación de implantes y escáneres dentales con detección de caries integrada.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 3 -->
+    <div class="section">
+      <div class="section-number">03 · Monitoreo Remoto</div>
+      <h2 class="section-title">El paciente en el sillón<br>solo cuando realmente lo necesita.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Dr. Philippe Salah</div>
+          <div class="speaker-role">CEO · Dental Monitoring · París, Francia</div>
+        </div>
+      </div>
+
+      <p class="section-body">El problema histórico de la clínica dental es que <strong>calidad, acceso y sostenibilidad nunca coexisten</strong> — expandir uno deteriora los otros. El Dr. Salah presentó cómo la IA rompe ese triángulo:</p>
+
+      <ul class="bullet-list">
+        <li><strong>130+ condiciones orales</strong> detectadas automáticamente por IA con aprobación FDA</li>
+        <li>El sistema <strong>agenda citas automáticamente</strong> según lo que detecta en las fotos del paciente desde su celular</li>
+        <li>Genera <strong>modelos 3D semanales</strong> desde el smartphone, comparando el movimiento real vs. el planificado</li>
+        <li>Si el paciente está cepillando mal, el sistema <strong>envía instrucciones personalizadas automáticamente</strong></li>
+        <li>Resultado clínico: tratamientos más predecibles, <strong>menos estrés para el dentista</strong> y mayor fidelidad del equipo</li>
+      </ul>
+
+      <div class="quote">
+        <p class="quote-text">"No se trata de ver menos al paciente. Se trata de verlo mejor. En el momento exacto en que lo necesita."</p>
+        <p class="quote-author">— Dr. Philippe Salah · CEO Dental Monitoring</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 4 -->
+    <div class="section">
+      <div class="section-number">04 · Adopción Clínica Real</div>
+      <h2 class="section-title">Doctor + IA.<br>No Doctor vs. IA.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Dr. Seth Gibree</div>
+          <div class="speaker-role">Director de IA Clínica · Heartland Dental (mayor cadena dental de EE.UU.)</div>
+        </div>
+      </div>
+
+      <p class="section-body">Desde la cadena con más clínicas dentales en EE.UU., el Dr. Gibree habló de lo que realmente pasa cuando la IA llega al sillón:</p>
+
+      <ul class="bullet-list">
+        <li>Tecnologías de <strong>bajo riesgo y alto impacto</strong> ya disponibles: notas de voz, dictado clínico automático, verificación de seguros, triaje de llamadas</li>
+        <li>La odontología se convierte en <strong>la puerta de entrada a la salud general</strong>: la IA permitirá detectar diabetes, Alzheimer y enfermedades cardíacas desde la consulta dental</li>
+        <li>Tendencia clara: de modelos genéricos a <strong>sistemas clínicos especializados y validados</strong></li>
+        <li>Los que adoptan primero <strong>tienen ventaja competitiva real</strong>, como cuando llegaron los rayos X digitales</li>
+      </ul>
+
+      <div class="warning-box">
+        ⚠️ <strong>Advertencia crítica:</strong> La dependencia excesiva en IA puede erosionar el pensamiento clínico crítico. "Podemos tener la mejor tecnología del mundo, pero si no hay adopción clínica inteligente, no importa qué tan buena sea."
+      </div>
+
+      <div class="quote">
+        <p class="quote-text">"El dentista siempre debe estar en el loop. La IA analiza los datos — el clínico trata a la persona."</p>
+        <p class="quote-author">— Dr. Seth Gibree · Director IA Clínica, Heartland Dental</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 5 -->
+    <div class="section">
+      <div class="section-number">05 · Radiología e Imágenes con IA</div>
+      <h2 class="section-title">Lo que la IA puede hacer.<br>Y lo que todavía no puede.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Dra. Dania Tamimi</div>
+          <div class="speaker-role">Radióloga Oral y Maxilofacial · Harvard · Fundadora Inspire Imaging</div>
+        </div>
+      </div>
+
+      <p class="section-body">La radióloga de Harvard fue la más honesta sobre las capacidades y límites actuales de la IA:</p>
+
+      <div class="highlights">
+        <span class="pill blue">✅ Detección de caries</span>
+        <span class="pill blue">✅ Pérdida ósea periodontal</span>
+        <span class="pill blue">✅ Charting dental completo</span>
+        <span class="pill blue">✅ Reportes radiográficos automáticos</span>
+        <span class="pill blue">✅ Segmentación anatómica</span>
+        <span class="pill">⚠️ Osteomielitis agresiva</span>
+        <span class="pill">⚠️ Carcinoma de células escamosas</span>
+        <span class="pill">⚠️ Osteoporosis</span>
+        <span class="pill">⚠️ Patologías raras</span>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number">85%</div>
+          <div class="stat-label">precisión actual para distinguir lesiones de maxilares</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">66%</div>
+          <div class="stat-label">sensibilidad — 1 de cada 3 casos positivos aún es omitido por IA</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p class="quote-text">"En medicina general, la IA no redujo el trabajo de los radiólogos. Lo aumentó. Más productividad, no desempleo. La IA es un sistema de apoyo, no la palabra final. No puedes aparcar tu cerebro."</p>
+        <p class="quote-author">— Dra. Dania Tamimi · Radióloga, Harvard Medical School</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SECCIÓN 6 -->
+    <div class="section">
+      <div class="section-number">06 · IA Agéntica · El siguiente nivel</div>
+      <h2 class="section-title">La IA que no solo responde.<br>La IA que actúa.</h2>
+      <div class="speaker-tag">
+        <div>
+          <div class="speaker-name">Dr. Owyas Farouki</div>
+          <div class="speaker-role">Presidente AAAID · Jefe de Servicio Dental, VA Greater Los Angeles</div>
+        </div>
+      </div>
+
+      <p class="section-body">El presidente de la AAAID presentó la próxima frontera: <strong>IA Agéntica</strong> — sistemas que ejecutan flujos de trabajo completos sin intervención humana:</p>
+
+      <ul class="bullet-list">
+        <li>Un paciente llama → la IA interpreta la solicitud → consulta la agenda → ofrece horarios → <strong>confirma la cita automáticamente</strong></li>
+        <li><strong>71% de los hospitales en EE.UU.</strong> ya usan herramientas de IA predictiva</li>
+        <li>Mercado proyectado: <strong>USD $100 millones hacia 2030</strong></li>
+        <li>Aplicaciones en desarrollo: educación al paciente, triaje de urgencias, coordinación entre sistemas clínicos</li>
+      </ul>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- CTA DEXA -->
+  <div class="cta-section">
+    <div class="cta-tag">DEXA Visión · Chile</div>
+    <h2 class="cta-title">Todo esto que lees<br><span>ya está disponible en Chile.</span></h2>
+    <p class="cta-subtitle">
+      DEXA Visión aplica exactamente lo que los mayores referentes mundiales identificaron como el futuro: IA para diagnóstico dental preventivo, acceso desde el celular y detección temprana antes de que el problema avance.
+    </p>
+    <div class="cta-pillars">
+      <span class="cta-pill">🤖 IA + Tecnología</span>
+      <span class="cta-pill">❤️ Bienestar</span>
+      <span class="cta-pill">💳 Prevención</span>
+      <span class="cta-pill">🌍 Acceso</span>
+    </div>
+    <a href="https://dexavision.cl" class="cta-button">Conoce DEXA Visión →</a>
+    <p class="cta-url">dexavision.cl · @dexa.vision</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-brand">DEXA VISIÓN SpA · 2026</span>
+    <span class="footer-note">Resumen no oficial elaborado con fines educativos · AAAID Stewardship in Motion</span>
+  </div>
+
+</div>
+</body>
+</html>
