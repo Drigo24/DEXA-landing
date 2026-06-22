@@ -131,29 +131,62 @@
     }
 
     /* ───── INTRO ───── */
-    .intro {
-      background: #EBF6FF;
-      border-top: 1px solid #bde0f7;
-      border-bottom: 1px solid #bde0f7;
-      padding: 32px 60px;
+    .speakers-section {
+      background: #F4F7FA;
+      border-top: 1px solid #E0E8F0;
+      border-bottom: 1px solid #E0E8F0;
+      padding: 36px 60px;
+    }
+
+    .speakers-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--azul);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 8px;
     }
 
-    .intro-icon {
-      font-size: 32px;
-      flex-shrink: 0;
-    }
-
-    .intro-text {
+    .speakers-label::before {
+      content: '👥';
       font-size: 14px;
-      color: #444;
-      line-height: 1.7;
     }
 
-    .intro-text strong {
+    .speakers-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .speaker-card-intro {
+      flex: 1;
+      min-width: 120px;
+      background: white;
+      border: 1px solid #E0E8F0;
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .speaker-card-intro .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .speaker-card-intro .name {
+      font-size: 13px;
+      font-weight: 700;
       color: var(--azul-oscuro);
+      margin-bottom: 4px;
+    }
+
+    .speaker-card-intro .role {
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
     }
 
     /* ───── SECCIONES ───── */
@@ -535,12 +568,36 @@
     </div>
   </div>
 
-  <!-- INTRO -->
-  <div class="intro">
-    <div class="intro-icon">🎓</div>
-    <p class="intro-text">
-      <strong>¿Qué es este documento?</strong> Un resumen de la primera conferencia oficial de la academia de IA más importante del mundo en odontología. Participaron el SVP de la ADA, el editor en jefe de la revista científica dental más citada, el CEO de la plataforma de monitoreo dental líder global, y el director de IA de la mayor cadena dental de EE.UU.
-    </p>
+  <!-- SPEAKERS INTRO -->
+  <div class="speakers-section">
+    <div class="speakers-label">Los expertos que respaldan estas ideas</div>
+    <div class="speakers-grid">
+      <div class="speaker-card-intro">
+        <div class="icon">🏛️</div>
+        <div class="name">Norman Kwong</div>
+        <div class="role">SVP American Dental Association</div>
+      </div>
+      <div class="speaker-card-intro">
+        <div class="icon">📡</div>
+        <div class="name">Philippe Salah</div>
+        <div class="role">CEO Dental Monitoring · Físico y emprendedor tech</div>
+      </div>
+      <div class="speaker-card-intro">
+        <div class="icon">🔬</div>
+        <div class="name">Prof. Bornstein</div>
+        <div class="role">Editor-in-Chief DMFR · Universidad de Basilea</div>
+      </div>
+      <div class="speaker-card-intro">
+        <div class="icon">🏥</div>
+        <div class="name">Dr. Seth Gibree</div>
+        <div class="role">Director Clinical AI · Heartland Dental</div>
+      </div>
+      <div class="speaker-card-intro">
+        <div class="icon">🎓</div>
+        <div class="name">Dra. Dania Tamimi</div>
+        <div class="role">Harvard · Radióloga Maxilofacial · Autora de libros</div>
+      </div>
+    </div>
   </div>
 
   <!-- CONTENIDO -->
