@@ -47,6 +47,14 @@
     .cover::before { display: none; }
     .cover::after { display: none; }
 
+    .cover-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--azul);
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+    }
+
     .cover-tag {
       display: inline-block;
       background: #EBF6FF;
@@ -502,7 +510,8 @@
       <div class="cover-logo">
         <img src="assets/logo-negro-dexa.png" alt="DEXA Visión" onerror="this.style.display='none'">
       </div>
-      <div class="cover-tag">Resumen exclusivo por Dr. Rodrigo Godoy · Cirujano Dentista · Fundador DEXA Visión</div>
+      <p class="cover-author">Dr. Rodrigo Godoy · Cirujano Dentista · Fundador DEXA Visión</p>
+      <div class="cover-tag">Resumen Exclusivo · 2026</div>
       <h1 class="cover-title">La IA que está<br><span>cambiando la</span><br>odontología</h1>
       <p class="cover-subtitle">
         Resumen de los puntos más importantes de la conferencia inaugural de la
