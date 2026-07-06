@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Test de Riesgo Bucal – DEXA Visión</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '848194215031620');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --azul: #018EDE;
+    --azul-oscuro: #1A2A35;
+    --azul-medio: #3A4F62;
+    --gris-claro: #F4F7FA;
+    --verde: #16A34A;
+    --amarillo: #D97706;
+    --rojo: #DC2626;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family:'Inter',sans-serif;
+    background:var(--gris-claro);
+    color:var(--azul-oscuro);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .wrap {
+    width:100%;
+    max-width:540px;
+    padding:24px 20px 48px;
+  }
+
+  /* Header */
+  .head {
+    text-align:center;
+    margin-bottom:24px;
+  }
+  .head img { height:40px; margin-bottom:14px; }
+  .head .tag {
+    display:inline-block;
+    background:#EBF6FF;
+    border:1px solid #bde0f7;
+    color:var(--azul);
+    font-size:10px; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase;
+    padding:5px 14px; border-radius:20px;
+    margin-bottom:12px;
+  }
+  .head h1 {
+    font-size:26px; font-weight:900; line-height:1.15;
+  }
+  .head h1 span { color:var(--azul); }
+  .head p {
+    font-size:13px; color:#667; margin-top:8px;
+  }
+
+  /* Progress */
+  .progress {
+    height:6px; background:#E2E9F0;
+    border-radius:3px; overflow:hidden;
+    margin-bottom:28px;
+  }
+  .progress-fill {
+    height:100%; width:0%;
+    background:var(--azul);
+    border-radius:3px;
+    transition:width .35s ease;
+  }
+  .progress-label {
+    font-size:11px; font-weight:600; color:#8A97A3;
+    text-align:right; margin:-22px 0 22px;
+  }
+
+  /* Card */
+  .card {
+    background:white;
+    border:1px solid #E2E9F0;
+    border-radius:16px;
+    padding:28px 24px;
+    box-shadow:0 2px 12px rgba(26,42,53,.05);
+  }
+
+  .q-num {
+    font-size:11px; font-weight:800; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--azul);
+    margin-bottom:8px;
+  }
+  .q-text {
+    font-size:19px; font-weight:800; line-height:1.3;
+    margin-bottom:20px;
+  }
+
+  .opt {
+    display:block; width:100%;
+    text-align:left;
+    background:var(--gris-claro);
+    border:2px solid transparent;
+    border-radius:12px;
+    padding:14px 16px;
+    font-family:inherit;
+    font-size:14.5px; font-weight:600;
+    color:var(--azul-medio);
+    cursor:pointer;
+    margin-bottom:10px;
+    transition:border-color .15s, background .15s;
+  }
+  .opt:hover { border-color:var(--azul); background:#EBF6FF; }
+  .opt:active { transform:scale(.99); }
+
+  .back-btn {
+    background:none; border:none;
+    font-family:inherit; font-size:13px; font-weight:600;
+    color:#8A97A3; cursor:pointer;
+    margin-top:6px; padding:6px;
+  }
+  .back-btn:hover { color:var(--azul); }
+
+  /* Result */
+  .result { text-align:center; }
+  .result-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:800;
+    letter-spacing:1.5px; text-transform:uppercase;
+    padding:10px 22px; border-radius:30px;
+    margin-bottom:18px;
+  }
+  .result-badge.bajo   { background:#EAF7EF; color:var(--verde); border:1px solid #b7e4c7; }
+  .result-badge.medio  { background:#FEF6E7; color:var(--amarillo); border:1px solid #fcd9a0; }
+  .result-badge.alto   { background:#FDECEC; color:var(--rojo); border:1px solid #f5b5b5; }
+
+  .result h2 { font-size:24px; font-weight:900; margin-bottom:10px; line-height:1.2; }
+  .result .desc {
+    font-size:14px; color:#556; line-height:1.7;
+    margin-bottom:22px;
+  }
+
+  .recs {
+    text-align:left;
+    background:var(--gris-claro);
+    border-radius:12px;
+    padding:18px 20px;
+    margin-bottom:24px;
+  }
+  .recs h3 {
+    font-size:11px; font-weight:800; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--azul);
+    margin-bottom:10px;
+  }
+  .recs li {
+    list-style:none;
+    font-size:13.5px; color:#445; line-height:1.6;
+    padding:5px 0 5px 22px; position:relative;
+  }
+  .recs li::before {
+    content:'→'; position:absolute; left:0;
+    color:var(--azul); font-weight:700;
+  }
+
+  .cta-box {
+    background:linear-gradient(135deg,#EBF6FF,#F0F9FF);
+    border:1px solid #bde0f7;
+    border-radius:14px;
+    padding:22px 20px;
+    margin-bottom:18px;
+  }
+  .cta-box p {
+    font-size:14px; font-weight:600; color:var(--azul-oscuro);
+    line-height:1.55; margin-bottom:16px;
+  }
+  .cta-btn {
+    display:inline-block;
+    background:var(--azul); color:white;
+    font-size:14px; font-weight:700;
+    padding:13px 34px; border-radius:30px;
+    text-decoration:none;
+  }
+
+  .restart {
+    background:none; border:none;
+    font-family:inherit; font-size:13px; font-weight:600;
+    color:#8A97A3; cursor:pointer; padding:6px;
+  }
+  .restart:hover { color:var(--azul); }
+
+  .disclaimer {
+    font-size:11px; color:#9AA5AF; line-height:1.6;
+    text-align:center; margin-top:22px;
+  }
+
+  .fade { animation:fade .3s ease; }
+  @keyframes fade { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="head">
+    <img src="assets/logo-negro-dexa.png" alt="DEXA Visión" onerror="this.style.display='none'">
+    <div><span class="tag">Test Gratuito · 60 segundos</span></div>
+    <h1>¿Qué tan sana está <span>tu boca</span>?</h1>
+    <p>8 preguntas rápidas para conocer tu nivel de riesgo bucal.</p>
+  </div>
+
+  <div class="progress"><div class="progress-fill" id="bar"></div></div>
+  <div class="progress-label" id="barLabel"></div>
+
+  <div class="card" id="card"></div>
+
+  <p class="disclaimer">Este test es orientativo y no reemplaza un diagnóstico profesional.<br>DEXA Visión SpA · dexavision.cl</p>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    q: "¿Cuándo fue tu última visita al dentista?",
+    opts: [
+      ["Hace menos de 6 meses", 0],
+      ["Entre 6 meses y 1 año", 1],
+      ["Entre 1 y 2 años", 2],
+      ["Más de 2 años (o nunca)", 3],
+    ]
+  },
+  {
+    q: "¿Te sangran las encías al cepillarte o usar hilo dental?",
+    opts: [
+      ["Nunca", 0],
+      ["A veces", 2],
+      ["Frecuentemente", 3],
+    ]
+  },
+  {
+    q: "¿Cuántas veces te cepillas los dientes al día?",
+    opts: [
+      ["2 o más veces", 0],
+      ["1 vez", 1],
+      ["Algunos días no me cepillo", 2],
+    ]
+  },
+  {
+    q: "¿Sientes dolor o sensibilidad con lo frío, caliente o dulce?",
+    opts: [
+      ["No", 0],
+      ["Leve, de vez en cuando", 1],
+      ["Sí, con frecuencia", 2],
+    ]
+  },
+  {
+    q: "¿Consumes bebidas azucaradas o dulces a diario?",
+    opts: [
+      ["Rara vez", 0],
+      ["Algunas veces por semana", 1],
+      ["Todos los días", 2],
+    ]
+  },
+  {
+    q: "¿Fumas?",
+    opts: [
+      ["No", 0],
+      ["Ocasionalmente", 1],
+      ["A diario", 2],
+    ]
+  },
+  {
+    q: "¿Notas mal aliento persistente o mal sabor en la boca?",
+    opts: [
+      ["No", 0],
+      ["A veces", 1],
+      ["Sí, casi siempre", 2],
+    ]
+  },
+  {
+    q: "¿Ves alguna mancha oscura, caries visible o diente dañado?",
+    opts: [
+      ["No", 0],
+      ["No estoy seguro/a", 1],
+      ["Sí", 3],
+    ]
+  },
+];
+
+const MAX = QUESTIONS.reduce((s,q)=>s+Math.max(...q.opts.map(o=>o[1])),0); // 19
+
+let current = 0;
+let answers = [];
+
+const card = document.getElementById('card');
+const bar = document.getElementById('bar');
+const barLabel = document.getElementById('barLabel');
+
+function render() {
+  if (current >= QUESTIONS.length) return showResult();
+
+  const item = QUESTIONS[current];
+  bar.style.width = (current / QUESTIONS.length * 100) + '%';
+  barLabel.textContent = `Pregunta ${current+1} de ${QUESTIONS.length}`;
+
+  card.innerHTML = `
+    <div class="fade">
+      <div class="q-num">Pregunta ${current+1}</div>
+      <div class="q-text">${item.q}</div>
+      ${item.opts.map((o,i)=>`<button class="opt" onclick="answer(${i})">${o[0]}</button>`).join('')}
+      ${current>0 ? '<button class="back-btn" onclick="goBack()">← Volver</button>' : ''}
+    </div>`;
+}
+
+function answer(i) {
+  answers[current] = QUESTIONS[current].opts[i][1];
+  current++;
+  render();
+}
+
+function goBack() {
+  current--;
+  answers.length = current;
+  render();
+}
+
+function showResult() {
+  const score = answers.reduce((a,b)=>a+b,0);
+  bar.style.width = '100%';
+  barLabel.textContent = 'Completado';
+
+  let level, cls, icon, title, desc, recs;
+
+  if (score <= 5) {
+    level='Riesgo Bajo'; cls='bajo'; icon='🟢';
+    title='¡Vas por buen camino!';
+    desc='Tus hábitos protegen tu salud bucal. Aun así, muchas condiciones no dan síntomas en etapas tempranas — la prevención es lo que te mantiene en verde.';
+    recs=[
+      'Mantén tu cepillado 2+ veces al día y el hilo dental',
+      'Control dental preventivo al menos 1 vez al año',
+      'Un chequeo con IA te ayuda a confirmar que todo sigue bien',
+    ];
+  } else if (score <= 11) {
+    level='Riesgo Moderado'; cls='medio'; icon='🟡';
+    title='Hay señales que conviene revisar';
+    desc='Algunas de tus respuestas indican factores de riesgo activos. La buena noticia: detectado a tiempo, casi todo se resuelve de forma simple y económica.';
+    recs=[
+      'Agenda un control dental — no esperes a que aparezca dolor',
+      'Refuerza el cepillado nocturno: es el más importante',
+      'Reduce el azúcar diario, especialmente entre comidas',
+    ];
+  } else {
+    level='Riesgo Alto'; cls='alto'; icon='🔴';
+    title='Tu boca te está pidiendo atención';
+    desc='Tus respuestas muestran varios factores de riesgo importantes. El sangrado, dolor o lesiones visibles no se resuelven solos — y mientras más esperas, más costoso y complejo es el tratamiento.';
+    recs=[
+      'Consulta con un dentista lo antes posible',
+      'No ignores el sangrado de encías: es el primer aviso',
+      'Un análisis con IA puede mostrarte hoy qué está pasando',
+    ];
+  }
+
+  // Meta Pixel: lead event on completion
+  if (typeof fbq === 'function') fbq('track','Lead',{content_name:'test-riesgo', value:score});
+
+  card.innerHTML = `
+    <div class="result fade">
+      <div class="result-badge ${cls}">${icon} ${level}</div>
+      <h2>${title}</h2>
+      <p class="desc">${desc}</p>
+      <div class="recs">
+        <h3>Recomendaciones</h3>
+        <ul>${recs.map(r=>`<li>${r}</li>`).join('')}</ul>
+      </div>
+      <div class="cta-box">
+        <p>📱 Con <strong>DEXA Visión</strong> puedes analizar tu boca con inteligencia artificial desde tu celular — en menos de 1 minuto y sin salir de casa.</p>
+        <a class="cta-btn" href="https://dexavision.cl" onclick="if(typeof fbq==='function')fbq('track','Contact',{content_name:'test-riesgo-cta'})">Conocer DEXA Visión →</a>
+      </div>
+      <button class="restart" onclick="restart()">↺ Repetir el test</button>
+    </div>`;
+}
+
+function restart() {
+  current = 0;
+  answers = [];
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
