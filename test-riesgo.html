@@ -342,9 +342,15 @@ const QUESTIONS = [
     opts: [
       ["Diabetes", 2, 'diabetes'],
       ["Hipertensión arterial", 1, null],
-      ["Infarto o problema cardíaco (últimos 6 meses)", 3, 'infarto'],
+      ["Infarto, arritmia o cirugía cardíaca (últimos 6 meses)", 3, 'infarto'],
+      ["Enfermedad de válvulas cardíacas o endocarditis previa", 2, 'valvula'],
       ["Cáncer (en tratamiento o tratado recientemente)", 3, 'cancer'],
+      ["Osteoporosis (o tratamiento con bifosfonatos)", 1, 'osteo'],
+      ["Reflujo gástrico frecuente o vómitos recurrentes", 1, 'reflujo'],
+      ["Enfermedad autoinmune o defensas bajas (VIH, trasplante, corticoides)", 2, 'inmuno'],
+      ["Tomo anticoagulantes o aspirina a diario", 1, 'anticoag'],
       ["Alergia a medicamentos o anestesia", 1, 'alergia'],
+      ["Embarazo", 1, 'embarazo'],
       ["Otra enfermedad crónica", 1, null],
       ["Ninguna", 0, 'ninguna'],
     ]
@@ -539,10 +545,22 @@ function showResult() {
     medNotes.push('<strong>Diabetes:</strong> la diabetes y la enfermedad de encías se agravan mutuamente — controlar una ayuda a controlar la otra.');
   if (flags.has('infarto'))
     medNotes.push('<strong>Antecedente cardíaco reciente:</strong> informa siempre a tu dentista antes de cualquier procedimiento — algunos tratamientos requieren coordinación con tu médico.');
+  if (flags.has('valvula'))
+    medNotes.push('<strong>Válvulas cardíacas / endocarditis:</strong> algunos procedimientos dentales requieren antibiótico preventivo antes de la atención — tu dentista debe saberlo siempre.');
   if (flags.has('cancer'))
-    medNotes.push('<strong>Tratamiento oncológico:</strong> ciertos medicamentos (como bifosfonatos) y la radioterapia afectan la cicatrización oral — tu dentista debe saberlo antes de tratarte.');
+    medNotes.push('<strong>Tratamiento oncológico:</strong> ciertos medicamentos y la radioterapia afectan la cicatrización oral — tu dentista debe saberlo antes de tratarte.');
+  if (flags.has('osteo'))
+    medNotes.push('<strong>Osteoporosis / bifosfonatos:</strong> si tomas medicamentos como alendronato, tu dentista debe saberlo antes de una extracción — afectan la cicatrización del hueso.');
+  if (flags.has('reflujo'))
+    medNotes.push('<strong>Reflujo / vómitos recurrentes:</strong> el ácido desgasta el esmalte dental (erosión). No te cepilles inmediatamente después de un episodio — enjuaga con agua primero.');
+  if (flags.has('inmuno'))
+    medNotes.push('<strong>Defensas bajas:</strong> las infecciones orales avanzan más rápido con inmunosupresión — los controles dentales preventivos son especialmente importantes en tu caso.');
+  if (flags.has('anticoag'))
+    medNotes.push('<strong>Anticoagulantes:</strong> informa a tu dentista antes de extracciones o cirugías — y nunca suspendas el medicamento por tu cuenta.');
   if (flags.has('alergia'))
     medNotes.push('<strong>Alergias:</strong> menciona siempre tus alergias a medicamentos o anestesia antes de cualquier atención dental.');
+  if (flags.has('embarazo'))
+    medNotes.push('<strong>Embarazo:</strong> los cambios hormonales aumentan la inflamación de encías (gingivitis del embarazo). El control dental durante el embarazo es seguro y recomendado.');
   if (state.hasCondition)
     recs.push('Informa tus condiciones de salud y medicamentos a tu dentista — influyen directamente en tu tratamiento');
 
