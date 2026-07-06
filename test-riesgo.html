@@ -261,7 +261,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 
   <div class="card" id="card"></div>
 
-  <p class="disclaimer">Este test es orientativo y no reemplaza un diagnóstico profesional.<br>DEXA Visión SpA · dexavision.cl</p>
+  <p class="disclaimer">Este test es orientativo y no reemplaza un diagnóstico profesional.<br>Basado en los principios de evaluación de riesgo CAMBRA (UCSF) · Adaptado por el Dr. Rodrigo Godoy, cirujano dentista.<br>DEXA Visión SpA · dexavision.cl</p>
 
 </div>
 
@@ -279,6 +279,7 @@ const QUESTIONS = [
     ]
   },
   {
+    id: 'sangrado',
     q: "¿Te sangran las encías al cepillarte o usar hilo dental?",
     opts: [
       ["Nunca", 0],
@@ -327,11 +328,26 @@ const QUESTIONS = [
     ]
   },
   {
+    id: 'caries',
     q: "¿Ves alguna mancha oscura, caries visible o diente dañado?",
     opts: [
       ["No", 0],
       ["No estoy seguro/a", 1],
       ["Sí", 3],
+    ]
+  },
+  {
+    type: 'multi',
+    id: 'habitos',
+    q: "¿Cuáles de estos hábitos son parte de tu rutina?",
+    hint: "Marca todos los que apliquen — algunos protegen tus dientes.",
+    opts: [
+      ["Uso pasta de dientes con flúor, 2 o más veces al día", -2, null],
+      ["Uso hilo dental o cepillos interdentales", -1, null],
+      ["Me hice una limpieza dental profesional en el último año", -1, null],
+      ["Bebo principalmente agua de la llave (red potable)", -1, null],
+      ["Picoteo o como entre comidas más de 3 veces al día", 2, null],
+      ["Ninguno de estos", 0, 'ninguna'],
     ]
   },
   {
@@ -455,9 +471,10 @@ function confirmMulti() {
   const sel = answers[current] || [];
   if (!sel.length) return;
 
-  // actualizar estado y flags
-  const hasReal = sel.some(i => item.opts[i][2] !== 'ninguna');
-  state.hasCondition = hasReal;
+  // actualizar estado y flags (solo la pregunta de condiciones controla el follow-up médico)
+  if (item.id === 'condiciones') {
+    state.hasCondition = sel.some(i => item.opts[i][2] !== 'ninguna');
+  }
   item.opts.forEach((o,i) => {
     if (sel.includes(i) && o[2] && o[2] !== 'ninguna') flags.add(o[2]);
     if (!sel.includes(i) && o[2] && o[2] !== 'ninguna') flags.delete(o[2]);
@@ -502,10 +519,18 @@ function showResult() {
 
   let level, cls, icon, title, desc, recs;
 
-  // Umbrales sobre puntaje máx ≈ 34
+  // Umbrales (los hábitos protectores pueden restar puntos)
   if (score <= 7)       { level='bajo'; }
   else if (score <= 15) { level='medio'; }
   else                  { level='alto'; }
+
+  // Lógica CAMBRA: indicadores de enfermedad activa pesan más que el balance
+  const qIdx = id => QUESTIONS.findIndex(q => q.id === id);
+  const cariesVisible = answers[qIdx('caries')] === 2;   // respondió "Sí"
+  const sangradoFrecuente = answers[qIdx('sangrado')] === 2; // "Frecuentemente"
+
+  if (sangradoFrecuente && level === 'bajo') level = 'medio';
+  if (cariesVisible) level = 'alto';
 
   // Regla clínica: infarto reciente o cáncer en tratamiento nunca es "riesgo bajo"
   if ((flags.has('infarto') || flags.has('cancer')) && level === 'bajo') level = 'medio';
@@ -541,6 +566,10 @@ function showResult() {
 
   // Notas clínicas según condiciones sistémicas
   const medNotes = [];
+  if (cariesVisible)
+    medNotes.push('<strong>Lesión visible:</strong> una caries o mancha visible es un indicador directo de enfermedad activa — por eso tu resultado es riesgo alto, independiente de tus buenos hábitos. Detectada a tiempo, su tratamiento es simple.');
+  else if (sangradoFrecuente)
+    medNotes.push('<strong>Sangrado frecuente:</strong> las encías sanas no sangran. El sangrado recurrente indica inflamación activa (gingivitis) que conviene evaluar pronto.');
   if (flags.has('diabetes'))
     medNotes.push('<strong>Diabetes:</strong> la diabetes y la enfermedad de encías se agravan mutuamente — controlar una ayuda a controlar la otra.');
   if (flags.has('infarto'))
