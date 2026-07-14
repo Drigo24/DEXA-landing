@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DEXA × WhatsApp – Propuesta de Integración</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --azul: #018EDE;
+    --azul-oscuro: #1A2A35;
+    --azul-medio: #3A4F62;
+    --gris-claro: #F4F7FA;
+    --verde: #16A34A;
+    --amarillo: #D97706;
+    --rojo: #DC2626;
+    --wa: #25D366;
+    --wa-oscuro: #075E54;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family:'Inter',sans-serif;
+    background:var(--gris-claro);
+    color:var(--azul-oscuro);
+  }
+
+  .page { max-width:860px; margin:0 auto; background:white; }
+
+  /* ───── Portada ───── */
+  .cover {
+    background:var(--gris-claro);
+    border-bottom:3px solid var(--azul);
+    padding:60px 56px 48px;
+  }
+  .cover .tag {
+    display:inline-block;
+    background:#EBF6FF; border:1px solid #bde0f7; color:var(--azul);
+    font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    padding:5px 14px; border-radius:20px; margin-bottom:20px;
+  }
+  .cover h1 { font-size:38px; font-weight:900; line-height:1.1; margin-bottom:14px; }
+  .cover h1 .wa-color { color:var(--wa); }
+  .cover h1 .azul { color:var(--azul); }
+  .cover p { font-size:15px; color:#556; line-height:1.7; max-width:560px; }
+  .cover .meta {
+    display:flex; gap:32px; margin-top:32px; flex-wrap:wrap;
+  }
+  .cover .meta div { display:flex; flex-direction:column; gap:3px; }
+  .cover .meta .l { font-size:9.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#99A5B0; }
+  .cover .meta .v { font-size:13px; font-weight:600; color:var(--azul-medio); }
+
+  /* ───── Contenido ───── */
+  .content { padding:48px 56px; }
+
+  .section { margin-bottom:56px; }
+  .sec-num {
+    font-size:11px; font-weight:800; letter-spacing:2px;
+    text-transform:uppercase; color:var(--azul); margin-bottom:6px;
+  }
+  .sec-title { font-size:23px; font-weight:900; line-height:1.2; margin-bottom:14px; }
+  .sec-body { font-size:14.5px; color:#444; line-height:1.8; }
+  .sec-body strong { color:var(--azul-oscuro); }
+  .sec-body p + p { margin-top:12px; }
+
+  .divider { height:1px; background:linear-gradient(to right,var(--azul),transparent); opacity:.3; margin:0 0 48px; }
+
+  /* Destacado */
+  .callout {
+    background:linear-gradient(135deg,#EBF6FF,#F0F9FF);
+    border-left:4px solid var(--azul);
+    border-radius:0 12px 12px 0;
+    padding:18px 22px;
+    margin:20px 0;
+    font-size:15px; font-weight:600; color:var(--azul-oscuro); line-height:1.6;
+  }
+  .callout.green { background:#EAF7EF; border-color:var(--wa); }
+  .callout.warn { background:#FFF8E6; border-color:#FFD97D; font-weight:500; font-size:13.5px; color:#7A5500; }
+
+  /* Diagrama de flujo vertical */
+  .flow {
+    display:flex; flex-direction:column; align-items:center;
+    gap:0; margin:26px 0;
+  }
+  .flow-box {
+    width:100%; max-width:480px;
+    background:white;
+    border:2px solid #DCE7F0;
+    border-radius:14px;
+    padding:16px 20px;
+    text-align:center;
+  }
+  .flow-box .fb-title { font-size:14px; font-weight:800; }
+  .flow-box .fb-sub { font-size:12px; color:#7A8794; margin-top:4px; line-height:1.5; }
+  .flow-box.wa { border-color:var(--wa); background:#F2FBF5; }
+  .flow-box.meta-box { border-color:#B8C4CE; background:#F7F9FB; }
+  .flow-box.aws { border-color:var(--azul); background:#F0F8FE; }
+  .flow-box.dark { background:var(--azul-oscuro); border-color:var(--azul-oscuro); }
+  .flow-box.dark .fb-title { color:white; }
+  .flow-box.dark .fb-sub { color:#9FB2C0; }
+  .flow-arrow {
+    font-size:20px; color:var(--azul); font-weight:900;
+    padding:6px 0;
+  }
+  .flow-arrow small {
+    display:block; font-size:10.5px; font-weight:600; color:#8A97A3; letter-spacing:.5px;
+  }
+
+  /* Pipeline horizontal (chips) */
+  .pipeline {
+    display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    margin-top:10px;
+  }
+  .chip {
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.25);
+    color:#D8E4EE;
+    font-size:10.5px; font-weight:600;
+    padding:5px 11px; border-radius:14px;
+  }
+
+  /* Tablas */
+  table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13.5px; }
+  th {
+    text-align:left; font-size:10.5px; font-weight:800;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--azul);
+    padding:10px 14px; border-bottom:2px solid #DCE7F0;
+  }
+  td { padding:11px 14px; border-bottom:1px solid #EDF2F6; color:#445; line-height:1.5; vertical-align:top; }
+  td strong { color:var(--azul-oscuro); }
+  tr:last-child td { border-bottom:none; }
+  .num-cell { font-weight:800; color:var(--azul); white-space:nowrap; }
+
+  /* Cards de niveles */
+  .levels { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:20px 0; }
+  .level-card {
+    background:var(--gris-claro);
+    border-radius:14px;
+    padding:20px;
+    border-top:4px solid var(--azul);
+  }
+  .level-card .lc-tag {
+    font-size:9.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--azul); margin-bottom:8px;
+  }
+  .level-card h4 { font-size:15px; font-weight:800; margin-bottom:8px; line-height:1.3; }
+  .level-card p { font-size:12.5px; color:#667; line-height:1.6; }
+  .level-card .lc-badge {
+    display:inline-block; margin-top:12px;
+    font-size:10px; font-weight:700; letter-spacing:.5px;
+    background:#EBF6FF; color:var(--azul);
+    border:1px solid #bde0f7;
+    padding:4px 10px; border-radius:12px;
+  }
+  .level-card.now { border-top-color:var(--wa); }
+  .level-card.now .lc-tag { color:var(--wa-oscuro); }
+  .level-card.now .lc-badge { background:#EAF7EF; color:var(--wa-oscuro); border-color:#b7e4c7; }
+
+  /* Lista flecha */
+  .arrow-list { margin:14px 0; }
+  .arrow-list li {
+    list-style:none; font-size:14px; color:#445;
+    line-height:1.65; padding:6px 0 6px 24px; position:relative;
+  }
+  .arrow-list li::before { content:'→'; position:absolute; left:0; color:var(--azul); font-weight:800; }
+  .arrow-list li strong { color:var(--azul-oscuro); }
+
+  /* Módulos */
+  .modules { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:20px 0; }
+  .module {
+    background:white; border:1px solid #E2E9F0; border-radius:14px;
+    padding:20px;
+  }
+  .module .m-icon { font-size:24px; margin-bottom:10px; }
+  .module h4 { font-size:14.5px; font-weight:800; margin-bottom:6px; line-height:1.3; }
+  .module p { font-size:12.5px; color:#667; line-height:1.6; }
+
+  /* CTA final */
+  .final {
+    background:var(--gris-claro);
+    border-top:3px solid var(--azul);
+    padding:44px 56px;
+    text-align:center;
+  }
+  .final h2 { font-size:24px; font-weight:900; margin-bottom:10px; }
+  .final h2 span { color:var(--azul); }
+  .final p { font-size:14px; color:#556; line-height:1.7; max-width:520px; margin:0 auto; }
+
+  .footer {
+    background:white; border-top:1px solid #E2E9F0;
+    padding:18px 56px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:11px; color:#9AA5AF;
+  }
+
+  @media (max-width:640px) {
+    .cover, .content, .final, .footer { padding-left:22px; padding-right:22px; }
+    .cover h1 { font-size:30px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- PORTADA -->
+  <div class="cover">
+    <div class="tag">Documento interno · Propuesta de producto · Julio 2026</div>
+    <h1>DEXA <span class="azul">×</span> <span class="wa-color">WhatsApp</span><br>El análisis dental sin fricción</h1>
+    <p>Propuesta de integración del pipeline de análisis DEXA con WhatsApp Business Platform: cómo funciona, qué resuelve del modelo de negocio, arquitectura técnica, costos y plan de implementación.</p>
+    <div class="meta">
+      <div><span class="l">Elaborado por</span><span class="v">Dr. Rodrigo Godoy · Fundador</span></div>
+      <div><span class="l">Estado</span><span class="v">Propuesta para evaluación del equipo</span></div>
+      <div><span class="l">Inversión estimada MVP</span><span class="v">1–2 semanas de desarrollo</span></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- 1. EL PROBLEMA -->
+    <div class="section">
+      <div class="sec-num">01 · El problema que resuelve</div>
+      <h2 class="sec-title">Nuestro talón de Aquiles: la adopción de la app</h2>
+      <div class="sec-body">
+        <p>El modelo actual depende de que <strong>el paciente descubra, descargue y use la app DEXA</strong> por iniciativa propia (modelo tipo Uber). Eso exige presupuestos de marketing masivos, tiempo, y una tasa de conversión app-store que ninguna startup de salud logra sin capital enorme. Es nuestro punto más débil y lo sabemos.</p>
+        <p>La solución no es abandonar el producto — es <strong>cambiar la puerta de entrada y quién lo distribuye:</strong></p>
+      </div>
+      <div class="callout">
+        El paciente no adopta DEXA. <strong>La clínica se la receta.</strong><br>
+        <span style="font-weight:500;font-size:13.5px;">Y el canal es uno que el 93% de los chilenos ya tiene abierto todos los días: WhatsApp. Sin descargas, sin registro, sin fricción.</span>
+      </div>
+      <div class="sec-body">
+        <p>Con esto, la clínica deja de ser solo "cliente" y pasa a cumplir tres roles: <strong>cliente</strong> (paga la mensualidad), <strong>masificador</strong> (su cartera de 1.500–3.000 pacientes activos usa DEXA sin costo de adquisición para nosotros) y <strong>alimentador del modelo</strong> (cada análisis mejora nuestro dataset con el consentimiento ya cubierto en nuestra política de privacidad).</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2. EXPERIENCIA -->
+    <div class="section">
+      <div class="sec-num">02 · La experiencia</div>
+      <h2 class="sec-title">Cómo lo vive el paciente</h2>
+
+      <div class="flow">
+        <div class="flow-box wa">
+          <div class="fb-title">1 · El paciente escanea un QR o toca un link</div>
+          <div class="fb-sub">En el mesón de la clínica, su Instagram o su sitio web. Se abre un chat de WhatsApp con la marca de la clínica.</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box wa">
+          <div class="fb-title">2 · El bot guía la toma de fotos</div>
+          <div class="fb-sub">Pide 3 fotos con ejemplos visuales de cómo tomarlas. Si una sale borrosa u oscura, la rechaza al instante y pide repetirla.</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box wa">
+          <div class="fb-title">3 · Análisis IA en ~30 segundos</div>
+          <div class="fb-sub">El pipeline DEXA procesa las imágenes y clasifica cada hallazgo (ICDAS + urgencia).</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box wa">
+          <div class="fb-title">4 · Recibe su Carnet Dental en el chat</div>
+          <div class="fb-sub">Sus propias fotos con los hallazgos marcados, semáforo de urgencia, y qué pasa si no se trata (costo hoy vs. en 6 meses).</div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box wa">
+          <div class="fb-title">5 · Agenda en la misma conversación</div>
+          <div class="fb-sub">"¿Te agendo con la Dra. Rojas? Tengo mañana 10:30 o jueves 16:00." El impulso se captura en el momento exacto.</div>
+        </div>
+      </div>
+
+      <div class="callout green">
+        La clínica recibe un paciente <strong>triado, agendado y con reporte listo</strong> — antes de que se siente en el sillón. Su WhatsApp actual no se toca: la línea IA es un número dedicado adicional que DEXA provisiona y opera.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3. ARQUITECTURA -->
+    <div class="section">
+      <div class="sec-num">03 · Arquitectura técnica</div>
+      <h2 class="sec-title">Cómo se conecta con lo que ya tenemos</h2>
+      <div class="sec-body">
+        <p>El punto clave para el equipo: <strong>el pipeline de análisis no se modifica.</strong> Solo se construye una nueva puerta de entrada. WhatsApp Cloud API entrega cada mensaje a un webhook en nuestra AWS; desde ahí, el flujo es idéntico al de la app.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-box wa">
+          <div class="fb-title">📱 Paciente → WhatsApp</div>
+          <div class="fb-sub">Envía fotos al número de la clínica (chat normal)</div>
+        </div>
+        <div class="flow-arrow">↓ <small>webhook HTTPS</small></div>
+        <div class="flow-box meta-box">
+          <div class="fb-title">☁️ WhatsApp Cloud API (Meta)</div>
+          <div class="fb-sub">Recibe el mensaje y notifica a nuestro endpoint con el media_id de cada imagen</div>
+        </div>
+        <div class="flow-arrow">↓ <small>GET /media → descarga</small></div>
+        <div class="flow-box aws">
+          <div class="fb-title">⚡ API Gateway + Lambda (AWS DEXA)</div>
+          <div class="fb-sub">NUEVO — único componente a construir. Descarga la imagen, identifica clínica y paciente, gestiona el estado de la conversación y la inyecta al pipeline</div>
+        </div>
+        <div class="flow-arrow">↓ <small>S3 + SQS (infraestructura actual)</small></div>
+        <div class="flow-box dark">
+          <div class="fb-title">🧠 Pipeline DEXA — sin cambios</div>
+          <div class="fb-sub">El mismo motor que hoy usa la app:</div>
+          <div class="pipeline">
+            <span class="chip">Validador de imagen</span>
+            <span class="chip">Identificación maxilar</span>
+            <span class="chip">Detección de dientes</span>
+            <span class="chip">Clasificación ICDAS</span>
+            <span class="chip">Árbitro clínico + reporte</span>
+          </div>
+        </div>
+        <div class="flow-arrow">↓ <small>POST /messages</small></div>
+        <div class="flow-box wa">
+          <div class="fb-title">✅ Respuesta al paciente</div>
+          <div class="fb-sub">Carnet Dental + oferta de horarios, en el mismo chat, ~30 segundos después</div>
+        </div>
+      </div>
+
+      <div class="sec-body">
+        <p><strong>Multi-clínica con un solo backend:</strong> el servidor es uno para todas las clínicas. Cada número nuevo es solo un registro más apuntando al mismo webhook — escalar de 1 a 100 clínicas no multiplica la infraestructura.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4. ONBOARDING -->
+    <div class="section">
+      <div class="sec-num">04 · Conexión por clínica</div>
+      <h2 class="sec-title">Qué implica sumar una clínica</h2>
+      <ul class="arrow-list">
+        <li><strong>Número dedicado</strong> — la línea IA usa un número nuevo (chip o número virtual, provisto por DEXA). Regla de Meta: un número conectado a la API no puede usarse a la vez en la app normal de WhatsApp. El WhatsApp actual de la clínica sigue intacto.</li>
+        <li><strong>Registro en Meta</strong> — el número se registra en nuestra WhatsApp Business Platform (DEXA como Tech Provider), se verifica por SMS y queda operativo en la nube de Meta.</li>
+        <li><strong>Configuración</strong> — webhook apuntando a nuestra AWS + perfil con nombre, logo y datos de la clínica. ~1 hora de trabajo por clínica.</li>
+        <li><strong>Kit de lanzamiento</strong> — entregamos QR impreso para el mesón, link para redes sociales, y el texto de auto-respuesta para su WhatsApp actual: <em>"¿Quieres un chequeo dental con IA en 1 minuto? Escríbenos aquí 👉"</em></li>
+        <li><strong>Trabajo de la clínica: cero técnico.</strong> Pegar un sticker y publicar un link.</li>
+      </ul>
+
+      <h2 class="sec-title" style="margin-top:36px;font-size:19px;">Plan de despliegue en 3 niveles</h2>
+      <div class="levels">
+        <div class="level-card now">
+          <div class="lc-tag">Nivel 1 · MVP</div>
+          <h4>Un número central DEXA</h4>
+          <p>Todas las clínicas comparten un número; cada una tiene su link con código (<em>wa.me/569XX?text=ClínicaSonrisa</em>). El bot identifica el origen y responde con la marca correcta. Cero configuración por clínica.</p>
+          <span class="lc-badge">1–2 semanas · piloto con 2-3 clínicas</span>
+        </div>
+        <div class="level-card">
+          <div class="lc-tag">Nivel 2 · Producto</div>
+          <h4>Número propio por clínica</h4>
+          <p>Cada clínica con su línea, nombre y logo. DEXA como Tech Provider de Meta administra todos los números desde una plataforma multi-tenant.</p>
+          <span class="lc-badge">Cuando haya 10+ clínicas pagando</span>
+        </div>
+        <div class="level-card">
+          <div class="lc-tag">Nivel 3 · Integración</div>
+          <h4>Conexión con la agenda real</h4>
+          <p>El bot lee y escribe directamente en el software de agenda de la clínica (Dentidesk, AgendaPro, etc.). Se implementa por convenio con cada software.</p>
+          <span class="lc-badge">Fase de expansión / cadenas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 5. COSTOS -->
+    <div class="section">
+      <div class="sec-num">05 · Economía unitaria</div>
+      <h2 class="sec-title">Costos operativos y modelo de ingreso</h2>
+      <table>
+        <tr><th>Concepto</th><th>Costo para DEXA</th></tr>
+        <tr><td>Conversación iniciada por el paciente (triaje completo, ventana 24 h)</td><td class="num-cell">$0 (Meta no cobra servicio)</td></tr>
+        <tr><td>Inferencia del pipeline (por análisis)</td><td class="num-cell">~USD $0,08</td></tr>
+        <tr><td>Lambda + API Gateway + S3</td><td class="num-cell">~USD $0,001</td></tr>
+        <tr><td><strong>Total por triaje completo</strong></td><td class="num-cell">≈ USD $0,08–0,10 (~$80–100 CLP)</td></tr>
+        <tr><td>Mensajes iniciados por DEXA (recordatorios, seguimiento de presupuesto a los 3/7/15 días)</td><td class="num-cell">~USD $0,02–0,09 por plantilla</td></tr>
+      </table>
+      <div class="callout">
+        Modelo de ingreso: <strong>mensualidad por clínica</strong> (referencia internacional: Overjet y Pearl cobran USD $250–500/mes por consultorio) <strong>+ módulos premium</strong>. La factura de Meta la paga DEXA y va incluida en la mensualidad — la clínica recibe una sola factura, la nuestra.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6. MÓDULOS -->
+    <div class="section">
+      <div class="sec-num">06 · La línea de producto completa</div>
+      <h2 class="sec-title">WhatsApp es la entrada. Estos son los 4 módulos.</h2>
+      <div class="modules">
+        <div class="module">
+          <div class="m-icon">💬</div>
+          <h4>1 · Triaje por WhatsApp</h4>
+          <p>El paciente envía fotos, la IA responde urgencia y agenda. La consulta "¿esto es grave?" deja de responderla la secretaria a ciegas.</p>
+        </div>
+        <div class="module">
+          <div class="m-icon">🪑</div>
+          <h4>2 · Pre-consulta en sala de espera</h4>
+          <p>QR en la sala: el paciente se escanea mientras espera. El dentista entra al box con el análisis en pantalla. Detección de tratamientos en los minutos muertos.</p>
+        </div>
+        <div class="module">
+          <div class="m-icon">📈</div>
+          <h4>3 · Agente de conversión</h4>
+          <p>El 30–60% de los presupuestos no se aceptan. La IA los explica en simple con las fotos del propio paciente y hace seguimiento a los 3, 7 y 15 días.</p>
+        </div>
+        <div class="module">
+          <div class="m-icon">🔄</div>
+          <h4>4 · Monitoreo post-tratamiento</h4>
+          <p>"Control DEXA": escaneo mensual desde casa, alerta a la clínica solo si algo cambia. Resuelve el recall + ingreso recurrente por paciente/mes.</p>
+        </div>
+      </div>
+      <div class="sec-body">
+        <p>El <strong>Carnet Dental</strong> une los 4 módulos: entra por el triaje, se profundiza en la pre-consulta, convierte con el agente y se actualiza en cada control. Y la app pública no muere — queda como generador de leads para las clínicas clientes.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 7. VALIDACIONES -->
+    <div class="section">
+      <div class="sec-num">07 · Puntos críticos antes de construir</div>
+      <h2 class="sec-title">Lo que hay que validar primero</h2>
+      <div class="callout warn">
+        ⚠️ <strong>1. Compresión de imágenes:</strong> WhatsApp comprime fotos a ~1600px. Prueba de 1 día antes de escribir código: 10 fotos intraorales enviadas por WhatsApp vs. originales, por el pipeline, comparar precisión. Si baja → el bot pide envío como "documento" (sin compresión).
+      </div>
+      <div class="callout warn">
+        ⚠️ <strong>2. Consentimiento:</strong> el primer mensaje del bot debe incluir aceptación de términos y política de privacidad (ya publicada) antes de recibir imágenes. Datos de salud = datos sensibles bajo Ley 19.628 y la nueva Ley 21.719.
+      </div>
+      <div class="callout warn">
+        ⚠️ <strong>3. Lenguaje del reporte:</strong> mantener el posicionamiento "orientativo, no reemplaza diagnóstico profesional" en cada carnet — relevante para el marco regulatorio ISP/ANDIM que está entrando en vigencia para SaMD.
+      </div>
+    </div>
+
+    <!-- 8. ROADMAP -->
+    <div class="section">
+      <div class="sec-num">08 · Próximos pasos</div>
+      <h2 class="sec-title">Plan propuesto</h2>
+      <table>
+        <tr><th>Semana</th><th>Hito</th></tr>
+        <tr><td class="num-cell">1</td><td><strong>Validación de compresión</strong> — prueba de precisión con fotos enviadas por WhatsApp (sin código, solo pipeline actual)</td></tr>
+        <tr><td class="num-cell">2–3</td><td><strong>MVP Nivel 1</strong> — webhook + Lambda + flujo conversacional con un número de prueba</td></tr>
+        <tr><td class="num-cell">4</td><td><strong>Piloto interno</strong> — equipo y pacientes de confianza prueban el flujo completo</td></tr>
+        <tr><td class="num-cell">5–8</td><td><strong>Piloto comercial</strong> — 2 o 3 clínicas reales con QR en mesón. Métricas: análisis/semana, % que agenda, feedback de secretarias</td></tr>
+        <tr><td class="num-cell">9+</td><td><strong>Decisión de escala</strong> — con datos del piloto: precio definitivo, Nivel 2 y venta activa</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- CIERRE -->
+  <div class="final">
+    <h2>La parte difícil <span>ya está construida.</span></h2>
+    <p>El pipeline de análisis funciona hoy. Esta propuesta solo cambia la puerta de entrada: del app store — donde nadie nos busca — al chat que todos los chilenos abren todos los días.</p>
+  </div>
+
+  <div class="footer">
+    <span><strong>DEXA VISIÓN SpA</strong> · Documento interno</span>
+    <span>dexavision.cl</span>
+  </div>
+
+</div>
+</body>
+</html>
