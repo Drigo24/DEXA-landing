@@ -414,9 +414,56 @@
 
     <div class="divider"></div>
 
-    <!-- 7. VALIDACIONES -->
+    <!-- 7. POR QUÉ PAGARÍAN -->
     <div class="section">
-      <div class="sec-num">07 · Puntos críticos antes de construir</div>
+      <div class="sec-num">07 · El argumento de venta</div>
+      <h2 class="sec-title">¿Por qué pagarían DEXA?</h2>
+      <div class="sec-body">
+        <p>Una mensualidad de ~USD $200 (~$190.000 CLP) se cancela el día que la clínica no puede responder "¿y esto qué me generó?". La respuesta tiene una parte matemática y una psicológica — y el producto debe construir ambas.</p>
+      </div>
+
+      <h2 class="sec-title" style="font-size:18px;margin-top:28px;">La matemática: punto de equilibrio en 1 paciente</h2>
+      <table>
+        <tr><th>Tratamiento (valores Chile)</th><th>Valor aprox.</th></tr>
+        <tr><td>Obturación</td><td class="num-cell">$30–60 mil</td></tr>
+        <tr><td>Plan de tratamiento promedio</td><td class="num-cell">$200–500 mil</td></tr>
+        <tr><td>Endodoncia + corona</td><td class="num-cell">$400–700 mil</td></tr>
+        <tr><td>Implante</td><td class="num-cell">$600 mil – 1,2 M</td></tr>
+      </table>
+      <div class="callout">
+        Con <strong>1 solo paciente al mes</strong> que acepte un plan de tratamiento promedio, la clínica ya pagó DEXA. Del paciente #2 en adelante, es ganancia.
+      </div>
+      <div class="sec-body">
+        <p><strong>Escenario conservador de un mes:</strong> 30 triajes por WhatsApp → 12 agendan (40%) → 8 asisten → 5 aceptan tratamiento × $150.000 promedio = <strong>$750.000 generados vs $190.000 de mensualidad → retorno 4x</strong>.</p>
+      </div>
+
+      <h2 class="sec-title" style="font-size:18px;margin-top:32px;">La psicología: 4 resortes de la decisión</h2>
+      <ul class="arrow-list">
+        <li><strong>No es gasto nuevo — es plata que ya pierden.</strong> WhatsApps sin responder a las 9 PM, 30–60% de presupuestos nunca aceptados, recalls que no vuelven. DEXA no vende un costo: vende recuperar pérdidas invisibles. Perder duele más que ganar.</li>
+        <li><strong>El ancla de comparación.</strong> $190.000/mes no compra ni un cuarto de sueldo de recepcionista ni una campaña de ads con resultados garantizados. Contra un sistema 24/7 que triara, agenda y hace seguimiento, la comparación se gana sola.</li>
+        <li><strong>El reporte mensual — el feature de retención.</strong> Mientras el número del reporte sea mayor que la mensualidad, la renovación es automática. Cancelar DEXA se siente como rechazar plata.</li>
+        <li><strong>Entrada sin riesgo.</strong> Primer mes gratis o piloto de 60 días con métricas. La clínica no decide "creer" — decide "probar". El primer reporte toma la decisión por ella.</li>
+      </ul>
+
+      <div class="callout green">
+        📊 <strong>Tu mes con DEXA</strong> — el correo que recibe la clínica cada fin de mes:<br>
+        <span style="font-weight:500;">43 análisis realizados · 18 horas agendadas · 11 pacientes asistieron · <strong>$2.340.000 en tratamientos originados por DEXA</strong></span>
+      </div>
+
+      <div class="callout warn">
+        ⚙️ <strong>Implicancia de producto:</strong> el tracking de atribución (paciente entró por DEXA → agendó → asistió → aceptó $X) debe construirse desde el día 1 del MVP. Es lo que convierte el servicio de "gasto de marketing" a centro de ganancias medible — y lo que sostiene el precio.
+      </div>
+
+      <div class="sec-body">
+        <p><strong>El pitch en una frase:</strong> <em>"No te cobramos $190.000 al mes. Te devolvemos los $2 millones que se te están yendo por el WhatsApp sin responder y los presupuestos sin cerrar — y te lo demostramos con un reporte cada mes."</em></p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 8. VALIDACIONES -->
+    <div class="section">
+      <div class="sec-num">08 · Puntos críticos antes de construir</div>
       <h2 class="sec-title">Lo que hay que validar primero</h2>
       <div class="callout warn">
         ⚠️ <strong>1. Compresión de imágenes:</strong> WhatsApp comprime fotos a ~1600px. Prueba de 1 día antes de escribir código: 10 fotos intraorales enviadas por WhatsApp vs. originales, por el pipeline, comparar precisión. Si baja → el bot pide envío como "documento" (sin compresión).
@@ -431,7 +478,7 @@
 
     <!-- 8. ROADMAP -->
     <div class="section">
-      <div class="sec-num">08 · Próximos pasos</div>
+      <div class="sec-num">09 · Próximos pasos</div>
       <h2 class="sec-title">Plan propuesto</h2>
       <table>
         <tr><th>Semana</th><th>Hito</th></tr>
