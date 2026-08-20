@@ -217,6 +217,16 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 #integra::before{content:"";position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:min(760px,90%);height:70%;background:radial-gradient(ellipse at center,rgba(1,142,222,.18) 0%,rgba(1,142,222,.05) 45%,rgba(1,142,222,0) 72%);pointer-events:none;z-index:0}
 #integra .container{position:relative;z-index:1}
 #integra .feature-grid{background:rgba(255,255,255,.02);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+/* Dentistas y Clínicas — light theme so the dark Integra block is the only accent */
+#dentistas{background:#fff;color:var(--ink)}
+#dentistas .section-label{color:var(--ink-3)}
+#dentistas .dentistas__title{color:var(--ink)}
+#dentistas .dentistas__sub{color:var(--ink-2)}
+#dentistas .feature-grid{border-color:rgba(0,0,0,.08);box-shadow:0 2px 8px -4px rgba(0,0,0,.06)}
+#dentistas .feature-cell{border-color:rgba(0,0,0,.08)}
+#dentistas .feature-cell:hover{background:rgba(1,142,222,.05);box-shadow:inset 0 0 0 1px rgba(1,142,222,.22)}
+#dentistas .feature-title{color:var(--ink)}
+#dentistas .feature-desc{color:var(--ink-2)}
 
 /* RESPONSIVE */
 @media(max-width:980px){
@@ -251,6 +261,7 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
   .feature-cell{border-right:none!important}
   .feature-cell:nth-child(n+4){border-bottom:1px solid rgba(255,255,255,.1)!important}
   .feature-cell:last-child{border-bottom:none!important}
+  #dentistas .feature-cell:nth-child(n+4){border-bottom-color:rgba(0,0,0,.08)!important}
   .solucion{padding:72px 24px}
   .solucion .grid{grid-template-columns:1fr;gap:40px}
   .unete{padding:72px 24px}
@@ -432,7 +443,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 <!-- DENTISTAS Y CLINICAS 03 -->
 <section class="dentistas" id="dentistas">
   <div class="container">
-    <div class="section-label">Dentistas y Clínicas <span style="color:rgba(255,255,255,.3)">/ 03</span></div>
+    <div class="section-label">Dentistas y Clínicas <span style="color:var(--ink-3)">/ 03</span></div>
     <h2 class="dentistas__title">Recibe pacientes <span class="accent">ya<br>pre-diagnosticados.</span></h2>
     <p class="dentistas__sub">DEXA optimiza la primera consulta clínica: obtén pacientes informados, con informe y ficha clínica lista.</p>
     <div class="feature-grid">
