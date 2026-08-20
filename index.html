@@ -110,7 +110,7 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .ticker-logo img[alt="3IE"]{transform:translateY(-8px)}
 
 /* PROBLEMA */
-.problema{background:#fff;padding:100px var(--pad)}
+.problema{background:#f8f9fb;padding:100px var(--pad)}
 .problema .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .problema__stat{font-size:clamp(80px,11vw,140px);line-height:.92;font-weight:900;letter-spacing:-.04em;color:var(--blue);margin-bottom:16px}
 .problema__headline{font-size:clamp(22px,2.8vw,34px);line-height:1.22;font-weight:800;color:var(--ink);letter-spacing:-.02em}
@@ -128,14 +128,14 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .stat-card__source{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
 /* COMO FUNCIONA */
-.como{background:#f8f9fb;padding:100px var(--pad)}
+.como{background:#fff;padding:100px var(--pad)}
 .como__header{margin-bottom:56px}
 .como__title{font-size:clamp(26px,3.6vw,46px);line-height:1.1;font-weight:900;letter-spacing:-.03em;color:var(--ink);margin-bottom:16px}
 .como__title .accent{color:var(--blue)}
 .como__sub{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:56ch}
 .step-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
 .step-arrow{position:absolute;top:48px;font-size:18px;color:var(--ink-3);z-index:2;transform:translateX(-50%)}
-.step-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:28px 26px 24px;display:flex;flex-direction:column}
+.step-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:28px 26px 24px;display:flex;flex-direction:column;box-shadow:0 6px 20px -12px rgba(0,0,0,.18)}
 .step-card__top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
 .step-icon{width:52px;height:52px;border-radius:14px;background:var(--blue);display:grid;place-items:center;flex-shrink:0;box-shadow:0 6px 16px -4px rgba(1,142,222,.45)}
 .step-icon svg{width:24px;height:24px;color:#fff}
@@ -218,7 +218,7 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 #integra .container{position:relative;z-index:1}
 #integra .feature-grid{background:rgba(255,255,255,.02);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 /* Dentistas y Clínicas — light theme so the dark Integra block is the only accent */
-#dentistas{background:#fff;color:var(--ink)}
+#dentistas{background:#f8f9fb;color:var(--ink)}
 #dentistas .section-label{color:var(--ink-3)}
 #dentistas .dentistas__title{color:var(--ink)}
 #dentistas .dentistas__sub{color:var(--ink-2)}
@@ -227,6 +227,10 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 #dentistas .feature-cell:hover{background:rgba(1,142,222,.05);box-shadow:inset 0 0 0 1px rgba(1,142,222,.22)}
 #dentistas .feature-title{color:var(--ink)}
 #dentistas .feature-desc{color:var(--ink-2)}
+/* Seam system — hairline + soft fade at the top of each light section */
+.seam{position:relative}
+.seam::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(0,0,0,.06);pointer-events:none;z-index:2}
+.seam::after{content:"";position:absolute;left:0;right:0;top:0;height:56px;background:linear-gradient(to bottom,rgba(2,8,20,.028),rgba(2,8,20,0));pointer-events:none;z-index:1}
 
 /* RESPONSIVE */
 @media(max-width:980px){
@@ -375,7 +379,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 </section>
 
 <!-- EL PROBLEMA 01 -->
-<section class="problema" id="problema">
+<section class="problema seam" id="problema">
   <div class="container">
     <div class="section-label">El Problema <span style="color:var(--ink-3)">/ 01</span></div>
     <div class="grid">
@@ -399,7 +403,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 </section>
 
 <!-- PACIENTES — COMO FUNCIONA 02 -->
-<section class="como" id="pacientes">
+<section class="como seam" id="pacientes">
   <div class="container">
     <div class="section-label">Pacientes <span style="color:var(--ink-3)">/ 02</span></div>
     <div class="como__header">
@@ -441,7 +445,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 </section>
 
 <!-- DENTISTAS Y CLINICAS 03 -->
-<section class="dentistas" id="dentistas">
+<section class="dentistas seam" id="dentistas">
   <div class="container">
     <div class="section-label">Dentistas y Clínicas <span style="color:var(--ink-3)">/ 03</span></div>
     <h2 class="dentistas__title">Recibe pacientes <span class="accent">ya<br>pre-diagnosticados.</span></h2>
@@ -474,7 +478,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 </section>
 
 <!-- LA SOLUCION 04 -->
-<section class="solucion" id="solucion">
+<section class="solucion seam" id="solucion">
   <div class="container">
     <div class="section-label">La Solución <span style="color:var(--ink-3)">/ 04</span></div>
     <div class="grid">
