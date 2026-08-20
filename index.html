@@ -212,6 +212,11 @@ h1.hero__h1{font-size:clamp(42px,5.2vw,68px);line-height:1.02;letter-spacing:-.0
 .feature-num{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:14px}
 .feature-title{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
 .feature-desc{font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.48)}
+/* Integra DEXA — dark blue block, distinct from pure-black #dentistas above */
+#integra{background:#080c10;position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.08)}
+#integra::before{content:"";position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:min(760px,90%);height:70%;background:radial-gradient(ellipse at center,rgba(1,142,222,.18) 0%,rgba(1,142,222,.05) 45%,rgba(1,142,222,0) 72%);pointer-events:none;z-index:0}
+#integra .container{position:relative;z-index:1}
+#integra .feature-grid{background:rgba(255,255,255,.02);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
 
 /* RESPONSIVE */
 @media(max-width:980px){
@@ -443,7 +448,7 @@ src="https://www.facebook.com/tr?id=848194215031620&ev=PageView&noscript=1"
 </section>
 
 <!-- INTEGRA WHATSAPP -->
-<section class="dentistas" id="integra" style="border-top:1px solid rgba(255,255,255,.08)">
+<section class="dentistas" id="integra">
   <div class="container">
     <div class="section-label">Integra DEXA <span style="color:rgba(255,255,255,.3)">· para clínicas</span></div>
     <h2 class="dentistas__title">Integra DEXA a tu clínica <span class="accent">por WhatsApp.</span></h2>
