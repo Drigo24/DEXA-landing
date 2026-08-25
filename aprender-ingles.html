@@ -137,6 +137,27 @@ h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03
 .phrase-item .p-es{font-size:13.5px;color:var(--ink-2);margin-top:4px}
 .phrase-item .p-note{font-size:12px;color:var(--ink-3);margin-top:6px;font-style:italic}
 
+/* SEGMENTED CONTROL */
+.seg{display:flex;background:var(--card);border:1px solid var(--hairline);border-radius:999px;padding:4px;margin-bottom:18px;box-shadow:var(--shadow)}
+.seg button{flex:1;padding:10px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink-2);transition:all .15s}
+.seg button.active{background:var(--blue);color:#fff}
+
+/* DICTATION */
+.dict-card{padding:24px 22px;text-align:center}
+.dict-play{margin:6px auto 6px}
+.dict-speed{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:14px 0}
+.dict-speed button{padding:7px 13px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--ink-2);background:var(--bg);border:1px solid transparent}
+.dict-speed button.active{background:#fff;color:var(--blue);border-color:var(--hairline);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.dict-repeat{color:var(--blue)!important}
+#dictInput{width:100%;padding:14px;border-radius:14px;border:1px solid var(--hairline);background:var(--bg);font-size:16px;line-height:1.5;resize:vertical;color:var(--ink);margin-bottom:12px}
+#dictInput:focus{outline:none;border-color:var(--blue);background:#fff}
+.dict-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.dict-counter{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-top:14px;font-variant-numeric:tabular-nums}
+.dict-target{font-size:17px;font-weight:600;line-height:1.5;margin-top:6px}
+.dict-target .ok{color:var(--good)}
+.dict-target .miss{color:var(--bad);text-decoration:underline;text-decoration-style:wavy}
+.dict-es{font-size:14px;color:var(--ink-2);margin-top:10px;font-style:italic}
+
 /* DIALOGUES */
 .dlg-head{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
 .dlg-title{font-size:19px;font-weight:800;letter-spacing:-.01em}
@@ -266,19 +287,52 @@ h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03
     <div id="phraseList"></div>
   </section>
 
-  <!-- ================= DIALOGUES ================= -->
-  <section class="view" id="view-dialog">
-    <div class="eyebrow">Escucha real</div>
-    <h1 class="view-title">Diálogos</h1>
-    <p class="view-sub">Conversaciones completas como suenan en la vida real. Reproduce toda la charla, toca cada burbuja para escucharla, y tócala de nuevo para ver la traducción.</p>
-    <div class="filter-row" id="dialogFilters"></div>
-    <div class="dlg-controls">
-      <button class="btn btn-primary btn-sm" id="dlgPlayAll">▶ Reproducir todo</button>
-      <button class="btn btn-ghost btn-sm" id="dlgStop">■ Detener</button>
-      <button class="btn btn-ghost btn-sm" id="dlgToggleEs">Mostrar traducción</button>
+  <!-- ================= LISTENING ================= -->
+  <section class="view" id="view-listen">
+    <div class="eyebrow">Comprensión auditiva</div>
+    <h1 class="view-title">Escuchar</h1>
+    <p class="view-sub">Lo que más cuesta se entrena todos los días. <b>Dictado:</b> escuchas sin ver el texto y escribes lo que oyes; yo te corrijo palabra por palabra. <b>Diálogos:</b> conversaciones completas reales.</p>
+    <div class="seg" id="listenSeg">
+      <button data-mode="dictation" class="active">✍️ Dictado</button>
+      <button data-mode="dialog">💬 Diálogos</button>
     </div>
-    <div class="dlg-context" id="dlgContext"></div>
-    <div class="dlg-thread" id="dlgThread"></div>
+
+    <!-- DICTATION -->
+    <div id="mode-dictation">
+      <div class="filter-row" id="dictFilters"></div>
+      <div class="card dict-card">
+        <button class="mic-btn dict-play" id="dictPlay" aria-label="Reproducir audio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg>
+        </button>
+        <div class="mic-hint" id="dictInstr">Presiona play y escribe lo que escuchas</div>
+        <div class="dict-speed">
+          <button data-drate="0.7">🐢 Lento</button>
+          <button data-drate="0.85" class="active">Normal</button>
+          <button data-drate="1">Nativo</button>
+          <button id="dictRepeat" class="dict-repeat">↻ Repetir</button>
+        </div>
+        <textarea id="dictInput" rows="2" placeholder="Escribe aquí lo que escuchaste..."></textarea>
+        <div class="dict-actions">
+          <button class="btn btn-primary" id="dictCheck">Comprobar</button>
+          <button class="btn btn-ghost btn-sm" id="dictReveal">Mostrar respuesta</button>
+          <button class="btn btn-ghost btn-sm" id="dictNext">Siguiente →</button>
+        </div>
+        <div class="score-box" id="dictScore"></div>
+        <div class="dict-counter" id="dictCounter"></div>
+      </div>
+    </div>
+
+    <!-- DIALOGS -->
+    <div id="mode-dialog" style="display:none">
+      <div class="filter-row" id="dialogFilters"></div>
+      <div class="dlg-controls">
+        <button class="btn btn-primary btn-sm" id="dlgPlayAll">▶ Reproducir todo</button>
+        <button class="btn btn-ghost btn-sm" id="dlgStop">■ Detener</button>
+        <button class="btn btn-ghost btn-sm" id="dlgToggleEs">Mostrar traducción</button>
+      </div>
+      <div class="dlg-context" id="dlgContext"></div>
+      <div class="dlg-thread" id="dlgThread"></div>
+    </div>
   </section>
 
   <!-- ================= PRONUNCIATION ================= -->
@@ -359,9 +413,9 @@ h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       Frases
     </button>
-    <button data-view="dialog">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 8h2a2 2 0 0 1 2 2v9l-3-2H9a2 2 0 0 1-2-2v-1"/><path d="M13 2H5a2 2 0 0 0-2 2v9l3-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-      Diálogos
+    <button data-view="listen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+      Escuchar
     </button>
     <button data-view="speak">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
@@ -757,6 +811,35 @@ const DIALOGS = [
   ]},
 ];
 
+/* ---------- 4b. DICTADO (listening) ---------- */
+const DICT_LEVELS=[{id:1,label:"🟢 Fácil"},{id:2,label:"🟡 Medio"},{id:3,label:"🔴 Difícil"}];
+const DICTATION=[
+  {lvl:1,en:"Where are you from?",es:"¿De dónde eres?"},
+  {lvl:1,en:"Can I have the check, please?",es:"¿Me trae la cuenta, por favor?"},
+  {lvl:1,en:"What time is the meeting?",es:"¿A qué hora es la reunión?"},
+  {lvl:1,en:"I'll be there in ten minutes.",es:"Estaré ahí en diez minutos."},
+  {lvl:1,en:"How much does it cost?",es:"¿Cuánto cuesta?"},
+  {lvl:1,en:"Could you help me, please?",es:"¿Me podrías ayudar, por favor?"},
+  {lvl:1,en:"I'd like a coffee to go.",es:"Quisiera un café para llevar."},
+  {lvl:1,en:"See you tomorrow morning.",es:"Nos vemos mañana en la mañana."},
+  {lvl:2,en:"I was wondering if you could send me the file.",es:"Me preguntaba si podrías enviarme el archivo."},
+  {lvl:2,en:"Let's grab a coffee before the conference starts.",es:"Tomemos un café antes de que empiece la conferencia."},
+  {lvl:2,en:"Do you know how to get to the station from here?",es:"¿Sabes cómo llegar a la estación desde aquí?"},
+  {lvl:2,en:"I'm not sure I completely understood the question.",es:"No estoy seguro de haber entendido bien la pregunta."},
+  {lvl:2,en:"It looks like we're running a little behind schedule.",es:"Parece que vamos un poco atrasados."},
+  {lvl:2,en:"Would you mind repeating that one more time?",es:"¿Te importaría repetir eso una vez más?"},
+  {lvl:2,en:"I really appreciate you taking the time to meet.",es:"Agradezco mucho que te tomes el tiempo de reunirte."},
+  {lvl:2,en:"We should probably wrap this up pretty soon.",es:"Probablemente deberíamos cerrar esto pronto."},
+  {lvl:3,en:"I would've called you, but I ran out of time.",es:"Te habría llamado, pero se me acabó el tiempo."},
+  {lvl:3,en:"To be honest, I hadn't even thought about that.",es:"Para ser honesto, ni siquiera lo había pensado."},
+  {lvl:3,en:"It's kind of a long story, but I'll give you the short version.",es:"Es una historia algo larga, pero te doy la versión corta."},
+  {lvl:3,en:"I'm gonna need a couple more days to finish this up.",es:"Voy a necesitar un par de días más para terminar esto."},
+  {lvl:3,en:"That's not really what I had in mind, to be fair.",es:"No es realmente lo que tenía en mente, para ser justos."},
+  {lvl:3,en:"Why don't we go ahead and get started?",es:"¿Por qué no seguimos adelante y empezamos?"},
+  {lvl:3,en:"Let's touch base early next week, if that works for you.",es:"Pongámonos en contacto a principios de la próxima semana, si te sirve."},
+  {lvl:3,en:"I'll get back to you as soon as I hear anything.",es:"Te aviso apenas sepa algo."},
+];
+
 /* ---------- 5. ROLE-PLAY ---------- */
 const SCENARIOS = [
   {role:"Conociendo a alguien nuevo",title:"Hacer un amigo / charla casual",setup:"Conociste a alguien simpático. Mantén una conversación relajada. Responde cada línea en voz alta.",
@@ -1007,6 +1090,56 @@ document.getElementById("dlgPlayAll").addEventListener("click",async()=>{
   bubbles.forEach(b=>b.classList.remove("speaking"));dlgPlaying=false;
 });
 
+/* LISTENING: segmented control */
+document.querySelectorAll("#listenSeg button").forEach(b=>b.addEventListener("click",()=>{
+  stopSpeak();dlgPlaying=false;
+  document.querySelectorAll("#listenSeg button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+  const m=b.dataset.mode;
+  document.getElementById("mode-dictation").style.display=m==="dictation"?"":"none";
+  document.getElementById("mode-dialog").style.display=m==="dialog"?"":"none";
+}));
+
+/* DICTATION */
+let dictLevel=1,dictRate=0.85,dictIndex=0,dictPool=[];
+function buildDictPool(){dictPool=DICTATION.filter(d=>d.lvl===dictLevel);dictIndex=0;}
+function currentDict(){return dictPool[dictIndex];}
+function renderDictFilters(){
+  const el=document.getElementById("dictFilters");
+  el.innerHTML=DICT_LEVELS.map(l=>`<button class="chip ${l.id===dictLevel?'active':''}" data-lvl="${l.id}">${l.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{dictLevel=+b.dataset.lvl;buildDictPool();renderDictFilters();renderDict();}));
+}
+function renderDict(){
+  document.getElementById("dictInput").value="";
+  const box=document.getElementById("dictScore");box.classList.remove("show");box.innerHTML="";
+  document.getElementById("dictInstr").textContent="Presiona play y escribe lo que escuchas";
+  document.getElementById("dictCounter").textContent=dictPool.length?((dictIndex+1)+" / "+dictPool.length):"";
+}
+function playDict(){const d=currentDict();if(d)speak(d.en,dictRate);}
+document.getElementById("dictPlay").addEventListener("click",()=>{playDict();markMission("dialog");});
+document.getElementById("dictRepeat").addEventListener("click",playDict);
+document.querySelectorAll(".dict-speed button[data-drate]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".dict-speed button[data-drate]").forEach(x=>x.classList.remove("active"));b.classList.add("active");dictRate=parseFloat(b.dataset.drate);
+}));
+document.getElementById("dictCheck").addEventListener("click",()=>{
+  const d=currentDict();if(!d)return;
+  const typed=document.getElementById("dictInput").value;
+  if(!typed.trim()){toast("Escribe lo que escuchaste primero");return;}
+  const {pct,diffHtml}=scorePronunciation(d.en,typed);
+  const color=pct>=80?"var(--good)":pct>=55?"var(--warn)":"var(--bad)";
+  const box=document.getElementById("dictScore");
+  box.innerHTML=`<div class="score-num"><span style="color:${color}">${pct}%</span></div><div class="dict-target">${diffHtml}</div><div class="dict-es">${d.es}</div>`;
+  box.classList.add("show");markMission("dialog");
+  if(pct>=85)toast("¡Muy bien! 👂");
+});
+document.getElementById("dictReveal").addEventListener("click",()=>{
+  const d=currentDict();if(!d)return;
+  const box=document.getElementById("dictScore");
+  box.innerHTML=`<div class="dict-target">${d.en}</div><div class="dict-es">${d.es}</div>`;box.classList.add("show");
+});
+document.getElementById("dictNext").addEventListener("click",()=>{
+  if(!dictPool.length)return;dictIndex=(dictIndex+1)%dictPool.length;renderDict();setTimeout(playDict,300);
+});
+
 /* =========================================================
    PRONUNCIATION
    ========================================================= */
@@ -1072,7 +1205,7 @@ function markMission(key){const m=todaysMissionState();if(!m[key]){m[key]=true;s
 const MISSIONS=[
   {key:"vocab",view:"vocab",icon:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/>',title:"Repasa vocabulario",desc:"Estudia tus flashcards del día"},
   {key:"phrases",view:"phrases",icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',title:"Escucha frases nuevas",desc:"Reproduce frases de un escenario"},
-  {key:"dialog",view:"dialog",icon:'<path d="M17 8h2a2 2 0 0 1 2 2v9l-3-2H9a2 2 0 0 1-2-2v-1"/><path d="M13 2H5a2 2 0 0 0-2 2v9l3-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>',title:"Escucha un diálogo",desc:"Reproduce una conversación completa"},
+  {key:"dialog",view:"listen",icon:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',title:"Entrena tu oído",desc:"Haz un dictado o escucha un diálogo"},
   {key:"speak",view:"speak",icon:'<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>',title:"Practica pronunciación",desc:"Graba tu voz al menos una vez"},
   {key:"talk",view:"talk",icon:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',title:"Habla un role-play",desc:"Responde un escenario en voz alta"},
 ];
@@ -1098,7 +1231,7 @@ function renderToday(){
 function updateHeaderStats(){document.getElementById("streakNum").textContent=state.streak;document.getElementById("masteredNum").textContent=state.mastered;}
 
 /* INIT */
-renderToday();renderPhraseFilters();renderPhrases();renderDialogFilters();renderDialog();renderShadow();renderScenarios();updateHeaderStats();populateVoiceSelect();
+renderToday();renderPhraseFilters();renderPhrases();renderDialogFilters();renderDialog();buildDictPool();renderDictFilters();renderDict();renderShadow();renderScenarios();updateHeaderStats();populateVoiceSelect();
 if(!SR){document.getElementById("micHint").textContent="Nota: el micrófono funciona en Chrome (PC o Android).";}
 </script>
 </body>
