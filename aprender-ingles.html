@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>DEXA English — Entrenador diario de inglés avanzado</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Entrenador personal de inglés avanzado: vocabulario, frases y pronunciación para la vida real, viajes, trabajo, conversación y conferencias." />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --blue:#018ede;--blue-dark:#0175bc;--ink:#0a0a0c;--ink-2:#4b5563;--ink-3:#9ca3af;
+  --bg:#f4f6f9;--card:#ffffff;--hairline:rgba(0,0,0,.09);--good:#16a34a;--warn:#d97706;--bad:#dc2626;
+  --shadow:0 1px 3px rgba(0,0,0,.05),0 8px 30px -12px rgba(0,0,0,.12);--radius:18px;--max:960px;
+}
+body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink);background:var(--bg);line-height:1.5;padding-bottom:90px}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:var(--blue);text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(244,246,249,.85);-webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--hairline)}
+.head-inner{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(1,142,222,.15)}
+.brand small{font-weight:600;color:var(--ink-3);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.streak{display:flex;align-items:center;gap:14px}
+.streak .pill{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--hairline);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.streak .pill .num{color:var(--blue)}
+
+/* TABS */
+nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--hairline);display:flex;justify-content:center}
+nav.tabs .tabs-inner{display:flex;width:100%;max-width:var(--max)}
+nav.tabs button{flex:1;padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;font-weight:600;color:var(--ink-3);transition:color .15s}
+nav.tabs button svg{width:22px;height:22px;stroke-width:2}
+nav.tabs button.active{color:var(--blue)}
+
+/* GENERAL */
+main{padding:26px 0 40px}
+.view{display:none}.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
+h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03em;margin-bottom:6px}
+.view-sub{color:var(--ink-2);font-size:15px;margin-bottom:24px;max-width:60ch}
+.card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);box-shadow:var(--shadow)}
+.section-h{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:700;font-size:14px;transition:transform .1s,filter .2s,background .2s,border-color .2s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 22px -8px rgba(1,142,222,.6)}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:var(--card);border:1px solid var(--hairline);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn svg{width:16px;height:16px}
+.btn-sm{padding:8px 14px;font-size:13px}
+.icon-btn{width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--hairline);display:inline-grid;place-items:center;transition:transform .1s,border-color .2s,color .2s}
+.icon-btn:hover{border-color:var(--blue);color:var(--blue)}
+.icon-btn:active{transform:scale(.92)}
+.icon-btn svg{width:20px;height:20px}
+.speak-btn{color:var(--blue)}
+
+/* TODAY */
+.today-hero{background:linear-gradient(135deg,#022a44,#014a78 55%,#018ede);color:#fff;border-radius:22px;padding:26px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.today-hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+.today-hero .date{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.today-hero h2{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px;max-width:24ch}
+.today-hero p{font-size:14px;opacity:.85;max-width:44ch}
+.today-hero .prog{margin-top:18px}
+.today-hero .prog-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.2);overflow:hidden}
+.today-hero .prog-bar span{display:block;height:100%;background:#fff;border-radius:999px;transition:width .5s ease;width:0}
+.today-hero .prog-lbl{font-size:12px;margin-top:8px;opacity:.85;font-weight:600}
+.mission-list{display:grid;gap:12px}
+.mission{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.mission .m-ic{width:44px;height:44px;border-radius:12px;background:rgba(1,142,222,.1);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mission .m-ic svg{width:22px;height:22px}
+.mission .m-body{flex:1;min-width:0}
+.mission .m-body h3{font-size:15px;font-weight:700;margin-bottom:2px}
+.mission .m-body p{font-size:13px;color:var(--ink-2)}
+.mission .m-go{color:var(--ink-3);flex-shrink:0}
+.mission.done{opacity:.6}
+.mission.done .m-ic{background:rgba(22,163,74,.12);color:var(--good)}
+.check-mini{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink-3);flex-shrink:0;display:grid;place-items:center}
+.mission.done .check-mini{border-color:var(--good);background:var(--good)}
+.mission.done .check-mini svg{width:12px;height:12px;color:#fff}
+.mission:not(.done) .check-mini svg{display:none}
+
+/* FLASHCARD */
+.deck-stats{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.stat-chip{flex:1;min-width:90px;background:var(--card);border:1px solid var(--hairline);border-radius:14px;padding:14px;text-align:center;box-shadow:var(--shadow)}
+.stat-chip .n{font-size:26px;font-weight:900;letter-spacing:-.02em}
+.stat-chip .l{font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.stat-chip.due .n{color:var(--blue)}
+.flashcard{min-height:340px;padding:30px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;cursor:pointer;user-select:none}
+.flashcard .cat-tag{position:absolute;top:16px;left:20px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:rgba(1,142,222,.1);padding:4px 10px;border-radius:999px}
+.flashcard .pos{position:absolute;top:16px;right:20px;font-size:12px;font-style:italic;color:var(--ink-3)}
+.fc-term{font-size:clamp(30px,7vw,44px);font-weight:900;letter-spacing:-.02em}
+.fc-ipa{font-size:16px;color:var(--ink-3);margin-top:6px}
+.fc-hint{margin-top:24px;font-size:13px;color:var(--ink-3)}
+.fc-back{border-top:1px dashed var(--hairline);margin-top:22px;padding-top:22px;width:100%;display:none}
+.flashcard.flipped .fc-back{display:block;animation:fade .3s}
+.flashcard.flipped .fc-hint{display:none}
+.fc-def{font-size:17px;font-weight:600;margin-bottom:6px}
+.fc-es{font-size:15px;color:var(--blue);font-weight:600;margin-bottom:14px}
+.fc-ex{font-size:14.5px;color:var(--ink-2);font-style:italic;line-height:1.6;background:var(--bg);border-radius:12px;padding:12px 14px}
+.grade-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.grade{padding:12px 4px;border-radius:12px;font-weight:700;font-size:13px;color:#fff;text-align:center;transition:transform .1s,filter .2s}
+.grade:active{transform:scale(.95)}.grade span{display:block;font-size:10.5px;font-weight:600;opacity:.85;margin-top:2px}
+.grade.again{background:#ef4444}.grade.hard{background:#f59e0b}.grade.good{background:#3b82f6}.grade.easy{background:#22c55e}
+.empty-state{text-align:center;padding:50px 20px;color:var(--ink-2)}
+.empty-state .big{font-size:44px;margin-bottom:10px}
+
+/* PHRASES */
+.filter-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--hairline);font-size:13px;font-weight:600;color:var(--ink-2);transition:all .15s;flex-shrink:0}
+.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.phrase-item{padding:16px 18px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px}
+.phrase-item .p-body{flex:1;min-width:0}
+.phrase-item .p-en{font-size:16px;font-weight:600;line-height:1.4}
+.phrase-item .p-es{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+.phrase-item .p-note{font-size:12px;color:var(--ink-3);margin-top:6px;font-style:italic}
+
+/* PRONUNCIATION */
+.shadow-card{padding:26px 24px;text-align:center}
+.shadow-sentence{font-size:clamp(20px,4.5vw,26px);font-weight:700;line-height:1.45;letter-spacing:-.01em;margin-bottom:8px}
+.shadow-es{font-size:14px;color:var(--ink-2);margin-bottom:22px}
+.shadow-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.speed-toggle{display:inline-flex;background:var(--bg);border-radius:999px;padding:3px}
+.speed-toggle button{padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700;color:var(--ink-2)}
+.speed-toggle button.active{background:var(--card);color:var(--blue);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.mic-btn{width:76px;height:76px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;margin:22px auto 8px;box-shadow:0 10px 30px -8px rgba(1,142,222,.6);transition:transform .15s}
+.mic-btn:active{transform:scale(.94)}
+.mic-btn.recording{background:var(--bad);animation:pulseMic 1.2s ease-in-out infinite}
+.mic-btn svg{width:34px;height:34px}
+@keyframes pulseMic{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.5)}50%{box-shadow:0 0 0 16px rgba(220,38,38,0)}}
+.mic-hint{font-size:13px;color:var(--ink-3)}
+.score-box{margin-top:20px;padding:18px;border-radius:14px;background:var(--bg);display:none}
+.score-box.show{display:block;animation:fade .3s}
+.score-num{font-size:44px;font-weight:900;letter-spacing:-.02em}
+.score-heard{font-size:14px;color:var(--ink-2);margin-top:8px}
+.score-heard b{color:var(--ink)}
+.word-diff span{padding:1px 2px;border-radius:4px}
+.word-diff .ok{color:var(--good)}
+.word-diff .miss{color:var(--bad);text-decoration:underline;text-decoration-style:wavy}
+.nav-arrows{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+
+/* CONVERSATION */
+.scenario-card{padding:20px 22px;margin-bottom:14px}
+.scenario-card .s-role{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.scenario-card h3{font-size:18px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.scenario-card .s-setup{font-size:14px;color:var(--ink-2);margin-bottom:14px}
+.scenario-card .prompts{display:grid;gap:8px}
+.prompt-q{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:12px;padding:11px 13px;font-size:14px}
+.prompt-q .qn{color:var(--blue);font-weight:800;flex-shrink:0}
+.useful{margin-top:14px;border-top:1px dashed var(--hairline);padding-top:14px}
+.useful .u-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin-bottom:8px}
+.useful .u-item{display:flex;align-items:center;gap:8px;font-size:14px;padding:5px 0}
+.useful .u-item .p-es{color:var(--ink-3);font-size:12.5px}
+
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:100;pointer-events:none;box-shadow:0 10px 30px -8px rgba(0,0,0,.4)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.footer-note{text-align:center;color:var(--ink-3);font-size:12.5px;padding:30px 20px 10px;line-height:1.7}
+@media(max-width:600px){.wrap{padding:0 16px}.grade span{display:none}.today-hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="brand"><span class="dot"></span>DEXA English <small>tu coach diario</small></div>
+    <div class="streak">
+      <span class="pill" title="Días seguidos practicando">🔥 <span class="num" id="streakNum">0</span></span>
+      <span class="pill" title="Palabras dominadas">⭐ <span class="num" id="masteredNum">0</span></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= TODAY ================= -->
+  <section class="view active" id="view-today">
+    <div class="today-hero">
+      <div class="date" id="todayDate"></div>
+      <h2>Tu misión de hoy</h2>
+      <p>10-15 minutos enfocados. Inglés avanzado y variado: vida diaria, viajes, trabajo, conversación y también tus conferencias.</p>
+      <div class="prog">
+        <div class="prog-bar"><span id="dailyProg"></span></div>
+        <div class="prog-lbl" id="dailyProgLbl">0 / 4 completado</div>
+      </div>
+    </div>
+    <div class="mission-list" id="missionList"></div>
+
+    <div class="section-h">💡 Frase del día</div>
+    <div class="card" id="phraseOfDay" style="padding:20px 22px"></div>
+
+    <div class="section-h">📌 Palabra del día</div>
+    <div class="card" id="wordOfDay" style="padding:20px 22px"></div>
+  </section>
+
+  <!-- ================= VOCAB ================= -->
+  <section class="view" id="view-vocab">
+    <div class="eyebrow">Repetición espaciada</div>
+    <h1 class="view-title">Vocabulario</h1>
+    <p class="view-sub">Vocabulario avanzado y variado: vida diaria, viajes, emociones, negocios, tecnología y expresión sofisticada. El sistema te repite cada palabra justo antes de que la olvides.</p>
+    <div class="deck-stats">
+      <div class="stat-chip due"><div class="n" id="dueCount">0</div><div class="l">Por repasar</div></div>
+      <div class="stat-chip"><div class="n" id="newCount">0</div><div class="l">Nuevas</div></div>
+      <div class="stat-chip"><div class="n" id="totalCount">0</div><div class="l">Total</div></div>
+    </div>
+    <div class="card flashcard" id="flashcard"></div>
+    <div id="gradeArea"></div>
+  </section>
+
+  <!-- ================= PHRASES ================= -->
+  <section class="view" id="view-phrases">
+    <div class="eyebrow">Banco de frases</div>
+    <h1 class="view-title">Frases por escenario</h1>
+    <p class="view-sub">Toca 🔊 para escuchar la pronunciación nativa. Copia las que más te sirvan y úsalas esta semana.</p>
+    <div class="filter-row" id="phraseFilters"></div>
+    <div id="phraseList"></div>
+  </section>
+
+  <!-- ================= PRONUNCIATION ================= -->
+  <section class="view" id="view-speak">
+    <div class="eyebrow">Shadowing + micrófono</div>
+    <h1 class="view-title">Pronunciación</h1>
+    <p class="view-sub">Escucha, repite en voz alta y presiona el micrófono para hablar. Te doy un puntaje de precisión. (Funciona mejor en Chrome.)</p>
+    <div class="card shadow-card">
+      <div class="shadow-sentence" id="shSentence"></div>
+      <div class="shadow-es" id="shEs"></div>
+      <div class="shadow-controls">
+        <button class="icon-btn speak-btn" id="shPlay" title="Escuchar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
+        </button>
+        <div class="speed-toggle">
+          <button data-rate="0.7">Lento</button>
+          <button data-rate="0.9" class="active">Normal</button>
+          <button data-rate="1">Nativo</button>
+        </div>
+      </div>
+      <button class="mic-btn" id="micBtn" title="Hablar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor" stroke="none"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+      </button>
+      <div class="mic-hint" id="micHint">Presiona y lee la frase en voz alta</div>
+      <div class="score-box" id="scoreBox">
+        <div class="score-num" id="scoreNum">—</div>
+        <div class="score-heard">Escuché: <span class="word-diff" id="scoreHeard"></span></div>
+      </div>
+      <div class="nav-arrows">
+        <button class="btn btn-ghost btn-sm" id="shPrev">← Anterior</button>
+        <span style="font-size:13px;color:var(--ink-3);font-weight:600" id="shCounter"></span>
+        <button class="btn btn-ghost btn-sm" id="shNext">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONVERSATION ================= -->
+  <section class="view" id="view-talk">
+    <div class="eyebrow">Role-play</div>
+    <h1 class="view-title">Conversación real</h1>
+    <p class="view-sub">Practica en voz alta tus situaciones reales. Responde cada pregunta hablando, como si estuvieras ahí. Usa las expresiones útiles de cada escenario.</p>
+    <div id="scenarioList"></div>
+  </section>
+
+  <p class="footer-note">
+    DEXA English · Herramienta privada de práctica · Tu progreso se guarda solo en este navegador.<br>
+    Practica todos los días, aunque sea 10 minutos. La constancia vence al talento. 🚀
+  </p>
+</main>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button data-view="today" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Hoy
+    </button>
+    <button data-view="vocab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+      Vocab
+    </button>
+    <button data-view="phrases">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Frases
+    </button>
+    <button data-view="speak">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+      Hablar
+    </button>
+    <button data-view="talk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 8h2a2 2 0 0 1 2 2v9l-3-2H9a2 2 0 0 1-2-2v-1"/><path d="M13 2H5a2 2 0 0 0-2 2v9l3-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
+      Charlar
+    </button>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   DEXA ENGLISH — contenido curado + lógica (100% front-end)
+   ========================================================= */
+
+/* ---------- 1. VOCABULARIO (avanzado: IA / negocios / expresión) ---------- */
+const VOCAB = [
+  {t:"leverage",ipa:"/ˈlevərɪdʒ/",pos:"verb",def:"to use something to maximum advantage",es:"aprovechar / apalancar",ex:"We leverage AI to detect cavities in under two minutes.",cat:"business"},
+  {t:"seamless",ipa:"/ˈsiːmləs/",pos:"adj",def:"smooth and continuous, with no gaps or interruptions",es:"fluido, sin fricción",ex:"Our goal is a seamless experience from photo to diagnosis.",cat:"tech"},
+  {t:"actionable",ipa:"/ˈækʃənəbl/",pos:"adj",def:"that can be acted on; practical and useful",es:"accionable, aplicable",ex:"The report gives patients actionable insights, not just data.",cat:"business"},
+  {t:"scalable",ipa:"/ˈskeɪləbl/",pos:"adj",def:"able to grow or handle more without breaking",es:"escalable",ex:"We built a scalable model that works across Latin America.",cat:"tech"},
+  {t:"disrupt",ipa:"/dɪsˈrʌpt/",pos:"verb",def:"to radically change an industry or market",es:"revolucionar / disrupcionar",ex:"We're disrupting dental care with accessible AI.",cat:"business"},
+  {t:"robust",ipa:"/rəʊˈbʌst/",pos:"adj",def:"strong, reliable, and able to withstand challenges",es:"robusto, sólido",ex:"The algorithm is robust across different phone cameras.",cat:"tech"},
+  {t:"cutting-edge",ipa:"/ˈkʌtɪŋ edʒ/",pos:"adj",def:"the most advanced; at the forefront",es:"de vanguardia",ex:"We use cutting-edge computer vision models.",cat:"tech"},
+  {t:"compelling",ipa:"/kəmˈpelɪŋ/",pos:"adj",def:"convincing; capturing attention powerfully",es:"convincente, cautivador",ex:"We have a compelling case for early detection.",cat:"speaking"},
+  {t:"nuance",ipa:"/ˈnjuːɑːns/",pos:"noun",def:"a subtle difference in meaning or expression",es:"matiz, sutileza",ex:"There's a nuance here I want to highlight.",cat:"speaking"},
+  {t:"streamline",ipa:"/ˈstriːmlaɪn/",pos:"verb",def:"to make a process simpler and more efficient",es:"agilizar, optimizar",ex:"AI streamlines the entire screening process.",cat:"business"},
+  {t:"breakthrough",ipa:"/ˈbreɪkθruː/",pos:"noun",def:"a sudden important discovery or advance",es:"gran avance, hito",ex:"This is a real breakthrough in preventive dentistry.",cat:"tech"},
+  {t:"empower",ipa:"/ɪmˈpaʊə/",pos:"verb",def:"to give someone the power or confidence to do something",es:"empoderar, dar autonomía",ex:"We empower people to take control of their oral health.",cat:"business"},
+  {t:"unprecedented",ipa:"/ʌnˈpresɪdentɪd/",pos:"adj",def:"never done or known before",es:"sin precedentes",ex:"AI offers unprecedented access to diagnostics.",cat:"speaking"},
+  {t:"tangible",ipa:"/ˈtændʒəbl/",pos:"adj",def:"real and measurable; not abstract",es:"tangible, concreto",ex:"We deliver tangible results in the first week.",cat:"business"},
+  {t:"paradigm",ipa:"/ˈpærədaɪm/",pos:"noun",def:"a typical model or pattern of thinking",es:"paradigma",ex:"This is a paradigm shift in how we think about screening.",cat:"speaking"},
+  {t:"iterate",ipa:"/ˈɪtəreɪt/",pos:"verb",def:"to repeat and improve step by step",es:"iterar",ex:"We iterate quickly based on user feedback.",cat:"tech"},
+  {t:"onboarding",ipa:"/ˈɒnbɔːdɪŋ/",pos:"noun",def:"the process of getting new users started",es:"incorporación de usuarios",ex:"Our onboarding takes less than a minute.",cat:"business"},
+  {t:"stakeholder",ipa:"/ˈsteɪkhəʊldə/",pos:"noun",def:"a person with an interest or investment in something",es:"parte interesada",ex:"We aligned all stakeholders around one vision.",cat:"business"},
+  {t:"validate",ipa:"/ˈvælɪdeɪt/",pos:"verb",def:"to confirm that something is accurate or worthwhile",es:"validar",ex:"Clinical trials validate our accuracy rate.",cat:"tech"},
+  {t:"insightful",ipa:"/ˈɪnsaɪtfʊl/",pos:"adj",def:"showing deep and accurate understanding",es:"perspicaz, revelador",ex:"That's an insightful question, thank you.",cat:"speaking"},
+  {t:"resonate",ipa:"/ˈrezəneɪt/",pos:"verb",def:"to have meaning or importance to someone",es:"resonar, conectar",ex:"Our mission resonates with health-conscious users.",cat:"speaking"},
+  {t:"holistic",ipa:"/həˈlɪstɪk/",pos:"adj",def:"considering the whole rather than parts",es:"holístico, integral",ex:"We take a holistic approach to oral health.",cat:"business"},
+  {t:"underpin",ipa:"/ˌʌndəˈpɪn/",pos:"verb",def:"to support or form the basis of something",es:"sustentar, respaldar",ex:"Solid data underpins every claim we make.",cat:"speaking"},
+  {t:"pragmatic",ipa:"/præɡˈmætɪk/",pos:"adj",def:"dealing with things practically and realistically",es:"pragmático",ex:"We take a pragmatic approach to regulation.",cat:"business"},
+  {t:"frictionless",ipa:"/ˈfrɪkʃənləs/",pos:"adj",def:"without difficulty or resistance",es:"sin fricción",ex:"We want a frictionless path to diagnosis.",cat:"tech"},
+  {t:"proprietary",ipa:"/prəˈpraɪətri/",pos:"adj",def:"owned exclusively; not shared",es:"propietario, de propiedad exclusiva",ex:"Our proprietary model is trained on regional data.",cat:"tech"},
+  {t:"granular",ipa:"/ˈɡrænjʊlə/",pos:"adj",def:"showing a lot of fine detail",es:"granular, detallado",ex:"We give granular feedback on each tooth.",cat:"tech"},
+  {t:"showcase",ipa:"/ˈʃəʊkeɪs/",pos:"verb",def:"to present something's best qualities",es:"exhibir, destacar",ex:"I'd love to showcase what DEXA can do.",cat:"speaking"},
+  {t:"advocate",ipa:"/ˈædvəkeɪt/",pos:"verb",def:"to publicly support or recommend",es:"abogar por, defender",ex:"I advocate for accessible healthcare technology.",cat:"speaking"},
+  {t:"threshold",ipa:"/ˈθreʃhəʊld/",pos:"noun",def:"the level at which something starts to happen",es:"umbral",ex:"Above a certain confidence threshold, we flag the case.",cat:"tech"},
+  {t:"foster",ipa:"/ˈfɒstə/",pos:"verb",def:"to encourage the development of something",es:"fomentar, propiciar",ex:"We foster trust through transparency.",cat:"business"},
+  {t:"pivotal",ipa:"/ˈpɪvətl/",pos:"adj",def:"of crucial importance",es:"fundamental, crucial",ex:"This partnership is pivotal for our expansion.",cat:"business"},
+  {t:"bandwidth",ipa:"/ˈbændwɪdθ/",pos:"noun",def:"the capacity or time to handle something",es:"capacidad / disponibilidad",ex:"I don't have the bandwidth to take that on this week.",cat:"business"},
+  {t:"ballpark",ipa:"/ˈbɔːlpɑːk/",pos:"noun",def:"an approximate range or estimate",es:"estimación aproximada",ex:"Can you give me a ballpark figure for the budget?",cat:"business"},
+  {t:"deep dive",ipa:"/diːp daɪv/",pos:"noun",def:"a thorough, detailed examination",es:"análisis profundo",ex:"Let's do a deep dive into the accuracy metrics.",cat:"business"},
+  {t:"low-hanging fruit",ipa:"/ləʊ ˈhæŋɪŋ fruːt/",pos:"idiom",def:"the easiest tasks or wins to achieve first",es:"lo más fácil de lograr primero",ex:"Clinics are the low-hanging fruit for our first launch.",cat:"business"},
+  {t:"circle back",ipa:"/ˈsɜːkl bæk/",pos:"phrasal",def:"to return to a topic later",es:"retomar más tarde",ex:"Let's circle back to pricing after the demo.",cat:"business"},
+  {t:"on the same page",ipa:"/ɒn ðə seɪm peɪdʒ/",pos:"idiom",def:"in agreement; sharing the same understanding",es:"estar de acuerdo/alineados",ex:"I want to make sure we're all on the same page.",cat:"speaking"},
+  {t:"move the needle",ipa:"/muːv ðə ˈniːdl/",pos:"idiom",def:"to make a noticeable difference",es:"generar impacto real",ex:"Early detection really moves the needle on outcomes.",cat:"business"},
+  {t:"game changer",ipa:"/ˈɡeɪm ˌtʃeɪndʒə/",pos:"noun",def:"something that dramatically changes a situation",es:"algo que lo cambia todo",ex:"AI screening is a game changer for rural areas.",cat:"speaking"},
+  {t:"take it with a grain of salt",ipa:"/ˌɡreɪn əv ˈsɔːlt/",pos:"idiom",def:"to not take something too seriously or literally",es:"tomarlo con cautela",ex:"These early numbers? Take them with a grain of salt.",cat:"speaking"},
+  {t:"the bottom line",ipa:"/ˈbɒtəm laɪn/",pos:"idiom",def:"the most important point or final result",es:"lo esencial / en resumen",ex:"The bottom line is: we save people time and money.",cat:"speaking"},
+  {t:"cut to the chase",ipa:"/kʌt tə ðə tʃeɪs/",pos:"idiom",def:"to get to the important point quickly",es:"ir al grano",ex:"Let me cut to the chase and show you the results.",cat:"speaking"},
+  {t:"reach out",ipa:"/riːtʃ aʊt/",pos:"phrasal",def:"to make contact with someone",es:"contactar",ex:"Feel free to reach out if you have any questions.",cat:"business"},
+  {t:"touch base",ipa:"/tʌtʃ beɪs/",pos:"idiom",def:"to briefly make contact or check in",es:"ponerse en contacto brevemente",ex:"Let's touch base next week to review progress.",cat:"business"},
+
+  // --- VIDA DIARIA ---
+  {t:"errand",ipa:"/ˈerənd/",pos:"noun",def:"a short trip to do a small task",es:"mandado, recado",ex:"I have a few errands to run this morning.",cat:"life"},
+  {t:"chore",ipa:"/tʃɔː/",pos:"noun",def:"a routine household task",es:"tarea doméstica, quehacer",ex:"Doing the dishes is my least favorite chore.",cat:"life"},
+  {t:"cozy",ipa:"/ˈkəʊzi/",pos:"adj",def:"warm, comfortable and relaxing",es:"acogedor, cómodo",ex:"This café is so cozy, I could stay all day.",cat:"life"},
+  {t:"overwhelmed",ipa:"/ˌəʊvəˈwelmd/",pos:"adj",def:"feeling that things are too much to handle",es:"abrumado, sobrepasado",ex:"I've been a bit overwhelmed with work lately.",cat:"life"},
+  {t:"catch up",ipa:"/kætʃ ʌp/",pos:"phrasal",def:"to exchange news with someone after time apart",es:"ponerse al día",ex:"Let's grab a coffee and catch up soon.",cat:"life"},
+  {t:"run late",ipa:"/rʌn leɪt/",pos:"phrasal",def:"to be behind schedule",es:"ir atrasado",ex:"Sorry, I'm running a little late, be there in ten.",cat:"life"},
+  {t:"hang out",ipa:"/hæŋ aʊt/",pos:"phrasal",def:"to spend relaxed time with someone",es:"pasar el rato, juntarse",ex:"We just hung out and watched a movie.",cat:"life"},
+  {t:"figure out",ipa:"/ˈfɪɡə aʊt/",pos:"phrasal",def:"to understand or solve something",es:"descubrir, resolver",ex:"I'm still trying to figure out how this works.",cat:"life"},
+  {t:"look forward to",ipa:"/lʊk ˈfɔːwəd/",pos:"phrasal",def:"to feel excited about a future event",es:"tener ganas de, esperar con ilusión",ex:"I'm really looking forward to the weekend.",cat:"life"},
+
+  // --- VIAJES ---
+  {t:"layover",ipa:"/ˈleɪəʊvə/",pos:"noun",def:"a short stop between flights",es:"escala",ex:"I have a three-hour layover in Miami.",cat:"travel"},
+  {t:"jet-lagged",ipa:"/ˈdʒet læɡd/",pos:"adj",def:"tired from crossing time zones",es:"con jet lag, desfasado",ex:"I'm still jet-lagged from the flight.",cat:"travel"},
+  {t:"check in",ipa:"/tʃek ɪn/",pos:"phrasal",def:"to register at a hotel or for a flight",es:"registrarse / hacer el check-in",ex:"What time can I check in at the hotel?",cat:"travel"},
+  {t:"get around",ipa:"/ɡet əˈraʊnd/",pos:"phrasal",def:"to travel from place to place",es:"movilizarse, desplazarse",ex:"What's the best way to get around the city?",cat:"travel"},
+  {t:"off the beaten path",ipa:"/ɒf ðə ˈbiːtn pɑːθ/",pos:"idiom",def:"away from tourist places; unusual",es:"fuera de lo turístico",ex:"We found a great spot off the beaten path.",cat:"travel"},
+  {t:"must-see",ipa:"/ˈmʌst siː/",pos:"adj",def:"something you should definitely visit",es:"imperdible",ex:"The pier at sunset is an absolute must-see.",cat:"travel"},
+
+  // --- EMOCIONES / DESCRIBIR ---
+  {t:"thrilled",ipa:"/θrɪld/",pos:"adj",def:"extremely happy and excited",es:"encantado, emocionadísimo",ex:"I'm thrilled to be here, honestly.",cat:"emotion"},
+  {t:"anxious",ipa:"/ˈæŋkʃəs/",pos:"adj",def:"nervous or worried about something",es:"ansioso, nervioso",ex:"I always get a bit anxious before speaking.",cat:"emotion"},
+  {t:"relieved",ipa:"/rɪˈliːvd/",pos:"adj",def:"glad that something stressful is over",es:"aliviado",ex:"I was so relieved when the flight landed.",cat:"emotion"},
+  {t:"grateful",ipa:"/ˈɡreɪtfʊl/",pos:"adj",def:"thankful and appreciative",es:"agradecido",ex:"I'm truly grateful for the opportunity.",cat:"emotion"},
+  {t:"frustrated",ipa:"/frʌˈstreɪtɪd/",pos:"adj",def:"annoyed because you can't do something",es:"frustrado",ex:"I got a little frustrated with the traffic.",cat:"emotion"},
+  {t:"laid-back",ipa:"/ˌleɪd ˈbæk/",pos:"adj",def:"relaxed and easygoing",es:"relajado, tranquilo (persona)",ex:"He's really laid-back and easy to work with.",cat:"emotion"},
+  {t:"outgoing",ipa:"/ˈaʊtɡəʊɪŋ/",pos:"adj",def:"friendly and socially confident",es:"extrovertido, sociable",ex:"She's so outgoing, she talks to everyone.",cat:"emotion"},
+  {t:"thoughtful",ipa:"/ˈθɔːtfʊl/",pos:"adj",def:"considerate; showing careful thinking",es:"considerado, atento",ex:"That was a really thoughtful thing to say.",cat:"emotion"},
+
+  // --- CONVERSACIÓN / MATICES ---
+  {t:"awkward",ipa:"/ˈɔːkwəd/",pos:"adj",def:"causing embarrassment or discomfort",es:"incómodo, embarazoso",ex:"There was an awkward silence for a second.",cat:"speaking"},
+  {t:"come across as",ipa:"/kʌm əˈkrɒs/",pos:"phrasal",def:"to give a certain impression",es:"dar la impresión de",ex:"I don't want to come across as rude.",cat:"speaking"},
+  {t:"end up",ipa:"/end ʌp/",pos:"phrasal",def:"to eventually be in a situation or place",es:"terminar (haciendo/en)",ex:"We ended up staying way longer than planned.",cat:"speaking"},
+  {t:"keep in mind",ipa:"/kiːp ɪn maɪnd/",pos:"idiom",def:"to remember and consider something",es:"tener en cuenta",ex:"Keep in mind that prices change on weekends.",cat:"speaking"},
+  {t:"no big deal",ipa:"/nəʊ bɪɡ diːl/",pos:"idiom",def:"not important; nothing to worry about",es:"no es para tanto",ex:"Don't worry about it, it's no big deal.",cat:"speaking"},
+  {t:"for what it's worth",ipa:"/fə wɒt ɪts wɜːθ/",pos:"idiom",def:"used to offer an opinion modestly",es:"por si sirve de algo",ex:"For what it's worth, I think you made the right call.",cat:"speaking"},
+  {t:"hit the nail on the head",ipa:"/hɪt ðə neɪl/",pos:"idiom",def:"to describe something exactly right",es:"dar en el clavo",ex:"You hit the nail on the head with that comment.",cat:"speaking"},
+  {t:"under the weather",ipa:"/ˈʌndə ðə ˈweðə/",pos:"idiom",def:"feeling slightly ill",es:"sentirse indispuesto",ex:"I'm feeling a bit under the weather today.",cat:"speaking"},
+];
+
+/* ---------- 2. FRASES POR ESCENARIO ---------- */
+const PHRASE_CATS = [
+  {id:"daily",label:"☀️ Día a día"},
+  {id:"social",label:"🫂 Conocer gente"},
+  {id:"travel",label:"✈️ Viajes"},
+  {id:"react",label:"😲 Reaccionar"},
+  {id:"opinion",label:"💬 Opinar"},
+  {id:"clarify",label:"❓ Aclarar dudas"},
+  {id:"conference",label:"🎤 Conferencia"},
+  {id:"pitch",label:"🚀 Pitch / Trabajo"},
+  {id:"network",label:"🤝 Networking"},
+  {id:"meeting",label:"💼 Reuniones"},
+];
+const PHRASES = [
+  // DAILY LIFE
+  {cat:"daily",en:"How's it going?",es:"¿Cómo va todo? / ¿Qué tal?",note:"Saludo casual, más natural que 'how are you'."},
+  {cat:"daily",en:"I'm just running a few errands.",es:"Solo estoy haciendo unos mandados.",note:""},
+  {cat:"daily",en:"Do you mind if I sit here?",es:"¿Te molesta si me siento aquí?",note:"Súper educado y natural."},
+  {cat:"daily",en:"Can I get a coffee to go, please?",es:"¿Me das un café para llevar, por favor?",note:"'To go' = para llevar."},
+  {cat:"daily",en:"No worries, take your time.",es:"No te preocupes, tómate tu tiempo.",note:"Frase amable para todo el día."},
+  {cat:"daily",en:"Sounds good, let's do that.",es:"Me parece bien, hagamos eso.",note:""},
+  {cat:"daily",en:"I'm not sure yet, let me think about it.",es:"No estoy seguro aún, déjame pensarlo.",note:""},
+  {cat:"daily",en:"Let's call it a day.",es:"Dejémoslo por hoy.",note:"Terminar la jornada/una actividad."},
+  // SOCIAL / MEETING PEOPLE
+  {cat:"social",en:"Hey, nice to meet you! I've heard a lot about you.",es:"¡Hola, mucho gusto! He oído mucho de ti.",note:""},
+  {cat:"social",en:"So, what do you do?",es:"Entonces, ¿a qué te dedicas?",note:"Pregunta clásica al conocer a alguien."},
+  {cat:"social",en:"Where are you from originally?",es:"¿De dónde eres originalmente?",note:""},
+  {cat:"social",en:"We should hang out sometime.",es:"Deberíamos juntarnos alguna vez.",note:""},
+  {cat:"social",en:"It was really nice talking to you.",es:"Fue un gusto conversar contigo.",note:"Cierre cálido."},
+  {cat:"social",en:"Let's keep in touch.",es:"Mantengámonos en contacto.",note:""},
+  {cat:"social",en:"What do you like to do for fun?",es:"¿Qué te gusta hacer para divertirte?",note:"Abre conversación sobre hobbies."},
+  // TRAVEL
+  {cat:"travel",en:"Excuse me, how do I get to downtown from here?",es:"Disculpa, ¿cómo llego al centro desde aquí?",note:""},
+  {cat:"travel",en:"Is it within walking distance?",es:"¿Se puede llegar caminando?",note:""},
+  {cat:"travel",en:"Could you recommend a good place to eat nearby?",es:"¿Me recomiendas un buen lugar para comer cerca?",note:""},
+  {cat:"travel",en:"I have a reservation under the name Rodrigo.",es:"Tengo una reserva a nombre de Rodrigo.",note:"Hotel/restaurante."},
+  {cat:"travel",en:"What time is checkout?",es:"¿A qué hora es el checkout?",note:""},
+  {cat:"travel",en:"Do you take card, or is it cash only?",es:"¿Aceptan tarjeta, o es solo efectivo?",note:""},
+  {cat:"travel",en:"Sorry, I'm not from around here.",es:"Perdón, no soy de por aquí.",note:"Útil cuando te preguntan direcciones."},
+  // REACT
+  {cat:"react",en:"No way, that's amazing!",es:"¡No puede ser, qué increíble!",note:"Reacción entusiasta."},
+  {cat:"react",en:"Oh, that's a shame.",es:"Ay, qué pena / qué lástima.",note:"Empatía ante algo malo."},
+  {cat:"react",en:"Wait, are you serious?",es:"Espera, ¿en serio?",note:""},
+  {cat:"react",en:"That makes total sense.",es:"Tiene todo el sentido.",note:""},
+  {cat:"react",en:"I had no idea!",es:"¡No tenía idea!",note:""},
+  {cat:"react",en:"Good for you!",es:"¡Qué bien por ti! / ¡Me alegro!",note:"Felicitar de forma casual."},
+  {cat:"react",en:"That must have been tough.",es:"Eso debe haber sido difícil.",note:"Mostrar empatía con soltura."},
+  // CONFERENCE
+  {cat:"conference",en:"Thank you all for being here today. It's a real honor to speak with you.",es:"Gracias a todos por estar aquí hoy. Es un verdadero honor hablar con ustedes.",note:"Apertura cálida y profesional."},
+  {cat:"conference",en:"Today I'd like to walk you through how we're using AI to transform dental care.",es:"Hoy me gustaría guiarlos por cómo usamos IA para transformar el cuidado dental.",note:"'Walk you through' = explicar paso a paso."},
+  {cat:"conference",en:"Let me set the stage with a quick story.",es:"Déjenme poner contexto con una breve historia.",note:"Ideal para empezar con un gancho."},
+  {cat:"conference",en:"I'll come back to that point in just a moment.",es:"Volveré a ese punto en un momento.",note:""},
+  {cat:"conference",en:"To wrap up, let me leave you with one key takeaway.",es:"Para cerrar, déjenme con una idea clave.",note:"'Takeaway' = idea principal que te llevas."},
+  {cat:"conference",en:"I'm happy to take any questions you might have.",es:"Con gusto respondo cualquier pregunta que tengan.",note:"Cierre estándar antes del Q&A."},
+  // PITCH
+  {cat:"pitch",en:"DEXA is the first Latin American app that detects cavities and gum problems with AI, from your phone, in under two minutes.",es:"DEXA es la primera app latinoamericana que detecta caries y problemas de encías con IA, desde tu celular, en menos de dos minutos.",note:"Tu one-liner. Memorízalo perfecto."},
+  {cat:"pitch",en:"The problem we're solving is simple: most people only see a dentist when it's already too late.",es:"El problema que resolvemos es simple: la mayoría va al dentista solo cuando ya es tarde.",note:"Presenta el problema antes de la solución."},
+  {cat:"pitch",en:"What sets us apart is that it works with just a regular phone photo.",es:"Lo que nos diferencia es que funciona con una simple foto de celular.",note:"'What sets us apart' = lo que nos distingue."},
+  {cat:"pitch",en:"We've already validated this with real users across the region.",es:"Ya lo hemos validado con usuarios reales en la región.",note:""},
+  {cat:"pitch",en:"Our vision is to make preventive dental care accessible to everyone.",es:"Nuestra visión es hacer el cuidado dental preventivo accesible para todos.",note:""},
+  {cat:"pitch",en:"I'd love to show you a quick demo, it speaks for itself.",es:"Me encantaría mostrarte una demo rápida, habla por sí sola.",note:""},
+  // NETWORKING
+  {cat:"network",en:"Hi, I don't think we've met, I'm Rodrigo, founder of DEXA.",es:"Hola, creo que no nos conocemos, soy Rodrigo, fundador de DEXA.",note:"Rompe el hielo con seguridad."},
+  {cat:"network",en:"So, what brings you to the conference?",es:"Entonces, ¿qué te trae a la conferencia?",note:"Pregunta abierta clásica de networking."},
+  {cat:"network",en:"That sounds fascinating, tell me more about that.",es:"Suena fascinante, cuéntame más sobre eso.",note:"Muestra interés genuino."},
+  {cat:"network",en:"We're actually working on something in a similar space.",es:"De hecho estamos trabajando en algo en un espacio similar.",note:"'Space' = área/rubro."},
+  {cat:"network",en:"Do you have a card, or should we connect on LinkedIn?",es:"¿Tienes tarjeta, o nos conectamos en LinkedIn?",note:"Cierre natural de conversación."},
+  {cat:"network",en:"It was great meeting you, let's stay in touch.",es:"Fue un gusto conocerte, mantengámonos en contacto.",note:""},
+  {cat:"network",en:"I'd love to pick your brain about the AI scene in LA sometime.",es:"Me encantaría consultarte sobre el mundo de la IA en LA en algún momento.",note:"'Pick your brain' = pedir tu opinión/consejo."},
+  // MEETINGS
+  {cat:"meeting",en:"Thanks for making the time, I know you're busy.",es:"Gracias por sacar el tiempo, sé que estás ocupado.",note:""},
+  {cat:"meeting",en:"Just to make sure I understand, are you saying that...?",es:"Solo para asegurarme de entender, ¿estás diciendo que...?",note:"Confirma antes de responder."},
+  {cat:"meeting",en:"That's a fair point, but here's how I see it.",es:"Es un buen punto, pero así lo veo yo.",note:"Discrepar con elegancia."},
+  {cat:"meeting",en:"Let's circle back to that once we've covered the basics.",es:"Retomemos eso cuando cubramos lo básico.",note:""},
+  {cat:"meeting",en:"What would it take to move forward with this?",es:"¿Qué haría falta para avanzar con esto?",note:"Pregunta de cierre orientada a la acción."},
+  {cat:"meeting",en:"Let me follow up with an email to recap everything.",es:"Te hago seguimiento con un correo para resumir todo.",note:""},
+  // OPINION
+  {cat:"opinion",en:"The way I see it, prevention is the future of healthcare.",es:"Tal como lo veo, la prevención es el futuro de la salud.",note:""},
+  {cat:"opinion",en:"I'd argue that accessibility matters more than accuracy alone.",es:"Yo diría que la accesibilidad importa más que solo la precisión.",note:"'I'd argue that' = sostengo/argumentaría que."},
+  {cat:"opinion",en:"To be honest, I have mixed feelings about that approach.",es:"Para ser honesto, tengo sentimientos encontrados con ese enfoque.",note:""},
+  {cat:"opinion",en:"I couldn't agree more.",es:"No podría estar más de acuerdo.",note:"Acuerdo enfático."},
+  {cat:"opinion",en:"I see where you're coming from, but I'd push back on that a little.",es:"Entiendo tu punto, pero discreparía un poco.",note:"Desacuerdo respetuoso y sofisticado."},
+  {cat:"opinion",en:"It really depends on the context.",es:"Realmente depende del contexto.",note:"Respuesta matizada."},
+  // CLARIFY
+  {cat:"clarify",en:"Sorry, could you say that again a bit more slowly?",es:"Perdón, ¿podrías repetir eso un poco más lento?",note:"Sin vergüenza: pedir que repitan es normal."},
+  {cat:"clarify",en:"I'm not sure I follow, could you give me an example?",es:"No estoy seguro de seguirte, ¿me das un ejemplo?",note:""},
+  {cat:"clarify",en:"Just so we're on the same page, you mean...?",es:"Solo para estar alineados, ¿te refieres a...?",note:""},
+  {cat:"clarify",en:"What do you mean exactly by that?",es:"¿A qué te refieres exactamente con eso?",note:""},
+  {cat:"clarify",en:"Let me rephrase that to make sure it's clear.",es:"Déjame reformularlo para asegurarme de que quede claro.",note:"Cuando TÚ no te explicaste bien."},
+  {cat:"clarify",en:"Bear with me, my English isn't perfect, but I'll do my best.",es:"Ten paciencia, mi inglés no es perfecto, pero haré mi mejor esfuerzo.",note:"Honesto y encantador. Baja la presión."},
+];
+
+/* ---------- 3. SHADOWING (frases naturales para ritmo) ---------- */
+const SHADOW = [
+  // vida diaria / natural
+  {en:"Honestly, I hadn't thought about it that way before.",es:"Sinceramente, no lo había pensado así antes."},
+  {en:"Do you want to grab something to eat later?",es:"¿Quieres ir a comer algo más tarde?"},
+  {en:"I'm so sorry, I completely lost track of time.",es:"Perdón, se me pasó completamente la hora."},
+  {en:"It's been one of those days, you know?",es:"Ha sido uno de esos días, ¿sabes?"},
+  {en:"Let's take a step back and look at the bigger picture.",es:"Demos un paso atrás y veamos el panorama completo."},
+  {en:"To be perfectly honest, I'm not sure yet.",es:"Para ser totalmente honesto, aún no estoy seguro."},
+  // viajes / social
+  {en:"Excuse me, could you point me in the right direction?",es:"Disculpa, ¿me puedes indicar por dónde ir?"},
+  {en:"It was really nice meeting you, let's stay in touch.",es:"Fue un gusto conocerte, mantengámonos en contacto."},
+  {en:"I've heard great things about this place.",es:"He oído cosas muy buenas de este lugar."},
+  {en:"I really appreciate you taking the time.",es:"Agradezco mucho que te tomes el tiempo."},
+  // opinión / profesional
+  {en:"That's a great question, and I'm glad you asked.",es:"Esa es una gran pregunta, y me alegra que la hicieras."},
+  {en:"I'd love to hear your thoughts on this.",es:"Me encantaría escuchar tu opinión sobre esto."},
+  {en:"At the end of the day, it comes down to trust.",es:"Al final del día, todo se reduce a la confianza."},
+  {en:"I'm genuinely excited about where this is heading.",es:"Estoy genuinamente emocionado por hacia dónde va esto."},
+  {en:"Could you elaborate a little more on that point?",es:"¿Podrías profundizar un poco más en ese punto?"},
+];
+
+/* ---------- 4. CONVERSACIÓN / ROLE-PLAY ---------- */
+const SCENARIOS = [
+  {
+    role:"Conociendo a alguien nuevo",
+    title:"Hacer un amigo / charla casual",
+    setup:"Conociste a alguien simpático en un evento o viaje. Mantén una conversación relajada y natural, sin apuro. Responde cada línea en voz alta.",
+    prompts:[
+      "Hey! Is this your first time here?",
+      "Cool! So what do you do?",
+      "Nice! And what do you like to do in your free time?",
+      "Have you traveled much this year?",
+      "We should grab a drink sometime, here's my number."
+    ],
+    useful:[
+      {en:"Yeah, first time, I'm loving it so far.",es:"Sí, primera vez, me está encantando."},
+      {en:"A little bit of everything, honestly.",es:"Un poco de todo, la verdad."},
+      {en:"I'm really into hiking and photography.",es:"Me gusta mucho el senderismo y la fotografía."},
+      {en:"Sounds great, count me in!",es:"Suena genial, ¡cuenta conmigo!"},
+    ]
+  },
+  {
+    role:"Viajando en el aeropuerto / hotel",
+    title:"Moverte solo en el extranjero",
+    setup:"Estás llegando a otro país. Interactúas con inmigración, taxi y recepción del hotel. Responde con calma y claridad.",
+    prompts:[
+      "What's the purpose of your visit?",
+      "How long are you planning to stay?",
+      "Where are you headed today?",
+      "Do you have a reservation with us?",
+      "Would you like a wake-up call in the morning?"
+    ],
+    useful:[
+      {en:"I'm here for a conference, about a week.",es:"Vengo por una conferencia, cerca de una semana."},
+      {en:"I'm heading to a hotel downtown.",es:"Voy a un hotel en el centro."},
+      {en:"Yes, under the name Rodrigo.",es:"Sí, a nombre de Rodrigo."},
+      {en:"That would be great, thank you.",es:"Eso sería genial, gracias."},
+    ]
+  },
+  {
+    role:"Después de tu charla en una conferencia de IA",
+    title:"Q&A tras tu presentación",
+    setup:"Terminaste tu charla sobre DEXA. Alguien del público levanta la mano. Responde cada pregunta hablando en voz alta, con calma.",
+    prompts:[
+      "How accurate is your AI compared to a real dentist?",
+      "What happens if the diagnosis is wrong?",
+      "How do you handle patient data and privacy?",
+      "What's your business model, exactly?",
+      "Where do you see DEXA in five years?"
+    ],
+    useful:[
+      {en:"That's a great question.",es:"Excelente pregunta."},
+      {en:"Let me break that down.",es:"Déjame desglosarlo."},
+      {en:"In our testing so far...",es:"En nuestras pruebas hasta ahora..."},
+      {en:"I want to be transparent about that.",es:"Quiero ser transparente al respecto."},
+    ]
+  },
+  {
+    role:"Networking en un evento en Los Ángeles",
+    title:"Small talk con otro founder",
+    setup:"Estás en un coffee break de la academia de IA en LA. Un founder se acerca. Mantén una conversación natural, no un pitch.",
+    prompts:[
+      "Hey, first time at this event?",
+      "So what are you working on?",
+      "Oh interesting, how did you get into that?",
+      "What's the AI scene like in Chile?",
+      "We should grab a coffee sometime, sounds like there's some overlap."
+    ],
+    useful:[
+      {en:"Yeah, it's my first time, it's been amazing so far.",es:"Sí, es mi primera vez, ha sido increíble."},
+      {en:"So I'm building an AI app for dental screening.",es:"Estoy construyendo una app de IA para diagnóstico dental."},
+      {en:"It kind of happened by accident, honestly.",es:"En realidad pasó casi por accidente."},
+      {en:"It's growing fast, there's a lot of talent.",es:"Está creciendo rápido, hay mucho talento."},
+    ]
+  },
+  {
+    role:"Reunión con un posible inversor",
+    title:"Pitch + preguntas difíciles",
+    setup:"Tienes 15 minutos con un inversor. Después de tu pitch, hará preguntas incómodas. Respira, tómate tu tiempo y responde.",
+    prompts:[
+      "Why are you the right person to build this?",
+      "Who are your competitors, and why will you win?",
+      "How big is this market, really?",
+      "What keeps you up at night about this business?",
+      "How much are you raising, and what for?"
+    ],
+    useful:[
+      {en:"Great question, let me give you some context.",es:"Buena pregunta, déjame dar contexto."},
+      {en:"What sets us apart is...",es:"Lo que nos diferencia es..."},
+      {en:"The market is significant, and here's why.",es:"El mercado es significativo, y aquí está el por qué."},
+      {en:"I'll be candid with you.",es:"Seré franco contigo."},
+    ]
+  },
+  {
+    role:"Conversación casual / restaurante en LA",
+    title:"Sobrevivir el día a día",
+    setup:"Inglés cotidiano para que te muevas con soltura fuera de lo profesional. Responde en voz alta como si estuvieras ahí.",
+    prompts:[
+      "Hi! Table for one, or are you waiting for someone?",
+      "Can I get you started with something to drink?",
+      "How's everything tasting?",
+      "Are you all set, or can I get you anything else?",
+      "Would you like the check?"
+    ],
+    useful:[
+      {en:"Just for one, thanks.",es:"Solo para uno, gracias."},
+      {en:"I'll have a sparkling water to start.",es:"Empezaré con un agua con gas."},
+      {en:"It's delicious, thank you.",es:"Está delicioso, gracias."},
+      {en:"I'm good for now, thanks.",es:"Estoy bien por ahora, gracias."},
+      {en:"Could I get the check, please?",es:"¿Me trae la cuenta, por favor?"},
+    ]
+  },
+];
+
+/* =========================================================
+   ESTADO / LOCALSTORAGE
+   ========================================================= */
+const LS_KEY = "dexa_english_v1";
+const DAY_MS = 86400000;
+function todayStamp(){const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();}
+function loadState(){
+  let s;try{s=JSON.parse(localStorage.getItem(LS_KEY));}catch(e){s=null;}
+  if(!s)s={};
+  s.cards=s.cards||{};          // {term: {due, interval, ease, reps}}
+  s.streak=s.streak||0;
+  s.lastDay=s.lastDay||null;
+  s.missions=s.missions||{};    // {dayStamp: {vocab,phrases,speak,talk}}
+  s.mastered=s.mastered||0;
+  return s;
+}
+let state=loadState();
+function save(){localStorage.setItem(LS_KEY,JSON.stringify(state));}
+
+/* streak logic */
+(function initStreak(){
+  const t=todayStamp();
+  if(state.lastDay!==t){
+    const y=new Date(Date.now()-DAY_MS);
+    const yStamp=y.getFullYear()+"-"+(y.getMonth()+1)+"-"+y.getDate();
+    if(state.lastDay===yStamp)state.streak+=1;
+    else if(state.lastDay!==null)state.streak=1;
+    else state.streak=1;
+    state.lastDay=t;
+    save();
+  }
+})();
+
+/* =========================================================
+   TEXT-TO-SPEECH
+   ========================================================= */
+let enVoice=null;
+function pickVoice(){
+  const voices=speechSynthesis.getVoices();
+  enVoice=voices.find(v=>/en[-_]US/i.test(v.lang)&&/(Google|Samantha|Natural|Aria|Jenny)/i.test(v.name))
+    ||voices.find(v=>/en[-_]US/i.test(v.lang))
+    ||voices.find(v=>/^en/i.test(v.lang))||null;
+}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function speak(text,rate=0.9){
+  if(!("speechSynthesis" in window)){toast("Tu navegador no soporta audio");return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";u.rate=rate;u.pitch=1;
+  if(enVoice)u.voice=enVoice;
+  speechSynthesis.speak(u);
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+const views=document.querySelectorAll(".view");
+const tabBtns=document.querySelectorAll("nav.tabs button");
+function switchView(v){
+  views.forEach(x=>x.classList.toggle("active",x.id==="view-"+v));
+  tabBtns.forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  window.scrollTo({top:0,behavior:"instant"});
+  if(v==="vocab")renderFlashcard();
+}
+tabBtns.forEach(b=>b.addEventListener("click",()=>switchView(b.dataset.view)));
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer;
+function toast(msg){
+  const el=document.getElementById("toast");
+  el.textContent=msg;el.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
+}
+
+/* =========================================================
+   SRS (SM-2 simplificado)
+   ========================================================= */
+function cardState(term){
+  return state.cards[term]||{due:0,interval:0,ease:2.5,reps:0};
+}
+function isDue(term){return cardState(term).due<=Date.now();}
+function isNew(term){return !state.cards[term];}
+function dueCards(){
+  // vencidas primero, luego nuevas
+  const due=VOCAB.filter(v=>state.cards[v.t]&&isDue(v.t));
+  const fresh=VOCAB.filter(v=>isNew(v.t));
+  return [...due,...fresh];
+}
+function gradeCard(term,grade){
+  let c=cardState(term);
+  c.reps=(c.reps||0)+1;
+  if(grade==="again"){c.interval=0;c.ease=Math.max(1.3,c.ease-0.2);c.due=Date.now()+60*1000*5;}
+  else{
+    if(grade==="hard"){c.ease=Math.max(1.3,c.ease-0.15);c.interval=c.interval?c.interval*1.2:1;}
+    else if(grade==="good"){c.interval=c.interval?c.interval*c.ease:1;}
+    else if(grade==="easy"){c.ease=c.ease+0.15;c.interval=c.interval?c.interval*c.ease*1.3:3;}
+    c.due=Date.now()+Math.round(c.interval*DAY_MS);
+  }
+  const wasMastered=(cardState(term).interval>=21);
+  state.cards[term]=c;
+  // mastered = interval >= 21 días
+  state.mastered=VOCAB.filter(v=>state.cards[v.t]&&state.cards[v.t].interval>=21).length;
+  save();
+  updateHeaderStats();
+}
+
+/* =========================================================
+   FLASHCARDS RENDER
+   ========================================================= */
+let currentCard=null;
+function renderFlashcard(){
+  const fc=document.getElementById("flashcard");
+  const ga=document.getElementById("gradeArea");
+  const queue=dueCards();
+  document.getElementById("dueCount").textContent=VOCAB.filter(v=>state.cards[v.t]&&isDue(v.t)).length;
+  document.getElementById("newCount").textContent=VOCAB.filter(v=>isNew(v.t)).length;
+  document.getElementById("totalCount").textContent=VOCAB.length;
+  if(queue.length===0){
+    fc.classList.remove("flipped");
+    fc.innerHTML='<div class="empty-state"><div class="big">🎉</div><b>¡Todo repasado por hoy!</b><br><span style="font-size:14px">Vuelve más tarde o mañana para seguir reforzando.</span></div>';
+    ga.innerHTML="";currentCard=null;return;
+  }
+  currentCard=queue[0];const c=currentCard;
+  fc.classList.remove("flipped");
+  fc.innerHTML=`
+    <div class="cat-tag">${c.cat}</div>
+    <div class="pos">${c.pos}</div>
+    <div class="fc-term">${c.t}</div>
+    <div class="fc-ipa">${c.ipa}</div>
+    <div class="fc-hint">Toca para ver el significado · 🔊 escucha</div>
+    <div class="fc-back">
+      <div class="fc-def">${c.def}</div>
+      <div class="fc-es">${c.es}</div>
+      <div class="fc-ex">"${c.ex}"</div>
+    </div>`;
+  ga.innerHTML=`<div style="display:flex;justify-content:center;margin-top:14px">
+    <button class="icon-btn speak-btn" id="fcSpeak" title="Escuchar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button>
+  </div>`;
+  document.getElementById("fcSpeak").addEventListener("click",e=>{e.stopPropagation();speak(c.t+". "+c.ex,0.9);});
+}
+document.getElementById("flashcard").addEventListener("click",function(){
+  if(!currentCard)return;
+  if(!this.classList.contains("flipped")){
+    this.classList.add("flipped");
+    speak(currentCard.t,0.85);
+    showGradeButtons();
+  }
+});
+function showGradeButtons(){
+  const ga=document.getElementById("gradeArea");
+  ga.innerHTML=`<div class="grade-row">
+    <button class="grade again" data-g="again">Otra vez<span>&lt;5min</span></button>
+    <button class="grade hard" data-g="hard">Difícil<span>corto</span></button>
+    <button class="grade good" data-g="good">Bien<span>normal</span></button>
+    <button class="grade easy" data-g="easy">Fácil<span>largo</span></button>
+  </div>`;
+  ga.querySelectorAll(".grade").forEach(b=>b.addEventListener("click",()=>{
+    gradeCard(currentCard.t,b.dataset.g);
+    markMission("vocab");
+    renderFlashcard();
+  }));
+}
+
+/* =========================================================
+   PHRASES RENDER
+   ========================================================= */
+let activePhraseCat="daily";
+function renderPhraseFilters(){
+  const el=document.getElementById("phraseFilters");
+  el.innerHTML=PHRASE_CATS.map(c=>`<button class="chip ${c.id===activePhraseCat?'active':''}" data-cat="${c.id}">${c.label}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+    activePhraseCat=b.dataset.cat;renderPhraseFilters();renderPhrases();
+  }));
+}
+function speakerSVG(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>';}
+function renderPhrases(){
+  const el=document.getElementById("phraseList");
+  const list=PHRASES.filter(p=>p.cat===activePhraseCat);
+  el.innerHTML=list.map((p,i)=>`
+    <div class="card phrase-item">
+      <button class="icon-btn speak-btn" data-i="${i}" title="Escuchar">${speakerSVG()}</button>
+      <div class="p-body">
+        <div class="p-en">${p.en}</div>
+        <div class="p-es">${p.es}</div>
+        ${p.note?`<div class="p-note">${p.note}</div>`:""}
+      </div>
+    </div>`).join("");
+  el.querySelectorAll(".speak-btn").forEach(b=>b.addEventListener("click",()=>{
+    speak(list[b.dataset.i].en,0.9);markMission("phrases");
+  }));
+}
+
+/* =========================================================
+   PRONUNCIATION / SHADOWING + SPEECH RECOGNITION
+   ========================================================= */
+let shIndex=0,shRate=0.9;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let recog=null,recording=false;
+function renderShadow(){
+  const s=SHADOW[shIndex];
+  document.getElementById("shSentence").textContent=s.en;
+  document.getElementById("shEs").textContent=s.es;
+  document.getElementById("shCounter").textContent=(shIndex+1)+" / "+SHADOW.length;
+  document.getElementById("scoreBox").classList.remove("show");
+}
+document.getElementById("shPlay").addEventListener("click",()=>speak(SHADOW[shIndex].en,shRate));
+document.querySelectorAll(".speed-toggle button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".speed-toggle button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");shRate=parseFloat(b.dataset.rate);
+}));
+document.getElementById("shPrev").addEventListener("click",()=>{shIndex=(shIndex-1+SHADOW.length)%SHADOW.length;renderShadow();});
+document.getElementById("shNext").addEventListener("click",()=>{shIndex=(shIndex+1)%SHADOW.length;renderShadow();});
+
+function normalize(str){return str.toLowerCase().replace(/[^a-z0-9\s']/g," ").replace(/\s+/g," ").trim();}
+function scorePronunciation(target,heard){
+  const tw=normalize(target).split(" ").filter(Boolean);
+  const hw=new Set(normalize(heard).split(" ").filter(Boolean));
+  let hit=0;const diff=tw.map(w=>{const ok=hw.has(w);if(ok)hit++;return `<span class="${ok?'ok':'miss'}">${w}</span>`;});
+  const pct=tw.length?Math.round(hit/tw.length*100):0;
+  return {pct,diffHtml:diff.join(" ")};
+}
+document.getElementById("micBtn").addEventListener("click",()=>{
+  if(!SR){toast("Reconocimiento de voz no disponible. Usa Chrome de escritorio o Android.");return;}
+  if(recording){recog&&recog.stop();return;}
+  recog=new SR();recog.lang="en-US";recog.interimResults=false;recog.maxAlternatives=1;
+  const btn=document.getElementById("micBtn"),hint=document.getElementById("micHint");
+  recog.onstart=()=>{recording=true;btn.classList.add("recording");hint.textContent="Escuchando... habla ahora";};
+  recog.onerror=(e)=>{recording=false;btn.classList.remove("recording");hint.textContent=e.error==="not-allowed"?"Permite el micrófono para practicar":"No te escuché bien, intenta de nuevo";};
+  recog.onend=()=>{recording=false;btn.classList.remove("recording");if(document.getElementById("micHint").textContent==="Escuchando... habla ahora")document.getElementById("micHint").textContent="Presiona y lee la frase en voz alta";};
+  recog.onresult=(e)=>{
+    const heard=e.results[0][0].transcript;
+    const {pct,diffHtml}=scorePronunciation(SHADOW[shIndex].en,heard);
+    const box=document.getElementById("scoreBox");
+    const color=pct>=80?"var(--good)":pct>=55?"var(--warn)":"var(--bad)";
+    document.getElementById("scoreNum").innerHTML=`<span style="color:${color}">${pct}%</span>`;
+    document.getElementById("scoreHeard").innerHTML=`Objetivo: <span class="word-diff">${diffHtml}</span><br><span style="color:var(--ink-3)">Escuché: "${heard}"</span>`;
+    box.classList.add("show");
+    markMission("speak");
+    if(pct>=80)toast("¡Excelente pronunciación! 🎯");
+  };
+  recog.start();
+});
+
+/* =========================================================
+   CONVERSATION RENDER
+   ========================================================= */
+function renderScenarios(){
+  const el=document.getElementById("scenarioList");
+  el.innerHTML=SCENARIOS.map((s,si)=>`
+    <div class="card scenario-card">
+      <div class="s-role">${s.role}</div>
+      <h3>${s.title}</h3>
+      <div class="s-setup">${s.setup}</div>
+      <div class="prompts">
+        ${s.prompts.map((q,qi)=>`<div class="prompt-q"><span class="qn">${qi+1}</span><span style="flex:1">${q}</span><button class="icon-btn btn-sm speak-btn" style="width:34px;height:34px" data-s="${si}" data-q="${qi}" title="Escuchar">${speakerSVG()}</button></div>`).join("")}
+      </div>
+      <div class="useful">
+        <div class="u-h">Expresiones útiles para responder</div>
+        ${s.useful.map((u,ui)=>`<div class="u-item"><button class="icon-btn speak-btn" style="width:30px;height:30px" data-us="${si}" data-ui="${ui}" title="Escuchar">${speakerSVG()}</button><span>${u.en} <span class="p-es">— ${u.es}</span></span></div>`).join("")}
+      </div>
+    </div>`).join("");
+  el.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{speak(SCENARIOS[b.dataset.s].prompts[b.dataset.q],0.9);markMission("talk");}));
+  el.querySelectorAll("[data-ui]").forEach(b=>b.addEventListener("click",()=>{speak(SCENARIOS[b.dataset.us].useful[b.dataset.ui].en,0.9);markMission("talk");}));
+}
+
+/* =========================================================
+   TODAY / MISIÓN DIARIA
+   ========================================================= */
+function todaysMissionState(){
+  const t=todayStamp();
+  if(!state.missions[t])state.missions[t]={vocab:false,phrases:false,speak:false,talk:false};
+  return state.missions[t];
+}
+function markMission(key){
+  const m=todaysMissionState();
+  if(!m[key]){m[key]=true;save();renderToday();updateHeaderStats();}
+}
+const MISSIONS=[
+  {key:"vocab",view:"vocab",icon:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/>',title:"Repasa vocabulario",desc:"Estudia tus flashcards del día"},
+  {key:"phrases",view:"phrases",icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',title:"Escucha frases nuevas",desc:"Reproduce frases de un escenario"},
+  {key:"speak",view:"speak",icon:'<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>',title:"Practica pronunciación",desc:"Graba tu voz al menos una vez"},
+  {key:"talk",view:"talk",icon:'<path d="M13 2H5a2 2 0 0 0-2 2v9l3-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>',title:"Habla un role-play",desc:"Responde un escenario en voz alta"},
+];
+function renderToday(){
+  const d=new Date();
+  document.getElementById("todayDate").textContent=d.toLocaleDateString("es-CL",{weekday:"long",day:"numeric",month:"long"});
+  const m=todaysMissionState();
+  const done=MISSIONS.filter(x=>m[x.key]).length;
+  document.getElementById("dailyProg").style.width=(done/MISSIONS.length*100)+"%";
+  document.getElementById("dailyProgLbl").textContent=done+" / "+MISSIONS.length+" completado"+(done===MISSIONS.length?" 🎉 ¡Meta del día lista!":"");
+  document.getElementById("missionList").innerHTML=MISSIONS.map(x=>`
+    <div class="card mission ${m[x.key]?'done':''}" data-view="${x.view}">
+      <div class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${x.icon}</svg></div>
+      <div class="m-body"><h3>${x.title}</h3><p>${x.desc}</p></div>
+      <div class="check-mini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+    </div>`).join("");
+  document.querySelectorAll("#missionList .mission").forEach(el=>el.addEventListener("click",()=>switchView(el.dataset.view)));
+
+  // frase del día (rota por fecha)
+  const dayIdx=Math.floor(Date.now()/DAY_MS);
+  const p=PHRASES[dayIdx%PHRASES.length];
+  document.getElementById("phraseOfDay").innerHTML=`
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <button class="icon-btn speak-btn" id="podSpeak">${speakerSVG()}</button>
+      <div><div class="p-en" style="font-size:17px;font-weight:600">${p.en}</div>
+      <div class="p-es" style="color:var(--ink-2);margin-top:5px">${p.es}</div></div>
+    </div>`;
+  document.getElementById("podSpeak").addEventListener("click",()=>speak(p.en,0.9));
+  const w=VOCAB[dayIdx%VOCAB.length];
+  document.getElementById("wordOfDay").innerHTML=`
+    <div style="display:flex;align-items:flex-start;gap:14px">
+      <button class="icon-btn speak-btn" id="wodSpeak">${speakerSVG()}</button>
+      <div><div style="font-size:20px;font-weight:800">${w.t} <span style="font-size:14px;color:var(--ink-3);font-weight:400">${w.ipa}</span></div>
+      <div class="fc-es" style="margin:4px 0">${w.es}</div>
+      <div style="font-size:14px;color:var(--ink-2);font-style:italic">"${w.ex}"</div></div>
+    </div>`;
+  document.getElementById("wodSpeak").addEventListener("click",()=>speak(w.t+". "+w.ex,0.9));
+}
+
+/* =========================================================
+   HEADER STATS
+   ========================================================= */
+function updateHeaderStats(){
+  document.getElementById("streakNum").textContent=state.streak;
+  document.getElementById("masteredNum").textContent=state.mastered;
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+renderToday();
+renderPhraseFilters();renderPhrases();
+renderShadow();
+renderScenarios();
+updateHeaderStats();
+if(!SR){document.getElementById("micHint").textContent="Nota: el micrófono funciona en Chrome (PC/Android).";}
+</script>
+</body>
+</html>
