@@ -157,6 +157,16 @@ h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03
 .bubble .who{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.55;margin-bottom:3px}
 .dlg-controls{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
 
+/* VOICE PICKER */
+.voice-card{padding:16px 18px;margin-bottom:14px}
+.voice-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.voice-lbl{font-size:14px;font-weight:700}
+#voiceSelect{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--hairline);background:var(--bg);font-size:14px;font-weight:600;color:var(--ink);-webkit-appearance:none;appearance:none}
+.voice-hint{font-size:12.5px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+.voice-help{margin-top:12px;border-top:1px dashed var(--hairline);padding-top:10px}
+.voice-help summary{font-size:13px;font-weight:700;color:var(--blue);cursor:pointer}
+.voice-help-body{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:10px}
+
 /* PRONUNCIATION */
 .shadow-card{padding:26px 24px;text-align:center}
 .shadow-sentence{font-size:clamp(20px,4.5vw,26px);font-weight:700;line-height:1.45;letter-spacing:-.01em;margin-bottom:8px;text-wrap:balance}
@@ -276,6 +286,22 @@ h1.view-title{font-size:clamp(26px,5vw,34px);font-weight:900;letter-spacing:-.03
     <div class="eyebrow">Shadowing + micrófono</div>
     <h1 class="view-title">Pronunciación</h1>
     <p class="view-sub">Escucha, repite en voz alta y presiona el micrófono para hablar. Te doy un puntaje de precisión. (El micrófono funciona en Chrome de PC o Android.)</p>
+    <div class="card voice-card">
+      <div class="voice-top">
+        <span class="voice-lbl">🔊 Voz en inglés</span>
+        <button class="btn btn-ghost btn-sm" id="voiceTest">Probar voz</button>
+      </div>
+      <select id="voiceSelect" aria-label="Elegir voz en inglés"></select>
+      <div class="voice-hint" id="voiceHint">Esta voz se usa en toda la app. Si suena robótica, elige otra de la lista o descarga una voz premium (te explico cómo abajo).</div>
+      <details class="voice-help">
+        <summary>¿Cómo tener una voz mucho mejor? (gratis)</summary>
+        <div class="voice-help-body">
+          <b>iPhone / iPad:</b> Ajustes → Accesibilidad → Contenido hablado → Voces → Inglés → descarga una voz <i>Premium</i> o <i>Mejorada</i> (ej. "Ava", "Samantha"). Luego elígela aquí arriba.<br><br>
+          <b>Android:</b> Ajustes → Administración general → Texto a voz → motor de Google → Instalar datos de voz → Inglés (US) de alta calidad.<br><br>
+          <b>Computador (Chrome):</b> las voces "Google US English" ya suenan muy bien (necesitan internet). Elígelas en la lista.
+        </div>
+      </details>
+    </div>
     <div class="card shadow-card">
       <div class="shadow-sentence" id="shSentence"></div>
       <div class="shadow-es" id="shEs"></div>
@@ -768,7 +794,7 @@ function todayStamp(){const d=new Date();return d.getFullYear()+"-"+(d.getMonth(
 function loadState(){
   let s;try{s=JSON.parse(localStorage.getItem(LS_KEY));}catch(e){s=null;}
   if(!s)s={};
-  s.cards=s.cards||{};s.streak=s.streak||0;s.lastDay=s.lastDay||null;s.missions=s.missions||{};s.mastered=s.mastered||0;
+  s.cards=s.cards||{};s.streak=s.streak||0;s.lastDay=s.lastDay||null;s.missions=s.missions||{};s.mastered=s.mastered||0;s.voiceName=s.voiceName||null;
   return s;
 }
 let state=loadState();
@@ -785,28 +811,56 @@ function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state));}catch(e)
 /* =========================================================
    TEXT-TO-SPEECH
    ========================================================= */
-let voiceA=null,voiceB=null;
-function pickVoices(){
-  const v=speechSynthesis.getVoices();
-  const en=v.filter(x=>/^en/i.test(x.lang));
-  const us=en.filter(x=>/en[-_]US/i.test(x.lang));
-  const pool=us.length?us:en;
-  voiceA=pool.find(x=>/(Google US English|Samantha|Aria|Jenny|Female|Zira)/i.test(x.name))||pool[0]||null;
-  voiceB=pool.find(x=>x!==voiceA&&/(Male|Google UK English Male|Daniel|David|Alex)/i.test(x.name))||pool.find(x=>x!==voiceA)||voiceA;
+let VOICES=[];
+function scoreVoice(v){
+  let s=0;const n=(v.name||"").toLowerCase();
+  if(/en[-_]us/i.test(v.lang))s+=5;else if(/^en/i.test(v.lang))s+=2;
+  if(/google/.test(n))s+=7;
+  if(/(natural|premium|enhanced|neural)/.test(n))s+=7;
+  if(/(siri|ava|samantha|allison|serena|aria|jenny|nicky|zoe|evan|nathan)/.test(n))s+=4;
+  if(v.localService===false)s+=1;
+  if(/(compact|espeak|robot|eloquence)/.test(n))s-=5;
+  return s;
 }
-if("speechSynthesis" in window){pickVoices();speechSynthesis.onvoiceschanged=pickVoices;}
-function speak(text,rate=0.9,voice){
+function refreshVoices(){
+  if(!("speechSynthesis" in window))return;
+  const en=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
+  VOICES=en.sort((a,b)=>scoreVoice(b)-scoreVoice(a));
+  if(!state.voiceName||!VOICES.find(v=>v.name===state.voiceName)){
+    state.voiceName=VOICES[0]?VOICES[0].name:null;save();
+  }
+  populateVoiceSelect();
+}
+function getVoiceByName(name){return speechSynthesis.getVoices().find(v=>v.name===name)||null;}
+function selectedVoice(){return getVoiceByName(state.voiceName)||VOICES[0]||null;}
+function secondVoice(){const sel=selectedVoice();const other=VOICES.find(v=>!sel||v.name!==sel.name);return other||sel;}
+if("speechSynthesis" in window){refreshVoices();speechSynthesis.onvoiceschanged=refreshVoices;}
+function speak(text,rate=0.9,opt){
   return new Promise(res=>{
     if(!("speechSynthesis" in window)){toast("Tu navegador no soporta audio");res();return;}
     speechSynthesis.cancel();
     const u=new SpeechSynthesisUtterance(text);
-    u.lang="en-US";u.rate=rate;u.pitch=1;
-    if(voice)u.voice=voice;else if(voiceA)u.voice=voiceA;
+    u.lang="en-US";u.rate=rate;u.pitch=(opt&&opt.pitch)||1;
+    const v=(opt&&opt.voice)||selectedVoice();
+    if(v){u.voice=v;u.lang=v.lang;}
     u.onend=res;u.onerror=res;
     speechSynthesis.speak(u);
   });
 }
 function stopSpeak(){if("speechSynthesis" in window)speechSynthesis.cancel();}
+function shortVoiceName(v){return (v.name||"").replace(/Microsoft |Google |\(.*?\)/g,"").trim()+" · "+v.lang;}
+function populateVoiceSelect(){
+  const sel=document.getElementById("voiceSelect");if(!sel)return;
+  if(!VOICES.length){sel.innerHTML='<option>No hay voces en inglés en este dispositivo</option>';return;}
+  sel.innerHTML=VOICES.map(v=>`<option value="${v.name.replace(/"/g,'&quot;')}" ${v.name===state.voiceName?'selected':''}>${shortVoiceName(v)}</option>`).join("");
+}
+document.addEventListener("change",e=>{
+  if(e.target&&e.target.id==="voiceSelect"){
+    state.voiceName=e.target.value;save();
+    speak("Hi! This is how I sound. Let's practice your English.",0.9);
+  }
+});
+document.getElementById("voiceTest").addEventListener("click",()=>speak("Hi! This is how I sound. Let's practice your English together.",0.9));
 
 /* =========================================================
    NAV
@@ -907,6 +961,12 @@ function renderPhrases(){
    ========================================================= */
 let activeDialog=DIALOGS[0].id,dlgShowEs=false,dlgPlaying=false;
 function currentDialog(){return DIALOGS.find(d=>d.id===activeDialog);}
+function dlgVoiceOpt(s){
+  const sel=selectedVoice(),sec=secondVoice();
+  if(s==='a')return {voice:sel,pitch:1};
+  if(sec&&sel&&sec.name!==sel.name)return {voice:sec,pitch:1};
+  return {voice:sel,pitch:0.82};
+}
 function renderDialogFilters(){
   const el=document.getElementById("dialogFilters");
   el.innerHTML=DIALOGS.map(d=>`<button class="chip ${d.id===activeDialog?'active':''}" data-id="${d.id}">${d.label}</button>`).join("");
@@ -923,7 +983,7 @@ function renderDialog(){
   th.querySelectorAll(".bubble").forEach(b=>{
     b.addEventListener("click",function(ev){
       const i=+this.dataset.i,line=d.lines[i];
-      if(ev.target.closest(".b-play")){speak(line.en,0.92,line.s==='a'?voiceA:voiceB);markMission("dialog");return;}
+      if(ev.target.closest(".b-play")){speak(line.en,0.92,dlgVoiceOpt(line.s));markMission("dialog");return;}
       this.classList.toggle("show-es");
     });
   });
@@ -941,7 +1001,7 @@ document.getElementById("dlgPlayAll").addEventListener("click",async()=>{
     const l=d.lines[i];
     bubbles.forEach(b=>b.classList.remove("speaking"));
     if(bubbles[i]){bubbles[i].classList.add("speaking");bubbles[i].scrollIntoView({block:"center",behavior:"smooth"});}
-    await speak(l.en,0.92,l.s==='a'?voiceA:voiceB);
+    await speak(l.en,0.92,dlgVoiceOpt(l.s));
     await new Promise(r=>setTimeout(r,350));
   }
   bubbles.forEach(b=>b.classList.remove("speaking"));dlgPlaying=false;
@@ -1038,7 +1098,7 @@ function renderToday(){
 function updateHeaderStats(){document.getElementById("streakNum").textContent=state.streak;document.getElementById("masteredNum").textContent=state.mastered;}
 
 /* INIT */
-renderToday();renderPhraseFilters();renderPhrases();renderDialogFilters();renderDialog();renderShadow();renderScenarios();updateHeaderStats();
+renderToday();renderPhraseFilters();renderPhrases();renderDialogFilters();renderDialog();renderShadow();renderScenarios();updateHeaderStats();populateVoiceSelect();
 if(!SR){document.getElementById("micHint").textContent="Nota: el micrófono funciona en Chrome (PC o Android).";}
 </script>
 </body>
